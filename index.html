@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kita-Sora · 北の空</title>
+<title>Kita-Sora — A Quiet World of Memories, Photography & Slow Living</title>
   <!-- SEO -->
-  <meta name="description" content="Kita-Sora is a visual world of memories, seasons, and slow living — where photographs, stories, and illustrations become places you can step into.">
+  <meta name="description" content="A quiet world of memories, photography, illustrations, and slow living — where ordinary moments are allowed to matter.">
   <meta name="keywords" content="Kita-Sora, slow living, Hokkaido, 北海道, lifestyle brand, visual diary, memories, seasons, photography, illustration">
   <meta name="author" content="Lynn · Kita-Sora">
   <link rel="canonical" href="https://kita-sora.com">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kita-sora.com">
   <meta property="og:title" content="Kita-Sora · 北の空">
-  <meta property="og:description" content="Kita-Sora is a visual world of memories, seasons, and slow living — where photographs, stories, and illustrations become places you can step into.">
+  <meta property="og:description" content="A quiet world of memories, photography, illustrations, and slow living — where ordinary moments are allowed to matter.">
   <meta property="og:image" content="https://res.cloudinary.com/dqsy35euu/image/upload/v1780401004/Kita-Sora_e7na8y.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -25,13 +25,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://kita-sora.com">
   <meta name="twitter:title" content="Kita-Sora · 北の空">
-  <meta name="twitter:description" content="Kita-Sora is a visual world of memories, seasons, and slow living — where photographs, stories, and illustrations become places you can step into.">
+  <meta name="twitter:description" content="A quiet world of memories, photography, illustrations, and slow living — where ordinary moments are allowed to matter.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dqsy35euu/image/upload/v1780401004/Kita-Sora_e7na8y.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dqsy35euu/image/upload/v1780401166/%E5%A4%8F_xdvgmw.png">
   <link rel="apple-touch-icon" href="https://res.cloudinary.com/dqsy35euu/image/upload/v1780401166/%E5%A4%8F_xdvgmw.png">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400;500&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
 :root{
@@ -242,11 +242,21 @@ footer{ margin-top:120px; padding:100px 20px 60px; text-align:center; background
 .journal{ position:relative; padding:60px 20px; overflow:visible; display:flex; flex-direction:column; align-items:center; }
 .journal-card{ position:relative; z-index:5; }
 .journal-intro{ text-align:center; max-width:620px; margin-bottom:48px; position:relative; z-index:3; font-family:'Lora',serif; font-style:italic; font-size:22px; line-height:1.9; color:#2C3A4A; letter-spacing:0.02em; }
+.reveal-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .memory-float{ position:absolute; z-index:2; width:240px; opacity:0.95; pointer-events:none; animation:memoryFloat 8s ease-in-out infinite; }
-.m1{ top:100px; left:4%; width:240px; animation-delay:0s; }
-.m2{ top:60px; right:4%; width:240px; animation-delay:2s; }
-.m3{ bottom:60px; left:5%; width:232px; animation-delay:1s; }
-.m4{ bottom:40px; right:5%; width:232px; animation-delay:3s; }
+.m1{ top:100px; left:-2%; width:200px; animation-delay:0s; }
+.m2{ top:60px; right:-2%; width:200px; animation-delay:2s; }
+.m3{ bottom:60px; left:2%; width:200px; animation-delay:1s; }
+.m4{ bottom:40px; right:2%; width:200px; animation-delay:3s; }
 @keyframes memoryFloat{ 0%,100%{ transform:translateY(0) rotate(0deg); } 50%{ transform:translateY(-14px) rotate(2deg); } }
 .bridge{ padding:50px 20px; text-align:center; }
 .bridge-inner{ max-width:700px; margin:0 auto; padding:60px 40px; border-radius:28px; background:rgba(255,255,255,0.28); backdrop-filter:blur(14px); box-shadow:0 20px 60px rgba(44,58,74,0.06); }
@@ -954,9 +964,32 @@ body.lang-cn .letter-content p,
 body.lang-cn .journal-card p,
 body.lang-cn .bridge-inner p,
 body.lang-cn .bridge-inner h2,
-body.lang-cn .footer-quote {
+body.lang-cn .footer-quote,
+body.lang-cn .hero-center p,
+body.lang-cn .journal-intro {
   font-family: 'Noto Serif SC', serif;
+  font-weight: 400;
   letter-spacing: 0.02em;
+  line-height: 2.2;
+}
+body.lang-cn h1,
+body.lang-cn h2,
+body.lang-cn h3,
+body.lang-cn strong,
+body.lang-cn b {
+  font-weight: 400;
+}
+
+/* Japanese font */
+body.lang-jp .letter-content p,
+body.lang-jp .journal-card p,
+body.lang-jp .bridge-inner p,
+body.lang-jp .bridge-inner h2,
+body.lang-jp .footer-quote,
+body.lang-jp .hero-center p,
+body.lang-jp .journal-intro {
+  font-family: 'Shippori Mincho', serif;
+  letter-spacing: 0.05em;
   line-height: 2.2;
 }
 
@@ -1320,7 +1353,7 @@ nav {
   </a>
   <a href="#" class="icon winter" id="secretIconTrigger">
     <img src="https://res.cloudinary.com/dqsy35euu/image/upload/v1779958571/%E5%86%AC_vmv8jz.png">
-    <span>Secret Garden</span>
+    <span>Ochanoma</span>
   </a>
 </section>
 
@@ -1346,7 +1379,11 @@ nav {
   
   
     <div class="journal-intro">
-    <p><span data-en="Every photograph carries a story." data-jp="すべての写真には、物語がある。" data-cn="每一张照片，都承载着一个故事。">Every photograph carries a story.</span><br><span data-en="Some became postcards." data-jp="あるものはポストカードになり、" data-cn="有的成为明信片，">Some became postcards.</span><br><span data-en="Others became pages of a journal." data-jp="あるものは日記のページになった。" data-cn="有的潜入字里行间。">Others became pages of a journal.</span></p>
+    <p>
+      <span class="reveal-line" data-en="Every photograph carries a story." data-jp="すべての写真には、物語がある。" data-cn="每一张照片，都承载着一个故事。">Every photograph carries a story.</span><br>
+      <span class="reveal-line" data-en="Some became postcards." data-jp="あるものはポストカードになり、" data-cn="有的成为明信片，">Some became postcards.</span><br>
+      <span class="reveal-line" data-en="Others became pages of a journal." data-jp="あるものは日記のページになった。" data-cn="有的潜入字里行间。">Others became pages of a journal.</span>
+    </p>
   </div>
   <img class="memory-float loading="lazy" m1" src="https://res.cloudinary.com/dqsy35euu/image/upload/v1780283233/IMG_9924_hrg9fc.png">
   <img class="memory-float loading="lazy" m2" src="https://res.cloudinary.com/dqsy35euu/image/upload/v1780283193/IMG_9922_og4c6l.png">
@@ -1487,20 +1524,45 @@ let playing = false;
 let bearClicks = 0;
 let bx = window.innerWidth * 0.6;
 let by = window.innerHeight * 0.35;
+const isMobile = window.innerWidth < 768;
 let vx = -0.8, vy = -0.6;
 let flipped = false;
 let wanderTimer = 0;
+const maxSpeed = isMobile ? 1.2 : 2.0;
+const maxSpeedY = isMobile ? 0.9 : 1.4;
 
-function roam(){
+let lastFrame = 0;
+function roam(timestamp){
+  if(timestamp - lastFrame < 16){ requestAnimationFrame(roam); return; }
+  lastFrame = timestamp;
+
   wanderTimer++;
-  if(wanderTimer % 240 === 0){ vx+=(Math.random()-0.5)*1.0; vy+=(Math.random()-0.5)*0.8; }
-  bx+=vx; by+=vy;
-  if(bx<10||bx>window.innerWidth-260){ vx*=-1; vx+=(Math.random()-0.5)*0.3; vy+=(Math.random()-0.5)*0.3; }
-  if(by<10||by>window.innerHeight-260){ vy*=-1; vy+=(Math.random()-0.5)*0.3; vx+=(Math.random()-0.5)*0.2; }
-  vx=Math.max(-2.0,Math.min(2.0,vx)); vy=Math.max(-1.4,Math.min(1.4,vy));
-  if(vx<0&&!flipped){ flipped=true; } else if(vx>0&&flipped){ flipped=false; }
-  bear.style.left=bx+'px'; bear.style.top=by+'px';
-  bear.style.transform=flipped?'scaleX(-1)':'scaleX(1)';
+
+  if(wanderTimer % 240 === 0){
+    vx += (Math.random() - 0.5) * 1.0;
+    vy += (Math.random() - 0.5) * 0.8;
+  }
+
+  bx += vx; by += vy;
+
+  if(bx < 10 || bx > window.innerWidth - 260){
+    vx *= -1;
+    vx += (Math.random()-0.5)*0.3;
+    vy += (Math.random()-0.5)*0.3;
+  }
+  if(by < 10 || by > window.innerHeight - 260){
+    vy *= -1;
+    vy += (Math.random()-0.5)*0.3;
+    vx += (Math.random()-0.5)*0.2;
+  }
+
+  vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
+  vy = Math.max(-maxSpeedY, Math.min(maxSpeedY, vy));
+
+  if(vx < 0 && !flipped){ flipped=true; }
+  else if(vx > 0 && flipped){ flipped=false; }
+
+  bear.style.transform = flipped ? `translate(${Math.round(bx)}px,${Math.round(by)}px) scaleX(-1) translateZ(0)` : `translate(${Math.round(bx)}px,${Math.round(by)}px) translateZ(0)`;
   requestAnimationFrame(roam);
 }
 try {
@@ -2073,6 +2135,23 @@ window.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('kita-sora-lang');
   if(saved && saved !== 'en') setLang(saved);
 });
+
+// Journal intro — scroll reveal per line
+(function(){
+  const lines = document.querySelectorAll('.reveal-line');
+  if(!lines.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const line = entry.target;
+        const idx = Array.from(lines).indexOf(line);
+        setTimeout(() => { line.classList.add('visible'); }, idx * 220);
+        observer.unobserve(line);
+      }
+    });
+  }, { threshold: 0.3 });
+  lines.forEach(line => observer.observe(line));
+})();
 </script>
 </body>
 </html>
