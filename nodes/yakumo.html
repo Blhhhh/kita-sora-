@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yakumo — Kita-Sora</title>
+<meta name="description" content="Yakumo, Hokkaido — the first anchor. Where the ship stopped for the first time.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   NODE PAGE TEMPLATE
+   Duplicate this file per anchor: malaysia.html …
+   Only swap: photos, title, modules, copy, links
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#f0e7d3;--ink:#2c3e50;--ink-soft:#5f7485;
+  --sky:#dceeff;--coral:#ff8ca0;--letter:#f5eed7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper)}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 44px 24px 92px;mix-blend-mode:multiply;
+}
+.back{color:var(--ink);text-decoration:none;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+.back:hover{color:var(--coral)}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px}
+.logo span{font-style:italic}
+
+/* ── BRAND ICON · fixed top-left on every page ── */
+.brand-icon{
+  position:fixed;top:22px;left:32px;z-index:30;
+  width:44px;height:44px;
+  filter:drop-shadow(0 4px 10px rgba(13,31,60,.18));
+}
+.brand-icon img{width:100%;height:100%;display:block}
+
+/* hero: full-bleed photo with fog edges */
+.hero{position:relative;height:86vh;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,rgba(240,231,211,.35),transparent 26%,transparent 68%,var(--paper) 100%),
+    radial-gradient(ellipse 120% 90% at 50% 40%,transparent 62%,rgba(240,231,211,.8) 100%);
+}
+.hero .head{
+  position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);
+  text-align:center;z-index:2;width:min(720px,90vw);
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+  font-size:clamp(44px,7vw,84px);line-height:1;
+  text-shadow:0 2px 30px rgba(240,231,211,.8);
+}
+.hero .kana{font-family:'Lora',serif;font-size:15px;letter-spacing:.5em;margin-top:10px;color:var(--ink)}
+.mods{
+  display:flex;gap:26px;justify-content:center;margin-top:22px;flex-wrap:wrap;
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+}
+.mods b{color:var(--coral);font-weight:400;margin-right:6px}
+
+/* the one line */
+.line{
+  max-width:620px;margin:10vh auto 0;padding:0 24px;text-align:center;
+  font-family:'Lora',serif;font-style:italic;font-size:clamp(17px,2vw,21px);line-height:2;
+}
+
+/* photo field — an explorable scatter, not a grid */
+.field{
+  max-width:1180px;margin:12vh auto;padding:0 24px;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:3vw;align-items:start;
+}
+.ph{position:relative;overflow:hidden;border-radius:2px;box-shadow:0 18px 50px rgba(44,62,80,.18)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.2s ease}
+.ph:hover img{transform:scale(1.07)}
+.ph .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;
+  font-family:'Lora',serif;font-style:italic;font-size:12.5px;color:var(--letter);
+  background:linear-gradient(to top,rgba(44,62,80,.55),transparent);
+  opacity:0;transition:.5s;
+}
+.ph:hover .cap{opacity:1}
+/* scatter rhythm */
+.ph:nth-child(1){grid-column:1/7;aspect-ratio:4/3}
+.ph:nth-child(2){grid-column:8/13;aspect-ratio:3/4;margin-top:9vh}
+.ph:nth-child(3){grid-column:2/6;aspect-ratio:1/1;margin-top:4vh}
+.ph:nth-child(4){grid-column:7/12;aspect-ratio:16/10;margin-top:-4vh}
+.ph:nth-child(5){grid-column:4/10;aspect-ratio:21/9;margin-top:6vh}
+
+/* letters CTA */
+.cta{
+  text-align:center;margin:14vh auto 16vh;padding:0 24px;
+}
+.cta p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.6vw,28px);margin-bottom:26px}
+.cta a{
+  display:inline-block;padding:14px 34px;border-radius:999px;text-decoration:none;
+  background:var(--ink);color:var(--letter);font-size:13px;letter-spacing:.1em;
+}
+.cta a:hover{background:#3d5266}
+.cta .map-link{display:block;margin-top:26px;background:none;color:var(--ink-soft);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+
+@media (max-width:680px){
+  nav{padding:18px 22px 18px 72px}
+  .brand-icon{top:16px;left:20px;width:36px;height:36px}
+  .field{display:block}
+  .ph{margin:26px 0!important;aspect-ratio:4/3!important}
+}
+</style>
+</head>
+<body>
+
+<a class="brand-icon" href="../index.html" aria-label="Kita-Sora">
+  <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="Kita-Sora">
+</a>
+
+<nav>
+  <a class="back" href="../index.html">← the map</a>
+  <div class="logo">Kita-<span>Sora</span></div>
+</nav>
+
+<section class="hero">
+  <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_2000,q_84/v1783760829/P1070867_ug63dj.jpg" alt="Yakumo, Hokkaido">
+  <div class="head">
+    <h1>Yakumo</h1>
+    <div class="kana">北 の 空</div>
+    <div class="mods">
+      <span><b>+</b>community</span>
+      <span><b>+</b>slow living</span>
+      <span><b>+</b>simplicity</span>
+    </div>
+  </div>
+</section>
+
+<p class="line">
+  The place the ship dropped anchor for the first time.<br>
+  I arrived with nothing figured out — and for the first time, that was allowed.
+</p>
+
+<!-- PHOTO FIELD — replace src with your Cloudinary photos, add/remove freely -->
+<section class="field">
+  <figure class="ph">
+    <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_1100,q_82/v1783760829/P1070867_ug63dj.jpg" alt="" loading="lazy">
+    <figcaption class="cap">the north sky, the first morning</figcaption>
+  </figure>
+  <figure class="ph">
+    <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_900,q_82/v1783760829/P1070867_ug63dj.jpg" alt="" loading="lazy">
+    <figcaption class="cap">placeholder — swap me</figcaption>
+  </figure>
+  <figure class="ph">
+    <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_900,q_82/v1783760829/P1070867_ug63dj.jpg" alt="" loading="lazy">
+    <figcaption class="cap">placeholder — swap me</figcaption>
+  </figure>
+  <figure class="ph">
+    <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_1100,q_82/v1783760829/P1070867_ug63dj.jpg" alt="" loading="lazy">
+    <figcaption class="cap">placeholder — swap me</figcaption>
+  </figure>
+  <figure class="ph">
+    <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_1400,q_82/v1783760829/P1070867_ug63dj.jpg" alt="" loading="lazy">
+    <figcaption class="cap">placeholder — swap me</figcaption>
+  </figure>
+</section>
+
+<section class="cta">
+  <p>The full story lives in the letters.</p>
+  <a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener">read Letters from Kita-Sora →</a>
+  <a class="map-link" href="../index.html">↩ back to the map</a>
+</section>
+
+</body>
+</html>

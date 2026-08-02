@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kita-Sora — The Map</title>
+<meta name="description" content="A hand-drawn map of a life being built — anchor by anchor. Kita-Sora: a life that can travel without losing itself.">
+<link rel="canonical" href="https://kita-sora.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   KITA-SORA · THE MAP ENGINE
+   Art assets are swappable: see ASSET_SPEC.md
+   Every slot = <img class="asset" data-asset="...">
+   or a CSS background pointing into /assets
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#f0e7d3;
+  --ink:#2c3e50;
+  --ink-soft:#5f7485;
+  --sky:#dceeff;
+  --coral:#ff8ca0;
+  --letter:#f5eed7;
+  --graphite:#8a8f96;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);
+  background:var(--paper);overflow:hidden;
+}
+
+/* ── THE MAP ── */
+.map{position:fixed;inset:0;overflow:hidden}
+.sea{
+  position:absolute;inset:0;
+  background:url("assets/sea.jpg") center/cover no-repeat;
+  animation:breathe 70s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
+
+/* ── ROUTE ── */
+.route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.route path{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.route .sailed{stroke:var(--coral);stroke-width:2.2;stroke-dasharray:.8 7;animation:flow 90s linear infinite}
+.route .ahead{stroke:var(--graphite);stroke-width:1.6;stroke-dasharray:.5 8;opacity:.35}
+@keyframes flow{to{stroke-dashoffset:-300}}
+
+/* trip lines — reusable per-visit variants: number of paths = number of real trips, any route */
+.route .sailed.t1{opacity:.95}
+.route .sailed.t2{opacity:.72;animation-delay:-8s}
+.route .sailed.t3{opacity:.90;animation-delay:-16s}
+.route .sailed.t4{opacity:.78;animation-delay:-24s}
+.route .sailed.t5{opacity:.85;animation-delay:-32s}
+.route .sailed.t6{opacity:.70;animation-delay:-40s}
+
+/* ── NODES ── */
+.node{
+  position:absolute;transform:translate(-50%,-50%);z-index:4;
+  background:none;border:none;cursor:pointer;text-align:center;
+  font-family:inherit;color:var(--ink);
+}
+.node:focus-visible{outline:2px solid var(--coral);outline-offset:8px;border-radius:10px}
+.node .art{display:block;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(44,62,80,.16));transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.node:hover .art,.node:focus-visible .art{transform:translateY(-4px) scale(1.03)}
+.node .label{
+  margin-top:10px;font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-style:italic;
+  font-size:clamp(15px,1.6vw,20px);letter-spacing:.03em;
+}
+.node .sub{
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  margin-top:3px;opacity:0;transform:translateY(4px);transition:.45s ease;
+}
+.node:hover .sub,.node:focus-visible .sub{opacity:1;transform:none}
+
+/* anchored node art slots (real paintings go here) */
+.slot{display:grid;place-items:center;position:relative}
+.slot img{width:100%;height:100%;object-fit:contain}
+.slot-yakumo{width:clamp(160px,22vw,300px);height:clamp(120px,16.5vw,225px)}
+.slot-china{width:clamp(74px,9vw,120px);height:clamp(74px,9vw,120px)}
+
+/* placeholder rendering until paintings arrive */
+.placeholder{
+  width:100%;height:100%;border-radius:50% 46% 52% 48%/48% 52% 46% 54%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 42% 38%,#dceeff 0%,#c6dff2 58%,#b3d2e9 100%);
+  box-shadow:inset 0 0 0 2px rgba(44,62,80,.25);
+  font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-style:italic;color:var(--ink-soft);
+  font-size:12px;letter-spacing:.08em;
+}
+.placeholder.harbor{border-radius:14px 42% 10px 46%/40% 12px 48% 14px;background:radial-gradient(circle at 50% 40%,#f5eed7,#e8dcc0)}
+
+/* unlocked photo peeks through the island on hover (kept for real art too) */
+.peek{
+  position:absolute;inset:12%;border-radius:inherit;overflow:hidden;border-radius:50%;
+  opacity:0;transition:opacity .9s ease;pointer-events:none;
+}
+.peek img{width:100%;height:100%;object-fit:cover}
+.node:hover .peek,.node:focus-visible .peek{opacity:.94}
+
+/* pencil-sketch (locked) nodes — CSS placeholder until painted sketches arrive */
+.sketch{
+  position:relative;overflow:hidden;
+  margin:0 auto;border:1.6px dashed var(--graphite);opacity:.55;
+  border-radius:52% 48% 55% 45%/50% 54% 46% 50%;
+  background:repeating-linear-gradient(52deg,transparent 0 7px,rgba(138,143,150,.14) 7px 8px);
+}
+.sk-my{width:clamp(72px,9vw,120px);height:clamp(56px,7vw,92px)}
+.sk-eu{width:clamp(58px,7vw,96px);height:clamp(46px,5.6vw,76px);opacity:.42}
+.sk-jp{width:clamp(48px,6vw,80px);height:clamp(40px,4.8vw,64px);opacity:.32}
+
+/* fog shrouding the not-yet-unlocked islands */
+.fog{
+  position:absolute;inset:-22%;
+  background:
+    radial-gradient(circle at 40% 45%,rgba(245,238,215,.99) 0%,rgba(226,231,230,.98) 55%,rgba(210,222,228,.97) 100%);
+  filter:blur(4px) drop-shadow(0 8px 16px rgba(13,31,60,.1));
+  animation:driftFog 16s ease-in-out infinite alternate;
+  transition:opacity .8s ease;
+}
+@keyframes driftFog{
+  0%{transform:translate(-4%,3%) scale(1)}
+  100%{transform:translate(4%,-3%) scale(1.08)}
+}
+.node.locked{cursor:default}
+.node.locked .label{display:none}
+.node.locked .sub{color:var(--coral);letter-spacing:.2em}
+.node.locked:hover .fog,.node.locked:focus-visible .fog{filter:blur(6px) brightness(1.1);box-shadow:0 0 26px 8px rgba(255,140,160,.16)}
+
+/* ── SHIP ── */
+.ship{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none;width:clamp(84px,9.5vw,145px);animation:bob 6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-1.4deg)}50%{transform:translate(-50%,-56%) rotate(1.6deg)}}
+.ship svg{width:100%;height:auto;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))}
+
+/* ── BRAND ICON · fixed top-left on every page ── */
+.brand-icon{
+  position:fixed;top:22px;left:32px;z-index:30;
+  width:44px;height:44px;
+  filter:drop-shadow(0 4px 10px rgba(13,31,60,.18));
+}
+.brand-icon img{width:100%;height:100%;display:block}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:26px 44px 0;
+}
+.links{display:flex;gap:30px;align-items:center}
+.links a{
+  color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid transparent;transition:.3s;
+}
+.links a:hover{border-color:var(--coral)}
+.lang{display:flex;gap:8px;font-size:12px;color:var(--ink-soft)}
+.lang button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;padding:2px}
+.lang button.on{color:var(--ink);border-bottom:1px solid var(--coral)}
+
+/* ── WATERMARK · logo + title surfacing on the sea ── */
+.watermark{
+  position:absolute;transform:translateX(-50%);
+  width:min(460px,42vw);text-align:center;
+  z-index:2;pointer-events:none;
+  opacity:.24;color:var(--ink);
+  mix-blend-mode:multiply;
+}
+.watermark .wm-logo{
+  font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;
+  font-size:clamp(18px,2vw,26px);letter-spacing:.05em;margin-bottom:12px;
+}
+.watermark h1{
+  font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;
+  font-size:clamp(24px,2.8vw,40px);line-height:1.15;
+}
+.watermark p{font-family:'Lora',serif;font-style:italic;font-size:clamp(11px,1.05vw,14px);color:var(--ink-soft);margin-top:10px}
+
+/* ── LEGEND ── */
+.legend{position:fixed;right:44px;bottom:40px;z-index:20;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:right;line-height:2}
+.legend b{color:var(--coral);font-weight:500}
+
+/* ── PANEL ── */
+.panel{
+  position:fixed;inset:0;z-index:40;display:grid;place-items:center;
+  background:rgba(240,231,211,.55);backdrop-filter:blur(9px);
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+.panel.open{opacity:1;pointer-events:auto}
+.card{
+  width:min(440px,88vw);background:rgba(255,252,244,.9);border-radius:4px;
+  padding:38px 38px 30px;text-align:center;
+  box-shadow:0 30px 90px rgba(44,62,80,.28);
+  border:1px solid rgba(44,62,80,.08);
+  transform:translateY(16px);transition:transform .45s ease;
+}
+.panel.open .card{transform:none}
+.card .photo{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px;margin-bottom:22px;box-shadow:0 10px 30px rgba(44,62,80,.18)}
+.card h2{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-size:30px;font-style:italic}
+.card .mods{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:10px 0 16px}
+.card p{font-size:14px;line-height:1.8;font-family:'Lora',serif}
+.card .actions{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.card a{
+  display:inline-block;padding:11px 24px;border-radius:999px;text-decoration:none;font-size:12.5px;letter-spacing:.08em;
+}
+.card a.solid{background:var(--ink);color:var(--letter)}
+.card a.ghost{color:var(--ink);border:1px solid rgba(44,62,80,.3)}
+.card .close{margin-top:16px;background:none;border:none;color:var(--ink-soft);font-size:11.5px;cursor:pointer;font-family:inherit;letter-spacing:.06em}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── ROAMING BEAR (legacy mascot, migrated) ── */
+#roamingBear{
+  position:fixed;top:0;left:0;width:150px;z-index:99999;
+  cursor:pointer;pointer-events:all;
+  filter:drop-shadow(0 8px 20px rgba(44,62,80,.18));
+  will-change:transform;transform:translate(0,0);
+}
+#roamingBear.playing{filter:drop-shadow(0 0 16px rgba(255,140,160,.55)) drop-shadow(0 6px 14px rgba(44,62,80,.16))}
+@media (max-width:768px){#roamingBear{width:88px}}
+@media (max-width:680px){
+  nav{padding:20px 22px 0}
+  .links{gap:18px}
+  .links a{font-size:11px}
+  .brand-icon{top:16px;left:20px;width:36px;height:36px}
+  .watermark{left:50%!important;top:9%!important;width:78vw!important}
+  .legend{right:22px;bottom:28px;font-size:9px}
+  /* vertical drift of node layout on small screens */
+  .n-china{left:16%!important;top:86%!important}
+  .n-yakumo{left:40%!important;top:38%!important}
+  .n-ship{left:58%!important;top:52%!important}
+  .n-my{left:72%!important;top:66%!important}
+  .n-eu{left:82%!important;top:26%!important}
+  .n-jp{left:88%!important;top:82%!important}
+}
+</style>
+</head>
+<body>
+
+<a class="brand-icon" href="index.html" aria-label="Kita-Sora">
+  <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="Kita-Sora">
+</a>
+
+<div class="map" id="map">
+  <div class="sea" data-depth="6"></div>
+
+  <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <!-- sailed: China → Yakumo -->
+    <path class="sailed t1" d="M 14 88 C 19 76, 24 57, 33 45"/>
+    <path class="sailed t2" d="M 14 88 C 17 74, 22 54, 33 45"/>
+    <path class="sailed t3" d="M 14 88 C 23 77, 28 58, 33 45"/>
+    <path class="sailed t4" d="M 14 88 C 20 72, 26 52, 33 45"/>
+    <path class="sailed t5" d="M 14 88 C 16 70, 21 50, 33 45"/>
+    <path class="sailed t6" d="M 14 88 C 24 79, 29 60, 33 45"/>
+    <!-- ahead: Yakumo → Malaysia → Europe → Japan -->
+    <path class="ahead" d="M 33 45 C 45 30, 57 42, 64 58 C 71 72, 78 40, 84 28 C 88 40, 90 56, 91 68"/>
+  </svg>
+
+  <!-- CHINA · the harbor she left from -->
+  <button class="node n-china" style="left:14%;top:88%" data-node="china">
+    <div class="slot slot-china art">
+      <!-- ASSET SLOT: assets/node-china.png (transparent) -->
+      <div class="placeholder harbor" data-en="harbor" data-jp="港" data-cn="港">harbor</div>
+    </div>
+    <div class="label">China</div>
+    <div class="sub" data-en="where the ship first left shore" data-jp="船が最初に岸を離れた場所" data-cn="船最初离岸的地方">where the ship first left shore</div>
+  </button>
+
+  <!-- YAKUMO · the first anchor -->
+  <button class="node n-yakumo" style="left:33%;top:45%" id="yakumoNode">
+    <div class="slot slot-yakumo art">
+      <img src="assets/node-yakumo.png" alt="Yakumo island, hand-painted">
+    </div>
+    <div class="label">Yakumo · 北の空</div>
+    <div class="sub" data-en="the first anchor" data-jp="最初の錨" data-cn="第一个锚点">the first anchor</div>
+  </button>
+
+  <!-- SHIP OF THESEUS -->
+  <div class="ship n-ship" style="left:46%;top:44%">
+    <img src="assets/ship.png" alt="the ship of theseus, hand-painted" style="width:100%;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))">
+  </div>
+
+  <!-- MALAYSIA · pencil sketch, shrouded in fog -->
+  <button class="node locked n-my" data-node="malaysia" style="left:64%;top:58%">
+    <div class="sketch sk-my art"><div class="fog"></div></div>
+    <div class="label">Malaysia</div>
+    <div class="sub" data-en="unlocking 2026.09" data-jp="2026.09 解錨" data-cn="2026.09 解锁">unlocking 2026.09</div>
+  </button>
+
+  <!-- EUROPE · fainter sketch, shrouded in fog -->
+  <button class="node locked n-eu" data-node="europe" style="left:84%;top:28%">
+    <div class="sketch sk-eu art"><div class="fog"></div></div>
+    <div class="label">Europe</div>
+    <div class="sub" data-en="still being drawn" data-jp="まだ描かれていない" data-cn="尚未绘成">still being drawn</div>
+  </button>
+
+  <!-- JAPAN · faintest sketch, shrouded in fog -->
+  <button class="node locked n-jp" data-node="japan" style="left:91%;top:68%">
+    <div class="sketch sk-jp art"><div class="fog"></div></div>
+    <div class="label">Japan</div>
+    <div class="sub" data-en="one day, homeward" data-jp="いつか、帰る場所へ" data-cn="终有一日，归航">one day, homeward</div>
+  </button>
+
+  <!-- WATERMARK · logo + title surfacing on the open water -->
+  <div class="watermark" style="left:60%;top:13%">
+    <div class="wm-logo">Kita-<span>Sora</span></div>
+    <h1 data-en="The map is drawn as I live it." data-jp="この地図は、生きながら描かれていく。" data-cn="这张地图，随着我的人生被一笔一笔画出。">The map is drawn as I live it.</h1>
+    <p data-en="a life that can travel without losing itself" data-jp="自分を見失わずに旅できる人生" data-cn="一种带着自己远行而不迷失的人生">a life that can travel without losing itself</p>
+  </div>
+</div>
+
+<nav>
+  <div class="links">
+    <a href="shop.html" data-en="Shop" data-jp="Shop" data-cn="商店">Shop</a>
+    <a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener" data-en="Journal" data-jp="Journal" data-cn="北空札记">Journal</a>
+    <a href="about.html" data-en="About" data-jp="について" data-cn="关于">About</a>
+    <div class="lang">
+      <button class="on" onclick="setLang('en',this)">EN</button><span>·</span>
+      <button onclick="setLang('jp',this)">JP</button><span>·</span>
+      <button onclick="setLang('cn',this)">CN</button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="legend">
+  <div><b>—</b> <span data-en="sailed" data-jp="航海済み" data-cn="已航行">sailed</span></div>
+  <div>┄ <span data-en="still in pencil" data-jp="まだ鉛筆のまま" data-cn="仍是铅笔稿">still in pencil</span></div>
+</div>
+
+<!-- YAKUMO PANEL -->
+<div class="panel" id="panel">
+  <div class="card">
+    <img class="photo" src="https://res.cloudinary.com/ul3gr1pn/image/upload/w_900,q_82/v1783760829/P1070867_ug63dj.jpg" alt="Yakumo, Hokkaido">
+    <h2>Yakumo</h2>
+    <div class="mods">community · slow living · simplicity</div>
+    <p data-en="The place the ship dropped anchor for the first time — where I learned the answer was always mine."
+       data-jp="船が初めて錨を下ろした場所。答えはずっと自分の中にあったと知った場所。"
+       data-cn="船第一次下锚的地方——在这里我明白，答案一直都在我自己那里。">
+       The place the ship dropped anchor for the first time — where I learned the answer was always mine.</p>
+    <div class="actions">
+      <a class="solid" href="nodes/yakumo.html" data-en="explore the island →" data-jp="島を探索する →" data-cn="探索这座岛 →">explore the island →</a>
+      <a class="ghost" href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener" data-en="read the letters" data-jp="手紙を読む" data-cn="读信">read the letters</a>
+    </div>
+    <button class="close" id="closePanel" data-en="back to the map" data-jp="地図へ戻る" data-cn="回到地图">back to the map</button>
+  </div>
+</div>
+
+<script>
+/* language */
+function setLang(l, btn){
+  document.querySelectorAll('[data-'+l+']').forEach(el=>{el.textContent=el.dataset[l]});
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  localStorage.setItem('ks-lang',l);
+}
+const saved=localStorage.getItem('ks-lang');
+if(saved&&saved!=='en'){
+  const btn=[...document.querySelectorAll('.lang button')].find(b=>b.textContent.toLowerCase()===saved);
+  setLang(saved,btn);
+}
+
+/* gentle parallax on the sea */
+const map=document.getElementById('map');
+const sea=document.querySelector('.sea');
+let raf=null;
+map.addEventListener('mousemove',e=>{
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  if(raf)return;
+  raf=requestAnimationFrame(()=>{
+    const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+    sea.style.transform=`scale(1.05) translate(${-x*8}px,${-y*5}px)`;
+    raf=null;
+  });
+});
+
+/* yakumo panel */
+const panel=document.getElementById('panel');
+document.getElementById('yakumoNode').addEventListener('click',()=>panel.classList.add('open'));
+document.getElementById('closePanel').addEventListener('click',()=>panel.classList.remove('open'));
+panel.addEventListener('click',e=>{if(e.target===panel)panel.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open')});
+</script>
+<!-- ROAMING BEAR — migrated mascot. BGM switches per unlocked island; Yakumo keeps the original music box track. -->
+<img id="roamingBear" src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783927734/%E6%9C%AA%E5%91%BD%E5%90%8D%E4%BD%9C%E5%93%81-11_eipmsr.png" alt="a small bear, wandering the map">
+<audio id="bgm" loop preload="none"></audio>
+
+<script>
+/* ── ISLAND BGM MAP — add a track here each time a new island unlocks ── */
+const islandBGM = {
+  yakumo: "https://res.cloudinary.com/ul3gr1pn/video/upload/v1783928351/%E5%B0%8F%E5%85%AB%E9%9F%B3%E4%B9%90%E7%9B%92_copy_ur1x4v.m4a"
+  // malaysia: "…", europe: "…", japan: "…"  ← fill in as each island is painted & unlocked
+};
+let currentIsland = null;
+
+function switchIsland(key){
+  const track = islandBGM[key];
+  if(!track || key === currentIsland) return;
+  currentIsland = key;
+  const wasPlaying = playing;
+  bgm.pause();
+  bgm.src = track;
+  if(wasPlaying){ bgm.play().catch(()=>{}); }
+}
+
+/* clicking an unlocked node switches the bear's tune to that island */
+document.querySelectorAll('.node[data-node]').forEach(n=>{
+  n.addEventListener('click', ()=>switchIsland(n.dataset.node));
+});
+document.getElementById('yakumoNode').addEventListener('click', ()=>switchIsland('yakumo'));
+
+/* ── BEAR ROAMING ── */
+const bear = document.getElementById('roamingBear');
+const bgm  = document.getElementById('bgm');
+let playing=false, bearClicks=0;
+let bx=window.innerWidth*0.6, by=window.innerHeight*0.35;
+const isMobile = window.innerWidth<768;
+let vx=-0.8, vy=-0.6, flipped=false, wanderTimer=0;
+const maxSpeed = isMobile?1.1:1.8, maxSpeedY = isMobile?0.8:1.3;
+let lastFrame=0;
+
+function roam(ts){
+  if(ts-lastFrame<16){ requestAnimationFrame(roam); return; }
+  lastFrame=ts; wanderTimer++;
+  if(wanderTimer%240===0){ vx+=(Math.random()-0.5)*1.0; vy+=(Math.random()-0.5)*0.8; }
+  bx+=vx; by+=vy;
+  if(bx<10||bx>window.innerWidth-160){ vx*=-1; vx+=(Math.random()-0.5)*0.3; }
+  if(by<10||by>window.innerHeight-160){ vy*=-1; vy+=(Math.random()-0.5)*0.3; }
+  vx=Math.max(-maxSpeed,Math.min(maxSpeed,vx));
+  vy=Math.max(-maxSpeedY,Math.min(maxSpeedY,vy));
+  if(vx<0&&!flipped)flipped=true; else if(vx>0&&flipped)flipped=false;
+  bear.style.transform = flipped
+    ? `translate(${Math.round(bx)}px,${Math.round(by)}px) scaleX(-1)`
+    : `translate(${Math.round(bx)}px,${Math.round(by)}px)`;
+  requestAnimationFrame(roam);
+}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  requestAnimationFrame(roam);
+  setTimeout(()=>showBearBubble('psst... visit an island with me ♪'),3000);
+} else {
+  bear.style.left='24px'; bear.style.top='24px'; bear.style.position='fixed';
+}
+
+function spawnParticles(x,y,symbol,count,color){
+  for(let i=0;i<count;i++){
+    const el=document.createElement('div');
+    el.textContent=symbol;
+    const angle=(360/count)*i+Math.random()*20, dist=50+Math.random()*70;
+    const rad=angle*Math.PI/180, tx=Math.cos(rad)*dist, ty=Math.sin(rad)*dist;
+    const size=11+Math.random()*12;
+    el.style.cssText=`position:fixed;left:${x+70}px;top:${y+70}px;font-size:${size}px;color:${color};
+      pointer-events:none;z-index:999998;transition:transform .8s cubic-bezier(.2,0,.8,1),opacity .8s ease;
+      opacity:1;transform:translate(0,0) scale(1);text-shadow:0 0 6px ${color}`;
+    document.body.appendChild(el);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      el.style.transform=`translate(${tx}px,${ty}px) scale(0) rotate(${Math.random()*360}deg)`;
+      el.style.opacity='0';
+    }));
+    setTimeout(()=>el.remove(),900);
+  }
+}
+
+function showBearBubble(text){
+  const existing=document.getElementById('bearBubble'); if(existing)existing.remove();
+  const bubble=document.createElement('div'); bubble.id='bearBubble';
+  const isFarRight = bx+240>window.innerWidth-200;
+  bubble.style.cssText=`position:fixed;left:${isFarRight?bx-150:bx+160}px;top:${by+8}px;
+    background:#FFFAF5;color:#2c3e50;font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-style:italic;
+    font-size:16px;padding:12px 18px;border-radius:18px;pointer-events:none;z-index:999998;
+    box-shadow:0 6px 20px rgba(44,62,80,.14),0 0 0 1.5px rgba(255,140,160,.28);
+    opacity:0;transform:scale(.7) translateY(8px);
+    transition:opacity .35s ease,transform .4s cubic-bezier(.34,1.56,.64,1);max-width:190px;line-height:1.5`;
+  bubble.textContent=text;
+  document.body.appendChild(bubble);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    bubble.style.opacity='1'; bubble.style.transform='scale(1) translateY(0)';
+  }));
+  setTimeout(()=>{
+    bubble.style.opacity='0'; bubble.style.transform='scale(.9) translateY(-6px)';
+    setTimeout(()=>bubble.remove(),400);
+  },2600);
+}
+
+bear.addEventListener('click',()=>{
+  bearClicks++;
+  bear.style.transition='transform .15s cubic-bezier(.34,1.56,.64,1)';
+  const flip = flipped?'scaleX(-1)':'';
+  bear.style.transform += ` ${flip} scale(1.3)`;
+  setTimeout(()=>{ bear.style.transition='transform .2s ease'; },150);
+  const colors=['#A6DCFD','#FFD6E0','#9FE8C7','#FFBD98','#8EC5FF','#FF8CA0'];
+  const symbols=['✦','★','❄','✿','♡','·'];
+  spawnParticles(bx,by,symbols[bearClicks%6],8+(bearClicks%4)*2,colors[bearClicks%6]);
+  if(bearClicks%6===0) showBearBubble('the ship remembers every island... ✦');
+  else if(bearClicks%3===0) showBearBubble('have you visited Yakumo yet? 🌙');
+});
+
+bear.addEventListener('dblclick', async (e)=>{
+  e.stopPropagation();
+  if(!currentIsland) switchIsland('yakumo'); // default to Yakumo's music box
+  if(!playing){
+    try{ await bgm.play(); playing=true; bear.classList.add('playing'); showBearBubble('♫ now playing~'); }
+    catch(err){}
+  } else {
+    bgm.pause(); playing=false; bear.classList.remove('playing'); showBearBubble('♫ paused');
+  }
+});
+</script>
+</body>
+</html>

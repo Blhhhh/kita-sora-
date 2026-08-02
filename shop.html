@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop · Kita-Sora</title>
+<meta name="description" content="Pieces of the journey, and pieces of home — the Kita-Sora shop.">
+<link rel="canonical" href="https://kita-sora.com/shop.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5eed7; --ink:#0d1f3c; --ink-soft:#5f7485; --sky:#dceeff; --coral:#ff8ca0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'Lora',serif}
+.serif{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:30;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:26px 44px 0;
+}
+.links{display:flex;gap:30px;align-items:center}
+.links a{color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid transparent;transition:.3s;font-family:'Nunito',sans-serif}
+.links a:hover{border-color:var(--coral)}
+.lang{display:flex;gap:8px;font-size:12px;color:var(--ink-soft)}
+.lang button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;padding:2px}
+.lang button.on{color:var(--ink);border-bottom:1px solid var(--coral)}
+
+.brand-icon{position:fixed;top:22px;left:32px;z-index:30;width:44px;height:44px;filter:drop-shadow(0 4px 10px rgba(13,31,60,.18))}
+.brand-icon img{width:100%;height:100%;display:block}
+
+.title{max-width:640px;margin:16vh auto 8vh;padding:0 24px;text-align:center}
+.title h1{font-style:italic;font-weight:500;font-size:clamp(32px,4.4vw,50px)}
+.title p{margin-top:12px;font-style:italic;color:var(--ink-soft);font-size:clamp(13px,1.2vw,15px)}
+
+.collections{max-width:1000px;margin:0 auto;padding:0 24px 18vh;
+  display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.card{display:block;text-decoration:none;color:var(--ink);position:relative;overflow:hidden;border-radius:2px;
+  box-shadow:0 20px 50px rgba(13,31,60,.16);aspect-ratio:4/5;background-size:cover;background-position:center}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,60,.75),transparent 55%)}
+.card-text{position:absolute;left:0;right:0;bottom:0;padding:28px 26px;z-index:2;color:var(--paper)}
+.card-kicker{font-family:'Nunito',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin-bottom:8px}
+.card-name{font-style:italic;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.2}
+.card-sub{margin-top:8px;font-style:italic;font-size:13px;opacity:.85}
+.card:hover .card-name{text-decoration:underline;text-underline-offset:6px}
+
+@media(max-width:700px){
+  .collections{grid-template-columns:1fr;gap:26px}
+  .title{margin-top:14vh}
+  nav{padding:20px 22px 0}
+  .brand-icon{top:16px;left:20px;width:36px;height:36px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="brand-icon" href="index.html" aria-label="Kita-Sora">
+  <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="Kita-Sora">
+</a>
+
+<nav>
+  <div class="links">
+    <a href="index.html" data-en="The Map" data-jp="地図へ" data-cn="地图">The Map</a>
+    <a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener" data-en="Journal" data-jp="Journal" data-cn="北空札记">Journal</a>
+    <a href="about.html" data-en="About" data-jp="について" data-cn="关于">About</a>
+    <div class="lang">
+      <button class="on" onclick="setLang('en',this)">EN</button><span>·</span>
+      <button onclick="setLang('jp',this)">JP</button><span>·</span>
+      <button onclick="setLang('cn',this)">CN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="title serif">
+  <h1 data-en="The Shop" data-jp="ショップ" data-cn="商店">The Shop</h1>
+  <p data-en="pieces of the journey, and pieces of home" data-jp="旅の欠片と、家の欠片と" data-cn="旅途的碎片，也是家的碎片">pieces of the journey, and pieces of home</p>
+</div>
+
+<div class="collections">
+  <a class="card" href="shop/ithaca.html" style="background-image:url('assets/ithaca/postcard-06-ithaca.jpg')">
+    <div class="card-text serif">
+      <div class="card-kicker">voyage collection · yakumo</div>
+      <div class="card-name">Vol. I — To Ithaca</div>
+      <div class="card-sub">six postcards, a bookmark, five stickers</div>
+    </div>
+  </a>
+  <a class="card" href="shop/crochet.html" style="background-image:url('assets/crochet/hero-mother-crocheting.jpg')">
+    <div class="card-text serif">
+      <div class="card-kicker">handmade · by Lynn's mother</div>
+      <div class="card-name">The Crochet Universe</div>
+      <div class="card-sub">small creatures, made by hand</div>
+    </div>
+  </a>
+</div>
+
+<script>
+function setLang(l, btn){
+  document.querySelectorAll('[data-'+l+']').forEach(el=>{el.textContent=el.dataset[l]});
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  localStorage.setItem('ks-lang',l);
+}
+const saved=localStorage.getItem('ks-lang');
+if(saved&&saved!=='en'){
+  const btn=[...document.querySelectorAll('.lang button')].find(b=>b.textContent.toLowerCase()===saved);
+  setLang(saved,btn);
+}
+</script>
+</body>
+</html>

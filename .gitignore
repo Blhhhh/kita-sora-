@@ -1,0 +1,6 @@
+# Local system files
+.DS_Store
+
+# Internal working notes: keep these local rather than publish them with the site source.
+ASSET_SPEC.md
+SHOP_AUDIT_*.md
