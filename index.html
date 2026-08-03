@@ -87,6 +87,8 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 .node:focus-visible{outline:2px solid var(--coral);outline-offset:8px;border-radius:10px}
 .node .art{display:block;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(44,62,80,.16));transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .node:hover .art,.node:focus-visible .art{transform:translateY(-4px) scale(1.03)}
+.node.arrived .art{filter:drop-shadow(0 0 13px rgba(255,244,178,.96)) drop-shadow(0 0 28px rgba(166,220,253,.82)) drop-shadow(0 10px 18px rgba(44,62,80,.18));animation:arrivalGlow 2.6s ease-in-out infinite}
+@keyframes arrivalGlow{0%,100%{filter:drop-shadow(0 0 10px rgba(255,244,178,.72)) drop-shadow(0 0 22px rgba(166,220,253,.66)) drop-shadow(0 10px 18px rgba(44,62,80,.16))}50%{filter:drop-shadow(0 0 18px rgba(255,248,196,1)) drop-shadow(0 0 36px rgba(166,220,253,.95)) drop-shadow(0 10px 18px rgba(44,62,80,.2))}}
 .node .label{
   margin-top:10px;font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-style:italic;
   font-size:clamp(15px,1.6vw,20px);letter-spacing:.03em;
@@ -143,6 +145,8 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   animation:driftFog 16s ease-in-out infinite alternate;
   transition:opacity .8s ease;
 }
+.node.unlocking .fog{animation:fogLift 1.45s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes fogLift{0%{opacity:1;transform:translate(0,0) scale(1)}55%{opacity:.55;transform:translate(8%,-10%) scale(1.22);filter:blur(8px)}100%{opacity:0;transform:translate(16%,-20%) scale(1.5);filter:blur(13px)}}
 @keyframes driftFog{
   0%{transform:translate(-4%,3%) scale(1)}
   100%{transform:translate(4%,-3%) scale(1.08)}
@@ -233,7 +237,6 @@ nav{
   /* vertical drift of node layout on small screens */
   .n-china{left:16%!important;top:86%!important}
   .n-yakumo{left:40%!important;top:38%!important}
-  .n-ship{left:61%!important;top:57%!important}
   .n-my{left:72%!important;top:66%!important}
   .n-eu{left:82%!important;top:26%!important}
   .n-jp{left:88%!important;top:82%!important}
@@ -282,7 +285,7 @@ nav{
   </button>
 
   <!-- SHIP OF THESEUS -->
-  <div class="ship n-ship" style="left:52%;top:57%">
+  <div class="ship n-ship" style="left:23%;top:79%">
     <img src="assets/ship-3d.png" alt="the ship of theseus, hand-sculpted in paper clay" style="width:100%;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))">
   </div>
 
@@ -389,9 +392,61 @@ map.addEventListener('mousemove',e=>{
   });
 });
 
-/* yakumo panel */
+/* ── VOYAGE ENGINE · the ship reaches the shore before a story opens ── */
 const panel=document.getElementById('panel');
-document.getElementById('yakumoNode').addEventListener('click',()=>panel.classList.add('open'));
+const voyageShip=document.querySelector('.ship');
+const yakumoNode=document.getElementById('yakumoNode');
+const docks={
+  yakumo:{x:50,y:57},
+  malaysia:{x:60,y:67},
+  europe:{x:79,y:36},
+  japan:{x:86,y:76}
+};
+let shipPort={x:23,y:79};
+let sailing=false;
+function setShipPort(port){
+  shipPort={...port};
+  voyageShip.style.left=`${port.x}%`;
+  voyageShip.style.top=`${port.y}%`;
+}
+function pointOnVoyage(start,end,progress){
+  const control={x:(start.x+end.x)/2,y:Math.min(start.y,end.y)-8};
+  const inverse=1-progress;
+  return {
+    x:inverse*inverse*start.x+2*inverse*progress*control.x+progress*progress*end.x,
+    y:inverse*inverse*start.y+2*inverse*progress*control.y+progress*progress*end.y
+  };
+}
+function sailTo(key,onArrival){
+  if(sailing||!docks[key])return;
+  sailing=true;
+  const start={...shipPort},end=docks[key];
+  const distance=Math.hypot(end.x-start.x,end.y-start.y);
+  const duration=Math.max(850,Math.min(2200,650+distance*42));
+  const started=performance.now();
+  function frame(now){
+    const raw=Math.min(1,(now-started)/duration);
+    const eased=raw<.5?2*raw*raw:1-Math.pow(-2*raw+2,2)/2;
+    setShipPort(pointOnVoyage(start,end,eased));
+    if(raw<1){requestAnimationFrame(frame);return;}
+    setShipPort(end);
+    sailing=false;
+    onArrival?.();
+  }
+  requestAnimationFrame(frame);
+}
+function arriveAtYakumo(){
+  yakumoNode.classList.remove('unlocking');
+  yakumoNode.classList.add('arrived');
+  window.setTimeout(()=>panel.classList.add('open'),220);
+}
+yakumoNode.addEventListener('click',()=>sailTo('yakumo',arriveAtYakumo));
+/* Future islands call this only once their story page and asset are ready. */
+function unlockIsland(node,key,onArrival){
+  node.classList.remove('locked');
+  node.classList.add('unlocking');
+  window.setTimeout(()=>sailTo(key,()=>{node.classList.remove('unlocking');node.classList.add('arrived');onArrival?.();}),640);
+}
 document.getElementById('closePanel').addEventListener('click',()=>panel.classList.remove('open'));
 panel.addEventListener('click',e=>{if(e.target===panel)panel.classList.remove('open')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.classList.remove('open')});
