@@ -54,7 +54,12 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   animation:breathe 70s ease-in-out infinite alternate;
   will-change:transform;
 }
+.sea::after{content:'';position:absolute;inset:-8%;pointer-events:none;opacity:.48;background:
+  repeating-radial-gradient(ellipse 150px 34px at 18% 54%,transparent 0 21px,rgba(117,174,205,.24) 22px 23px,transparent 24px 43px),
+  repeating-radial-gradient(ellipse 120px 27px at 68% 30%,transparent 0 18px,rgba(255,255,255,.42) 19px 20px,transparent 21px 37px);
+  background-size:430px 255px,360px 210px;background-position:0 0,80px 40px;mix-blend-mode:multiply;animation:waveDrift 32s linear infinite}
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
+@keyframes waveDrift{to{background-position:430px 75px,-280px 110px}}
 .distant-island{position:absolute;left:12%;top:31%;z-index:1;width:min(44vw,620px);height:auto;pointer-events:none;opacity:.88;filter:drop-shadow(0 14px 16px rgba(44,62,80,.11));animation:farShore 18s ease-in-out infinite alternate}
 .distant-bear{position:absolute;left:29%;top:25%;z-index:2;width:clamp(58px,5.8vw,86px);height:auto;pointer-events:none;filter:drop-shadow(0 5px 7px rgba(44,62,80,.18));animation:farBear 5.2s ease-in-out infinite}
 @keyframes farShore{from{transform:translateY(0)}to{transform:translateY(-7px)}}
@@ -230,7 +235,7 @@ nav{
   /* vertical drift of node layout on small screens */
   .n-china{left:16%!important;top:86%!important}
   .n-yakumo{left:40%!important;top:38%!important}
-  .n-ship{left:58%!important;top:52%!important}
+  .n-ship{left:61%!important;top:57%!important}
   .n-my{left:72%!important;top:66%!important}
   .n-eu{left:82%!important;top:26%!important}
   .n-jp{left:88%!important;top:82%!important}
@@ -281,7 +286,7 @@ nav{
   </button>
 
   <!-- SHIP OF THESEUS -->
-  <div class="ship n-ship" style="left:46%;top:44%">
+  <div class="ship n-ship" style="left:52%;top:57%">
     <img src="assets/ship-3d.png" alt="the ship of theseus, hand-sculpted in paper clay" style="width:100%;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))">
   </div>
 
