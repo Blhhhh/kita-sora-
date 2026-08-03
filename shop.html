@@ -21,7 +21,7 @@ body{background:var(--paper);color:var(--ink);font-family:'Lora',serif}
 .invitation{position:relative;width:min(500px,88vw);min-height:420px;display:grid;place-items:center;color:var(--ink);font-family:inherit}
 .envelope-trigger{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;background:none;border:0;color:inherit;font:inherit;outline:none}
 .envelope-trigger:focus-visible{outline:2px solid var(--coral);outline-offset:8px}
-.envelope{position:absolute;width:min(520px,84vw);height:min(272px,52vw);max-height:272px;background:#deeef8;border-radius:0 0 20px 20px;box-shadow:0 20px 60px rgba(44,58,74,.12);overflow:visible;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .8s ease}
+.envelope{position:absolute;left:50%;top:50%;width:min(520px,84vw);height:min(272px,52vw);max-height:272px;background:#deeef8;border-radius:0 0 20px 20px;box-shadow:0 20px 60px rgba(44,58,74,.12);overflow:visible;transform:translate(-50%,-50%);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .8s ease}
 .envelope::before{content:"";position:absolute;z-index:3;left:0;top:0;width:100%;height:58%;background:#c6d9ee;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:opacity .7s ease,transform .8s ease}
 .env-wordmark{position:absolute;z-index:1;left:50%;top:75%;transform:translate(-50%,-50%);font-family:'Great Vibes','Lora',cursive,serif;font-size:clamp(42px,7.2vw,72px);color:rgba(100,160,210,.18);white-space:nowrap;letter-spacing:.04em;pointer-events:none}
 .seal{position:absolute;z-index:5;left:50%;top:58%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;filter:drop-shadow(0 4px 12px rgba(44,58,74,.18));transition:opacity .35s ease,transform .35s ease}
@@ -33,10 +33,10 @@ body{background:var(--paper);color:var(--ink);font-family:'Lora',serif}
 .enter-shop{margin-top:24px;padding:0;border:0;border-bottom:1px solid var(--coral);background:none;color:var(--ink);font:11px 'Nunito',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
 .enter-shop:hover{color:var(--ink-soft)}
 .enter-shop:focus-visible{outline:2px solid var(--coral);outline-offset:7px}
-.open-note{position:absolute;bottom:16px;font:11px 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.open-note{position:absolute;left:50%;top:calc(50% + min(26vw, 136px) + 30px);transform:translateX(-50%);white-space:nowrap;font:11px 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 .shop-opening.is-open .envelope::before{opacity:0;transform:translateY(-16px)}
 .shop-opening.is-open .seal{opacity:0;transform:translate(-50%,-50%) scale(.92)}
-.shop-opening.is-open .envelope{transform:translateY(36px);opacity:0;transition-delay:.78s}
+.shop-opening.is-open .envelope{transform:translate(-50%,calc(-50% + 36px));opacity:0;transition-delay:.78s}
 .shop-opening.is-open .letter{opacity:1;transform:translateY(-136px);pointer-events:auto}
 .shop-opening.is-leaving .letter{opacity:0;transform:translateY(-158px)}
 
