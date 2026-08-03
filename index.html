@@ -54,12 +54,12 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   animation:breathe 70s ease-in-out infinite alternate;
   will-change:transform;
 }
-.sea::after{content:'';position:absolute;inset:-8%;pointer-events:none;opacity:.48;background:
+.sea::after{content:'';position:absolute;inset:-8%;pointer-events:none;opacity:.6;background:
   repeating-radial-gradient(ellipse 150px 34px at 18% 54%,transparent 0 21px,rgba(117,174,205,.24) 22px 23px,transparent 24px 43px),
   repeating-radial-gradient(ellipse 120px 27px at 68% 30%,transparent 0 18px,rgba(255,255,255,.42) 19px 20px,transparent 21px 37px);
-  background-size:430px 255px,360px 210px;background-position:0 0,80px 40px;mix-blend-mode:multiply;animation:waveDrift 32s linear infinite}
+  background-size:430px 255px,360px 210px;background-position:0 0,80px 40px;mix-blend-mode:multiply;animation:waveDrift 20s ease-in-out infinite alternate}
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
-@keyframes waveDrift{to{background-position:430px 75px,-280px 110px}}
+@keyframes waveDrift{to{background-position:180px 42px,-125px 76px}}
 .distant-island{position:absolute;left:12%;top:31%;z-index:1;width:min(44vw,620px);height:auto;pointer-events:none;opacity:.88;filter:drop-shadow(0 14px 16px rgba(44,62,80,.11));animation:farShore 18s ease-in-out infinite alternate}
 @keyframes farShore{from{transform:translateY(0)}to{transform:translateY(-7px)}}
 
@@ -157,9 +157,13 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 .node.locked:hover .fog,.node.locked:focus-visible .fog{filter:blur(6px) brightness(1.1);box-shadow:0 0 26px 8px rgba(255,140,160,.16)}
 
 /* ── SHIP ── */
-.ship{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none;width:clamp(100px,11.7vw,172px);animation:bob 6s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-1.4deg)}50%{transform:translate(-50%,-56%) rotate(1.6deg)}}
+.ship{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none;width:clamp(100px,11.7vw,172px);animation:bob 11s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-.8deg)}50%{transform:translate(-50%,-53%) rotate(.9deg)}}
 .ship svg{width:100%;height:auto;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))}
+.ship img{position:relative;z-index:1}
+.ship::after{content:'';position:absolute;left:50%;bottom:8%;z-index:0;width:92%;height:18%;transform:translateX(-50%) rotate(-4deg);border-top:1.3px solid rgba(255,255,255,.85);border-bottom:1px solid rgba(118,177,207,.48);border-radius:50%;opacity:.38;filter:blur(.15px);transition:opacity .5s ease}
+.ship.is-sailing::after{opacity:.88;animation:shipWake 1.7s ease-in-out infinite}
+@keyframes shipWake{0%,100%{transform:translateX(-50%) rotate(-4deg) scaleX(.82);opacity:.55}50%{transform:translateX(-50%) rotate(-4deg) scaleX(1.14);opacity:1}}
 
 /* ── BRAND ICON · fixed top-left on every page ── */
 .brand-icon{
@@ -236,7 +240,7 @@ nav{
   .legend{right:22px;bottom:28px;font-size:9px}
   /* vertical drift of node layout on small screens */
   .n-china{left:16%!important;top:86%!important}
-  .n-yakumo{left:40%!important;top:38%!important}
+  .n-yakumo{left:32%!important;top:35%!important}
   .n-my{left:72%!important;top:66%!important}
   .n-eu{left:82%!important;top:26%!important}
   .n-jp{left:88%!important;top:82%!important}
@@ -256,8 +260,8 @@ nav{
 
   <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none">
     <!-- sailed: China → Yakumo -->
-    <path class="sailed t1" d="M 14 88 C 19 76, 24 57, 33 45"/>
-    <path class="sailed t2" d="M 14 88 C 17 74, 22 54, 33 45"/>
+    <path class="sailed t1" d="M 14 88 C 18 73, 22 50, 28 38"/>
+    <path class="sailed t2" d="M 14 88 C 17 71, 21 48, 28 38"/>
     <path class="sailed t3" d="M 14 88 C 23 77, 28 58, 33 45"/>
     <path class="sailed t4" d="M 14 88 C 20 72, 26 52, 33 45"/>
     <path class="sailed t5" d="M 14 88 C 16 70, 21 50, 33 45"/>
@@ -276,7 +280,7 @@ nav{
   </button>
 
   <!-- YAKUMO · the first anchor -->
-  <button class="node n-yakumo" style="left:33%;top:45%" id="yakumoNode">
+  <button class="node n-yakumo" style="left:28%;top:38%" id="yakumoNode">
     <div class="slot slot-yakumo art">
       <img src="assets/node-yakumo-3d.png" alt="Yakumo island, hand-sculpted in paper clay">
     </div>
@@ -397,7 +401,7 @@ const panel=document.getElementById('panel');
 const voyageShip=document.querySelector('.ship');
 const yakumoNode=document.getElementById('yakumoNode');
 const docks={
-  yakumo:{x:50,y:57},
+  yakumo:{x:42,y:51},
   malaysia:{x:60,y:67},
   europe:{x:79,y:36},
   japan:{x:86,y:76}
@@ -420,6 +424,7 @@ function pointOnVoyage(start,end,progress){
 function sailTo(key,onArrival){
   if(sailing||!docks[key])return;
   sailing=true;
+  voyageShip.classList.add('is-sailing');
   const start={...shipPort},end=docks[key];
   const distance=Math.hypot(end.x-start.x,end.y-start.y);
   const duration=Math.max(850,Math.min(2200,650+distance*42));
@@ -431,6 +436,7 @@ function sailTo(key,onArrival){
     if(raw<1){requestAnimationFrame(frame);return;}
     setShipPort(end);
     sailing=false;
+    voyageShip.classList.remove('is-sailing');
     onArrival?.();
   }
   requestAnimationFrame(frame);
