@@ -4,7 +4,7 @@
   const assetUrl = new URL('xiao-ba-3d-v2.png', currentScript.src).href;
   const style = document.createElement('style');
   style.textContent = `
-    .dynamic-island{position:fixed;right:clamp(18px,3vw,42px);bottom:clamp(16px,3vw,36px);z-index:2000;width:clamp(158px,16vw,232px);aspect-ratio:2/3;border:0;padding:0;background:none;cursor:pointer;isolation:isolate;filter:drop-shadow(0 14px 24px rgba(31,52,75,.19));animation:ks-xiaoba-float 4.7s ease-in-out infinite;transition:filter .3s ease}
+    .dynamic-island{--x:0px;--y:0px;position:fixed;left:0;top:0;z-index:2000;width:clamp(108px,11vw,160px);aspect-ratio:2/3;border:0;padding:0;background:none;cursor:pointer;isolation:isolate;will-change:transform;filter:drop-shadow(0 14px 24px rgba(31,52,75,.19));animation:ks-xiaoba-float 4.7s ease-in-out infinite;transition:filter .3s ease}
     .dynamic-island:hover{filter:drop-shadow(0 18px 30px rgba(31,52,75,.25))}
     .dynamic-island:focus-visible{outline:2px solid #ff8ca0;outline-offset:6px;border-radius:30px}
     .dynamic-island img{width:100%;height:100%;object-fit:contain;display:block;user-select:none;pointer-events:none}
@@ -12,9 +12,9 @@
     .dynamic-island__eye::after{content:'';position:absolute;left:18%;right:14%;top:36%;height:38%;border-bottom:2px solid #46362c;border-radius:0 0 50% 50%}
     .dynamic-island.is-blinking .dynamic-island__eye{animation:ks-xiaoba-blink .34s ease-in-out 1}
     .dynamic-island.is-playing{filter:drop-shadow(0 0 16px rgba(166,220,253,.75)) drop-shadow(0 14px 24px rgba(31,52,75,.19))}
-    @keyframes ks-xiaoba-float{0%,100%{transform:translate3d(0,0,0) rotate(-1.8deg)}50%{transform:translate3d(-5px,-16px,0) rotate(1.8deg)}}
+    @keyframes ks-xiaoba-float{0%,100%{transform:translate3d(var(--x),var(--y),0) rotate(-1.8deg)}50%{transform:translate3d(calc(var(--x) - 5px),calc(var(--y) - 16px),0) rotate(1.8deg)}}
     @keyframes ks-xiaoba-blink{0%,100%{opacity:0;transform:scaleY(.1)}30%,65%{opacity:1;transform:scaleY(1)}45%{opacity:1;transform:scaleY(.28)}}
-    @media(max-width:680px){.dynamic-island{width:clamp(122px,34vw,156px);right:8px;bottom:8px}}
+    @media(max-width:680px){.dynamic-island{width:clamp(88px,25vw,116px)}}
     @media(prefers-reduced-motion:reduce){.dynamic-island{animation:ks-xiaoba-float 6.8s ease-in-out infinite!important}.dynamic-island.is-blinking .dynamic-island__eye{animation:ks-xiaoba-blink .34s ease-in-out 1!important}}
   `;
   document.head.appendChild(style);
@@ -28,6 +28,28 @@
   music.loop = true;
   music.preload = 'none';
   let isPlaying = false;
+  let x = Math.max(24, window.innerWidth * .62);
+  let y = Math.max(58, window.innerHeight * .22);
+  let velocityX = -.32;
+  let velocityY = .21;
+  let lastFrame = 0;
+  function drift(timestamp) {
+    if (!lastFrame) lastFrame = timestamp;
+    const elapsed = Math.min(32, timestamp - lastFrame) / 16.67;
+    lastFrame = timestamp;
+    const width = island.offsetWidth || 140;
+    const height = island.offsetHeight || 210;
+    const maxX = Math.max(12, window.innerWidth - width - 12);
+    const maxY = Math.max(54, window.innerHeight - height - 12);
+    x += velocityX * elapsed;
+    y += velocityY * elapsed;
+    if (x <= 12 || x >= maxX) { velocityX *= -1; x = Math.min(maxX, Math.max(12, x)); }
+    if (y <= 54 || y >= maxY) { velocityY *= -1; y = Math.min(maxY, Math.max(54, y)); }
+    island.style.setProperty('--x', `${Math.round(x)}px`);
+    island.style.setProperty('--y', `${Math.round(y)}px`);
+    window.requestAnimationFrame(drift);
+  }
+  window.requestAnimationFrame(drift);
   island.addEventListener('click', () => {
     island.classList.remove('is-blinking');
     void island.offsetWidth;
