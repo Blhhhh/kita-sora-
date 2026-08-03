@@ -30,6 +30,22 @@ body{
   background:var(--paper);overflow:hidden;
 }
 
+/* ── OPENING · title first, map second ── */
+.map{opacity:1;transform:scale(1);transition:opacity 1.8s ease,transform 2.4s cubic-bezier(.2,.7,.2,1)}
+body.intro-active .map{opacity:0;transform:scale(1.035)}
+.opening{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:var(--letter);color:var(--ink);text-align:center;
+  transition:opacity 1.2s ease,visibility 1.2s ease;
+}
+body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none}
+.opening-copy{width:min(620px,84vw);padding:30px}
+.opening .wm-logo{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;font-size:clamp(25px,3vw,38px);letter-spacing:.06em;margin-bottom:20px}
+.opening h1{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;font-size:clamp(42px,6.4vw,82px);line-height:1.02}
+.opening p{font-family:'Lora',serif;font-style:italic;font-size:clamp(12px,1.3vw,15px);color:var(--ink-soft);margin-top:18px}
+.skip-opening{position:absolute;right:28px;bottom:25px;border:0;background:none;color:var(--ink-soft);font:11px 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.skip-opening:hover{color:var(--ink)}
+
 /* ── THE MAP ── */
 .map{position:fixed;inset:0;overflow:hidden}
 .sea{
@@ -157,24 +173,6 @@ nav{
 .lang button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;padding:2px}
 .lang button.on{color:var(--ink);border-bottom:1px solid var(--coral)}
 
-/* ── WATERMARK · logo + title surfacing on the sea ── */
-.watermark{
-  position:absolute;transform:translateX(-50%);
-  width:min(460px,42vw);text-align:center;
-  z-index:2;pointer-events:none;
-  opacity:.24;color:var(--ink);
-  mix-blend-mode:multiply;
-}
-.watermark .wm-logo{
-  font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;
-  font-size:clamp(18px,2vw,26px);letter-spacing:.05em;margin-bottom:12px;
-}
-.watermark h1{
-  font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-style:italic;
-  font-size:clamp(24px,2.8vw,40px);line-height:1.15;
-}
-.watermark p{font-family:'Lora',serif;font-style:italic;font-size:clamp(11px,1.05vw,14px);color:var(--ink-soft);margin-top:10px}
-
 /* ── LEGEND ── */
 .legend{position:fixed;right:44px;bottom:40px;z-index:20;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:right;line-height:2}
 .legend b{color:var(--coral);font-weight:500}
@@ -222,7 +220,7 @@ nav{
   .links{gap:18px}
   .links a{font-size:11px}
   .brand-icon{top:16px;left:20px;width:36px;height:36px}
-  .watermark{left:50%!important;top:9%!important;width:78vw!important}
+  .opening h1{font-size:clamp(38px,12vw,62px)}
   .legend{right:22px;bottom:28px;font-size:9px}
   /* vertical drift of node layout on small screens */
   .n-china{left:16%!important;top:86%!important}
@@ -234,7 +232,7 @@ nav{
 }
 </style>
 </head>
-<body>
+<body class="intro-active">
 
 <a class="brand-icon" href="index.html" aria-label="Kita-Sora">
   <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="Kita-Sora">
@@ -300,13 +298,16 @@ nav{
     <div class="sub" data-en="one day, homeward" data-jp="いつか、帰る場所へ" data-cn="终有一日，归航">one day, homeward</div>
   </button>
 
-  <!-- WATERMARK · logo + title surfacing on the open water -->
-  <div class="watermark" style="left:60%;top:13%">
+</div>
+
+<section class="opening" aria-label="Kita-Sora introduction">
+  <div class="opening-copy">
     <div class="wm-logo">Kita-<span>Sora</span></div>
     <h1 data-en="The map is drawn as I live it." data-jp="この地図は、生きながら描かれていく。" data-cn="这张地图，随着我的人生被一笔一笔画出。">The map is drawn as I live it.</h1>
     <p data-en="a life that can travel without losing itself" data-jp="自分を見失わずに旅できる人生" data-cn="一种带着自己远行而不迷失的人生">a life that can travel without losing itself</p>
   </div>
-</div>
+  <button class="skip-opening" type="button" data-en="enter the map" data-jp="地図へ入る" data-cn="进入地图">enter the map</button>
+</section>
 
 <nav>
   <div class="links">
@@ -346,6 +347,12 @@ nav{
 </div>
 
 <script>
+/* opening: the title lingers first, then the map arrives */
+function enterMap(){document.body.classList.remove('intro-active')}
+document.querySelector('.skip-opening').addEventListener('click',enterMap);
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){enterMap()}
+else{window.setTimeout(enterMap,3200)}
+
 /* language */
 function setLang(l, btn){
   document.querySelectorAll('[data-'+l+']').forEach(el=>{el.textContent=el.dataset[l]});
