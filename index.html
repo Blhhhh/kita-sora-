@@ -93,7 +93,8 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 /* anchored node art slots (real paintings go here) */
 .slot{display:grid;place-items:center;position:relative}
 .slot img{width:100%;height:100%;object-fit:contain}
-.slot-yakumo{width:clamp(160px,22vw,300px);height:clamp(120px,16.5vw,225px)}
+.slot-yakumo{width:clamp(190px,27vw,365px);height:clamp(143px,20.25vw,274px)}
+.slot-yakumo img{filter:brightness(1.15) saturate(.86) contrast(.94)}
 .slot-china{width:clamp(74px,9vw,120px);height:clamp(74px,9vw,120px)}
 
 /* placeholder rendering until paintings arrive */
@@ -145,7 +146,7 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 .node.locked:hover .fog,.node.locked:focus-visible .fog{filter:blur(6px) brightness(1.1);box-shadow:0 0 26px 8px rgba(255,140,160,.16)}
 
 /* ── SHIP ── */
-.ship{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none;width:clamp(84px,9.5vw,145px);animation:bob 6s ease-in-out infinite}
+.ship{position:absolute;transform:translate(-50%,-50%);z-index:5;pointer-events:none;width:clamp(100px,11.7vw,172px);animation:bob 6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,-50%) rotate(-1.4deg)}50%{transform:translate(-50%,-56%) rotate(1.6deg)}}
 .ship svg{width:100%;height:auto;filter:drop-shadow(0 8px 10px rgba(44,62,80,.2))}
 
