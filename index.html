@@ -88,6 +88,7 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   margin-top:10px;font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-style:italic;
   font-size:clamp(15px,1.6vw,20px);letter-spacing:.03em;
 }
+.n-yakumo .label{position:absolute;left:50%;top:43%;z-index:3;width:max-content;max-width:88%;margin:0;transform:translate(-50%,-50%);padding:3px 9px;color:var(--ink);background:rgba(245,238,215,.42);border-radius:999px;text-shadow:0 1px 9px rgba(255,252,244,.95);pointer-events:none}
 .node .sub{
   font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
   margin-top:3px;opacity:0;transform:translateY(4px);transition:.45s ease;
@@ -269,7 +270,8 @@ nav{
   <!-- CHINA · the harbor she left from -->
   <button class="node n-china" style="left:14%;top:88%" data-node="china">
     <div class="slot slot-china art">
-      <img src="assets/node-china-3d-v1.png" alt="China harbor, hand-sculpted in paper clay">
+      <!-- HAND-DRAWN ASSET SLOT: assets/node-china.png -->
+      <div class="placeholder harbor" data-en="harbor, in pencil" data-jp="港、下描き中" data-cn="港口，仍在起稿">harbor, in pencil</div>
     </div>
     <div class="label">China</div>
     <div class="sub" data-en="where the ship first left shore" data-jp="船が最初に岸を離れた場所" data-cn="船最初离岸的地方">where the ship first left shore</div>
