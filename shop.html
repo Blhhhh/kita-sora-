@@ -18,22 +18,26 @@ body{background:var(--paper);color:var(--ink);font-family:'Lora',serif}
 /* ── THE INVITATION · open before the collections arrive ── */
 .shop-opening{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:30px;background:var(--paper);transition:opacity 1.1s ease,visibility 1.1s ease}
 .shop-opening.is-gone{opacity:0;visibility:hidden;pointer-events:none}
-.invitation{position:relative;width:min(500px,88vw);min-height:420px;display:grid;place-items:center;cursor:pointer;background:none;border:0;color:var(--ink);font-family:inherit;outline:none}
-.invitation:focus-visible{outline:2px solid var(--coral);outline-offset:8px}
+.invitation{position:relative;width:min(500px,88vw);min-height:420px;display:grid;place-items:center;color:var(--ink);font-family:inherit}
+.envelope-trigger{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;background:none;border:0;color:inherit;font:inherit;outline:none}
+.envelope-trigger:focus-visible{outline:2px solid var(--coral);outline-offset:8px}
 .envelope{position:absolute;width:min(520px,84vw);height:min(272px,52vw);max-height:272px;background:#deeef8;border-radius:0 0 20px 20px;box-shadow:0 20px 60px rgba(44,58,74,.12);overflow:visible;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .8s ease}
 .envelope::before{content:"";position:absolute;z-index:3;left:0;top:0;width:100%;height:58%;background:#c6d9ee;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:opacity .7s ease,transform .8s ease}
 .env-wordmark{position:absolute;z-index:1;left:50%;top:75%;transform:translate(-50%,-50%);font-family:'Great Vibes','Lora',cursive,serif;font-size:clamp(42px,7.2vw,72px);color:rgba(100,160,210,.18);white-space:nowrap;letter-spacing:.04em;pointer-events:none}
 .seal{position:absolute;z-index:5;left:50%;top:58%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;filter:drop-shadow(0 4px 12px rgba(44,58,74,.18));transition:opacity .35s ease,transform .35s ease}
 .seal img{width:100%;height:100%;display:block;border-radius:50%}
-.letter{position:absolute;z-index:4;width:min(342px,67vw);min-height:245px;padding:34px 30px;background:#f2f8fd;box-shadow:0 24px 72px rgba(44,58,74,.13);text-align:center;opacity:0;transform:translateY(20px);transition:transform 1.05s cubic-bezier(.2,.7,.2,1),opacity .65s ease}
+.letter{position:absolute;z-index:4;width:min(360px,71vw);min-height:265px;padding:34px 30px;background:#f2f8fd;box-shadow:0 24px 72px rgba(44,58,74,.13);text-align:center;opacity:0;transform:translateY(20px);pointer-events:none;transition:transform 1.05s cubic-bezier(.2,.7,.2,1),opacity .65s ease}
 .letter-kicker{font:11px 'Nunito',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
 .letter h2{font:italic 32px/1.1 'Cormorant Garamond',serif;font-weight:500}
-.letter p{margin:16px auto 0;max-width:270px;font-size:13px;line-height:1.75;color:var(--ink-soft)}
+.letter p{margin:16px auto 0;max-width:282px;font-size:13px;line-height:1.75;color:var(--ink-soft)}
+.enter-shop{margin-top:24px;padding:0;border:0;border-bottom:1px solid var(--coral);background:none;color:var(--ink);font:11px 'Nunito',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.enter-shop:hover{color:var(--ink-soft)}
+.enter-shop:focus-visible{outline:2px solid var(--coral);outline-offset:7px}
 .open-note{position:absolute;bottom:16px;font:11px 'Nunito',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 .shop-opening.is-open .envelope::before{opacity:0;transform:translateY(-16px)}
 .shop-opening.is-open .seal{opacity:0;transform:translate(-50%,-50%) scale(.92)}
 .shop-opening.is-open .envelope{transform:translateY(36px);opacity:0;transition-delay:.78s}
-.shop-opening.is-open .letter{opacity:1;transform:translateY(-136px)}
+.shop-opening.is-open .letter{opacity:1;transform:translateY(-136px);pointer-events:auto}
 .shop-opening.is-leaving .letter{opacity:0;transform:translateY(-158px)}
 
 
@@ -106,18 +110,22 @@ body.shop-intro-active .title,body.shop-intro-active .collections{opacity:0;tran
 </div>
 
 <section class="shop-opening" aria-label="An invitation to the Kita-Sora shop">
-  <button class="invitation" type="button" aria-expanded="false">
-    <div class="letter">
-      <div class="letter-kicker">a small invitation</div>
-      <h2>come in, slowly</h2>
-      <p>There are pieces of a journey here, and pieces of a home. You are welcome to take only what feels like yours.</p>
-    </div>
+  <div class="invitation">
+    <button class="envelope-trigger" type="button" aria-expanded="false" aria-label="open the letter">
     <div class="envelope">
       <span class="env-wordmark" aria-hidden="true">Kita-Sora</span>
       <span class="seal"><img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="Kita-Sora seal"></span>
     </div>
     <span class="open-note">open the letter</span>
-  </button>
+    </button>
+    <article class="letter" aria-live="polite">
+      <div class="letter-kicker">before you enter</div>
+      <h2>a small place to keep things</h2>
+      <p>Some things begin as a card carried home from a journey, a creature made by hand, or a small proof that a life was truly lived.</p>
+      <p>This is a place for those things. Take your time. When you are ready, the shop will be here.</p>
+      <button class="enter-shop" type="button">enter the shop →</button>
+    </article>
+  </div>
 </section>
 
 <div class="collections">
@@ -163,16 +171,19 @@ function playEnvelopeSound(){
 
 function openInvitation(){
   const opening=document.querySelector('.shop-opening');
-  const invitation=document.querySelector('.invitation');
+  const trigger=document.querySelector('.envelope-trigger');
   if(opening.classList.contains('is-open'))return;
-  invitation.setAttribute('aria-expanded','true');
+  trigger.setAttribute('aria-expanded','true');
   playEnvelopeSound();
   opening.classList.add('is-open');
-  window.setTimeout(()=>opening.classList.add('is-leaving'),1500);
-  window.setTimeout(()=>{document.body.classList.remove('shop-intro-active');opening.classList.add('is-gone')},2800);
 }
-document.querySelector('.invitation').addEventListener('click',openInvitation);
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){openInvitation()}
+function enterShop(){
+  const opening=document.querySelector('.shop-opening');
+  opening.classList.add('is-leaving');
+  window.setTimeout(()=>{document.body.classList.remove('shop-intro-active');opening.classList.add('is-gone')},900);
+}
+document.querySelector('.envelope-trigger').addEventListener('click',openInvitation);
+document.querySelector('.enter-shop').addEventListener('click',enterShop);
 
 function setLang(l, btn){
   document.querySelectorAll('[data-'+l+']').forEach(el=>{el.textContent=el.dataset[l]});
