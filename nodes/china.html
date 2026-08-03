@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China — Kita-Sora</title>
+<style>
+  :root{--paper:#f5eed7;--ink:#2c3e50;--soft:#6e8597;--blue:#dceeff;--coral:#ff8ca0}
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Nunito,system-ui,sans-serif}
+  .back{position:fixed;top:26px;left:30px;z-index:3;color:var(--ink);font-size:12px;letter-spacing:.12em;text-decoration:none}
+  .back:hover{color:var(--coral)} main{min-height:100vh;padding:clamp(115px,15vw,170px) 8vw 80px;background:linear-gradient(135deg,rgba(220,238,255,.78),transparent 42%),linear-gradient(25deg,rgba(255,140,160,.09),transparent 38%)}
+  .eyebrow{margin:0 0 15px;color:var(--soft);font-size:11px;letter-spacing:.18em;text-transform:uppercase}.title{margin:0;font:italic 500 clamp(55px,9vw,118px)/.9 Georgia,serif}.intro{max-width:620px;margin:28px 0 64px;font:italic 17px/1.7 Georgia,serif;color:#496278}
+  .memories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1120px}.memory{min-height:230px;padding:28px 25px;border:1px solid rgba(44,62,80,.12);border-radius:30px;background:rgba(255,252,244,.55);box-shadow:0 16px 35px rgba(44,62,80,.07)}
+  .memory:nth-child(2){transform:translateY(34px)}.memory:nth-child(3){transform:translateY(10px)}.memory span{display:block;margin-bottom:15px;color:var(--coral);font-size:11px;letter-spacing:.15em;text-transform:uppercase}.memory h2{margin:0 0 12px;font:italic 28px/1.05 Georgia,serif}.memory p{margin:0;color:var(--soft);font-size:13px;line-height:1.7}
+  .note{max-width:610px;margin:105px 0 0;font:italic 15px/1.7 Georgia,serif;color:var(--soft)}
+  @media(max-width:720px){main{padding:112px 28px 60px}.memories{grid-template-columns:1fr}.memory:nth-child(n){transform:none}.memory{min-height:0}.back{left:24px;top:22px}}
+</style>
+</head>
+<body>
+  <a class="back" href="../index.html">← back to the map</a>
+  <main>
+    <p class="eyebrow">the shore the ship first left</p>
+    <h1 class="title">China</h1>
+    <p class="intro">Before the map became a map, there were rooms, meals, walls, and the people who made leaving mean something.</p>
+    <section class="memories" aria-label="China story structure">
+      <article class="memory"><span>01 · home</span><h2>Ordinary days with my mother</h2><p>Small domestic rhythms, shared meals, and the textures of a home that still lives inside me.</p></article>
+      <article class="memory"><span>02 · the wall</span><h2>A wall I made for myself</h2><p>Photographs, notes, gifts, fragments and the private architecture of becoming.</p></article>
+      <article class="memory"><span>03 · before the voyage</span><h2>Friends, memory, and the past</h2><p>The people and earlier versions of me that belong to this shore, even as the ship continues onward.</p></article>
+    </section>
+    <p class="note">This shore is still being gathered. Images and letters will arrive only after their story has been chosen with care.</p>
+  </main>
+  <script src="../assets/mascots/xiao-ba.js"></script>
+</body>
+</html>

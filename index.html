@@ -268,7 +268,7 @@ nav{
   </svg>
 
   <!-- CHINA · the harbor she left from -->
-  <button class="node n-china" style="left:14%;top:88%" data-node="china">
+  <button class="node n-china" style="left:14%;top:88%" data-node="china" id="chinaNode">
     <div class="slot slot-china art">
       <!-- HAND-DRAWN ASSET SLOT: assets/node-china.png -->
       <div class="placeholder harbor" data-en="harbor, in pencil" data-jp="港、下描き中" data-cn="港口，仍在起稿">harbor, in pencil</div>
@@ -398,7 +398,9 @@ map.addEventListener('mousemove',e=>{
 const panel=document.getElementById('panel');
 const voyageShip=document.querySelector('.ship');
 const yakumoNode=document.getElementById('yakumoNode');
+const chinaNode=document.getElementById('chinaNode');
 const docks={
+  china:{x:23,y:79},
   yakumo:{x:42,y:51},
   malaysia:{x:60,y:67},
   europe:{x:79,y:36},
@@ -444,7 +446,12 @@ function arriveAtYakumo(){
   yakumoNode.classList.add('arrived');
   window.setTimeout(()=>panel.classList.add('open'),220);
 }
+function arriveAtChina(){
+  chinaNode.classList.add('arrived');
+  window.setTimeout(()=>{window.location.href='nodes/china.html';},260);
+}
 yakumoNode.addEventListener('click',()=>sailTo('yakumo',arriveAtYakumo));
+chinaNode.addEventListener('click',()=>sailTo('china',arriveAtChina));
 /* Future islands call this only once their story page and asset are ready. */
 function unlockIsland(node,key,onArrival){
   node.classList.remove('locked');
