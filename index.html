@@ -54,12 +54,7 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   animation:breathe 70s ease-in-out infinite alternate;
   will-change:transform;
 }
-.sea::after{content:'';position:absolute;inset:-8%;pointer-events:none;opacity:.6;background:
-  repeating-radial-gradient(ellipse 150px 34px at 18% 54%,transparent 0 21px,rgba(117,174,205,.24) 22px 23px,transparent 24px 43px),
-  repeating-radial-gradient(ellipse 120px 27px at 68% 30%,transparent 0 18px,rgba(255,255,255,.42) 19px 20px,transparent 21px 37px);
-  background-size:430px 255px,360px 210px;background-position:0 0,80px 40px;mix-blend-mode:multiply;animation:waveDrift 20s ease-in-out infinite alternate}
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
-@keyframes waveDrift{to{background-position:180px 42px,-125px 76px}}
 .distant-island{position:absolute;left:12%;top:31%;z-index:1;width:min(44vw,620px);height:auto;pointer-events:none;opacity:.88;filter:drop-shadow(0 14px 16px rgba(44,62,80,.11));animation:farShore 18s ease-in-out infinite alternate}
 @keyframes farShore{from{transform:translateY(0)}to{transform:translateY(-7px)}}
 
@@ -102,8 +97,9 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 /* anchored node art slots (real paintings go here) */
 .slot{display:grid;place-items:center;position:relative}
 .slot img{width:100%;height:100%;object-fit:contain}
-.slot-yakumo{width:clamp(190px,27vw,365px);height:clamp(143px,20.25vw,274px)}
-.slot-yakumo img{filter:brightness(1.15) saturate(.86) contrast(.94)}
+.slot-yakumo{width:clamp(190px,27vw,365px);height:clamp(143px,20.25vw,274px);isolation:isolate}
+.slot-yakumo img{position:relative;z-index:0;filter:brightness(1.15) saturate(.86) contrast(.94)}
+.slot-yakumo::after{content:'';position:absolute;left:-9%;right:-9%;bottom:-3%;z-index:1;height:30%;pointer-events:none;background:linear-gradient(to bottom,rgba(237,232,209,0),rgba(233,230,207,.42) 38%,rgba(226,228,205,.9) 100%);filter:blur(4px)}
 .slot-china{width:clamp(98px,12vw,170px);height:clamp(98px,12vw,170px)}
 
 /* placeholder rendering until paintings arrive */
