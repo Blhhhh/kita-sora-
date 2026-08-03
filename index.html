@@ -55,8 +55,10 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
   will-change:transform;
 }
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
-.distant-island{position:absolute;left:8%;top:27%;z-index:1;width:min(67vw,920px);height:auto;pointer-events:none;opacity:.9;filter:drop-shadow(0 18px 20px rgba(44,62,80,.12));animation:farShore 18s ease-in-out infinite alternate}
+.distant-island{position:absolute;left:12%;top:31%;z-index:1;width:min(44vw,620px);height:auto;pointer-events:none;opacity:.88;filter:drop-shadow(0 14px 16px rgba(44,62,80,.11));animation:farShore 18s ease-in-out infinite alternate}
+.distant-bear{position:absolute;left:29%;top:25%;z-index:2;width:clamp(58px,5.8vw,86px);height:auto;pointer-events:none;filter:drop-shadow(0 5px 7px rgba(44,62,80,.18));animation:farBear 5.2s ease-in-out infinite}
 @keyframes farShore{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes farBear{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
 
 /* ── ROUTE ── */
 .route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
@@ -97,7 +99,7 @@ body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none
 .slot img{width:100%;height:100%;object-fit:contain}
 .slot-yakumo{width:clamp(190px,27vw,365px);height:clamp(143px,20.25vw,274px)}
 .slot-yakumo img{filter:brightness(1.15) saturate(.86) contrast(.94)}
-.slot-china{width:clamp(74px,9vw,120px);height:clamp(74px,9vw,120px)}
+.slot-china{width:clamp(98px,12vw,170px);height:clamp(98px,12vw,170px)}
 
 /* placeholder rendering until paintings arrive */
 .placeholder{
@@ -232,7 +234,8 @@ nav{
   .n-my{left:72%!important;top:66%!important}
   .n-eu{left:82%!important;top:26%!important}
   .n-jp{left:88%!important;top:82%!important}
-  .distant-island{left:-12%;top:28%;width:125vw;opacity:.82}
+  .distant-island{left:2%;top:30%;width:66vw;opacity:.82}
+  .distant-bear{left:25%;top:22%;width:52px}
 }
 </style>
 </head>
@@ -245,6 +248,7 @@ nav{
 <div class="map" id="map">
   <div class="sea" data-depth="6"></div>
   <img class="distant-island" src="assets/map-distant-island-v1.png" alt="" aria-hidden="true">
+  <img class="distant-bear" src="assets/mascots/xiao-ba-3d-v2.png" alt="" aria-hidden="true">
 
   <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none">
     <!-- sailed: China → Yakumo -->
@@ -261,8 +265,7 @@ nav{
   <!-- CHINA · the harbor she left from -->
   <button class="node n-china" style="left:14%;top:88%" data-node="china">
     <div class="slot slot-china art">
-      <!-- ASSET SLOT: assets/node-china.png (transparent) -->
-      <div class="placeholder harbor" data-en="harbor" data-jp="港" data-cn="港">harbor</div>
+      <img src="assets/node-china-3d-v1.png" alt="China harbor, hand-sculpted in paper clay">
     </div>
     <div class="label">China</div>
     <div class="sub" data-en="where the ship first left shore" data-jp="船が最初に岸を離れた場所" data-cn="船最初离岸的地方">where the ship first left shore</div>
