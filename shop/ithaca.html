@@ -6,7 +6,7 @@
 <title>Vol. I — To Ithaca · Kita-Sora</title>
 <meta name="description" content="Six postcards from a journey through Hokkaido — not a straight line, but the emotional states we all pass through. Vol. I — To Ithaca.">
 <link rel="canonical" href="https://kita-sora.com/shop/ithaca.html">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Lora:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#f5eed7; --ink:#0d1f3c; --ink-soft:#5f7485; --sky:#dceeff; --coral:#ff8ca0; --letter:#f5eed7;
@@ -32,48 +32,49 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 .l1-hint{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:2;color:var(--paper);font-family:'Nunito',sans-serif;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.65;animation:pulseHint 2.6s ease-in-out infinite}
 @keyframes pulseHint{0%,100%{opacity:.4}50%{opacity:.8}}
 
-/* ══════════════════ LAYER 2 · fixed hero (selected image, carried through) ══════════════════ */
-.l2{position:relative;height:100vh;min-height:560px;overflow:hidden;background-size:cover;background-position:center}
-.l2::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,var(--paper) 0%,transparent 40%),linear-gradient(to bottom,rgba(13,31,60,.18),transparent 32%)}
-.l2-kicker{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);z-index:2;text-align:center;width:min(640px,88vw)}
-.l2-kicker span{font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 10px rgba(13,31,60,.4)}
+/* ══════════════════ LAYER 2 · cover, not just a photograph ══════════════════ */
+.l2{position:relative;height:100vh;min-height:620px;overflow:hidden;background-size:cover;background-position:center}
+.l2::before{content:"";position:absolute;inset:0;background:inherit;filter:contrast(1.05) saturate(1.04);transform:scale(1.012)}
+.l2::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,31,60,.62) 0%,rgba(13,31,60,.22) 43%,transparent 75%),linear-gradient(to top,var(--paper) 0%,transparent 38%)}
+.hero-copy{position:absolute;z-index:2;left:clamp(28px,8vw,112px);bottom:clamp(100px,18vh,180px);width:min(510px,78vw);color:var(--paper)}
+.hero-meta{font:11px 'Nunito',sans-serif;letter-spacing:.24em;text-transform:uppercase;opacity:.84;margin-bottom:20px}
+.hero-copy h1{font-size:clamp(64px,10vw,132px);font-weight:400;line-height:.78;font-style:italic;letter-spacing:-.045em;text-shadow:0 3px 18px rgba(13,31,60,.2)}
+.hero-copy h1 span{display:block;font-size:.46em;letter-spacing:.01em;margin-left:.09em;line-height:1.2}
+.hero-copy p{margin-top:25px;max-width:380px;font-size:clamp(14px,1.4vw,17px);line-height:1.7;font-style:italic}
+.hero-index{position:absolute;z-index:2;right:clamp(28px,6vw,88px);bottom:clamp(92px,13vh,138px);color:var(--paper);text-align:right;font:11px 'Nunito',sans-serif;letter-spacing:.17em;text-transform:uppercase;line-height:2.1}
+.hero-index b{font:italic 35px 'Cormorant Garamond',serif;letter-spacing:0;font-weight:400}
 .l2-scroll{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);z-index:2;color:var(--paper);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Nunito',sans-serif;opacity:.75;animation:bob 2.8s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
 /* ══════════════════ LAYER 3 · the envelope ══════════════════ */
 .l3{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10vh 24px;
-  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(220,239,255,.55),transparent 70%);
+  background:radial-gradient(ellipse 58% 46% at 50% 48%,rgba(220,239,255,.72),transparent 71%),var(--paper);
   opacity:0;transform:translateY(34px);transition:opacity 1.1s ease,transform 1.1s ease}
 .l3.visible{opacity:1;transform:none}
-.envelope{position:relative;width:min(360px,78vw);aspect-ratio:3/2;cursor:pointer}
-.env-back{position:absolute;inset:0;background:#fffdf7;border:1.5px solid rgba(13,31,60,.35);border-radius:2px;box-shadow:0 24px 60px rgba(13,31,60,.24)}
-.env-flap{position:absolute;top:0;left:0;right:0;height:52%;background:#f0e6c8;border-bottom:1.5px solid rgba(13,31,60,.2);
-  clip-path:polygon(0 0,100% 0,50% 100%);border-radius:2px 2px 0 0;transform-origin:top center;
-  transition:transform 1s cubic-bezier(.4,0,.2,1);z-index:3}
-.env-seal{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);z-index:4;width:46px;height:46px;
-  filter:drop-shadow(0 3px 8px rgba(13,31,60,.25));transition:opacity .5s ease}
+.envelope{position:relative;width:min(520px,84vw);height:min(272px,52vw);max-height:272px;cursor:pointer;background:#deeef8;border-radius:0 0 20px 20px;box-shadow:0 20px 60px rgba(44,58,74,.12);overflow:visible}
+.env-back{position:absolute;inset:0;border-radius:0 0 20px 20px}
+.env-flap{position:absolute;z-index:3;top:0;left:0;width:100%;height:58%;background:#c6d9ee;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:opacity .7s ease,transform .8s ease}
+.env-seal{position:absolute;z-index:5;left:50%;top:58%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;filter:drop-shadow(0 4px 12px rgba(44,58,74,.18));transition:opacity .35s ease,transform .35s ease}
 .env-seal img{width:100%;height:100%;display:block}
-.env-text{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:2;text-align:center;width:80%;
-  font-style:italic;font-size:clamp(15px,2vw,19px);color:var(--ink-soft)}
-.letter{position:absolute;left:6%;right:6%;bottom:6%;height:70%;background:var(--letter);border:1px solid rgba(13,31,60,.1);
-  border-radius:1px;box-shadow:0 4px 16px rgba(13,31,60,.1);z-index:1;
-  transform:translateY(6%);opacity:0;transition:transform 1s ease .15s,opacity 1s ease .15s}
-
-.envelope.open .env-flap{transform:rotateX(180deg)}
+.env-text{position:absolute;z-index:1;left:50%;top:75%;transform:translate(-50%,-50%);font-family:'Great Vibes','Lora',cursive,serif;font-size:clamp(42px,7.2vw,72px);color:rgba(100,160,210,.24);white-space:nowrap;letter-spacing:.04em;pointer-events:none}
+.letter{position:absolute;z-index:4;left:50%;top:50%;width:min(360px,71vw);min-height:265px;padding:34px 30px;background:#f2f8fd;box-shadow:0 24px 72px rgba(44,58,74,.13);text-align:center;opacity:0;transform:translate(-50%,calc(-50% + 20px));pointer-events:none;transition:transform 1.05s cubic-bezier(.2,.7,.2,1),opacity .65s ease}
+.letter-kicker{font:11px 'Nunito',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.letter h2{font:italic 32px/1.1 'Cormorant Garamond',serif;font-weight:500}.letter p{margin:16px auto 0;max-width:282px;font-size:13px;line-height:1.75;color:var(--ink-soft)}
+.envelope.open .env-flap{opacity:0;transform:translateY(-16px)}
 .envelope.open .env-seal{opacity:0}
-.envelope.open .letter{transform:translateY(-28%);opacity:1}
+.envelope.open{transform:translateY(36px);opacity:0;transition:transform 1.2s cubic-bezier(.2,.7,.2,1) .78s,opacity .8s ease .78s}
+.envelope.open + .letter{transform:translate(-50%,calc(-50% - 136px));opacity:1;pointer-events:auto}
 
 .l3-hint{margin-top:34px;font-family:'Nunito',sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
   opacity:.8;transition:opacity .6s ease}
 .l3-hint.hidden{opacity:0}
+.enter-collection{margin-top:24px;padding:0;border:0;border-bottom:1px solid var(--coral);background:none;color:var(--ink);font:11px 'Nunito',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}.enter-collection:hover{color:var(--ink-soft)}
 
 /* ══════════════════ LAYER 4 · the letter's contents ══════════════════ */
 .l4{max-height:0;overflow:hidden;opacity:0;transition:opacity 1.4s ease}
 .l4.open{max-height:none;overflow:visible;opacity:1}
 
-.intro{max-width:620px;margin:2vh auto 10vh;padding:0 24px;text-align:center}
-.intro p{font-size:18px;line-height:2;font-style:italic;color:var(--ink)}
+.intro{max-width:700px;margin:2vh auto 9vh;padding:0 24px;text-align:center}.intro p{font-size:20px;line-height:1.9;font-style:italic;color:var(--ink)}
 
 .prologue{max-width:560px;margin:0 auto 12vh;padding:0 24px}
 .prologue-label{text-align:center;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:6vh}
@@ -84,16 +85,9 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 
 .sec-label{text-align:center;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6vh}
 
-.postcards{max-width:760px;margin:0 auto 14vh;padding:0 24px}
-.pc-block{margin-bottom:11vh;text-align:center}
-.pc-block:last-child{margin-bottom:0}
-.pc-img{width:100%;aspect-ratio:3/2;background-size:cover;background-position:center;border-radius:2px;
-  box-shadow:0 20px 50px rgba(13,31,60,.18);margin-bottom:22px}
-.pc-text{max-width:460px;margin:0 auto}
-.pc-num{font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.14em;color:var(--coral);margin-bottom:6px}
-.pc-name{font-style:italic;font-weight:500;font-size:26px;margin-bottom:12px}
-.pc-story{font-size:16px;line-height:1.85;color:var(--ink);margin-bottom:14px;font-style:italic}
-.pc-price{font-style:normal;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink-soft)}
+.postcards{max-width:980px;margin:0 auto 7vh;padding:0 24px}.postcard-deck{position:relative;height:min(59vw,530px);min-height:365px;margin:0 auto 26px}.postcard{position:absolute;left:50%;top:50%;width:min(42vw,405px);border:0;padding:0;background:transparent;cursor:pointer;transform:translate(-50%,-50%) rotate(var(--tilt)) translate(var(--x),var(--y));transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .4s ease;filter:drop-shadow(0 20px 30px rgba(13,31,60,.18));z-index:var(--z)}
+.postcard:hover,.postcard:focus-visible{transform:translate(-50%,-54%) rotate(0) scale(1.06);z-index:10;outline:none;filter:drop-shadow(0 28px 38px rgba(13,31,60,.26))}.postcard img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border:6px solid #fffdf7}.postcard span{display:block;margin-top:9px;color:var(--ink-soft);font:11px 'Nunito',sans-serif;letter-spacing:.12em;text-transform:uppercase}.deck-instruction{text-align:center;color:var(--ink-soft);font:11px 'Nunito',sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.postcard-dialog{width:min(760px,92vw);border:0;background:transparent;color:var(--ink);padding:0}.postcard-dialog::backdrop{background:rgba(13,31,60,.58);backdrop-filter:blur(5px)}.dialog-card{position:relative;background:var(--paper);padding:clamp(22px,4vw,48px);box-shadow:0 32px 90px rgba(0,0,0,.28);text-align:center}.dialog-close{position:absolute;top:13px;right:16px;border:0;background:none;color:var(--ink);font:28px 'Nunito',sans-serif;cursor:pointer}.dialog-card img{width:100%;aspect-ratio:3/2;object-fit:cover;box-shadow:0 16px 42px rgba(13,31,60,.18);margin-bottom:22px}.dialog-num{font:11px 'Nunito',sans-serif;letter-spacing:.16em;color:var(--coral);margin-bottom:7px}.dialog-card h3{font-size:clamp(30px,5vw,48px);font-style:italic;font-weight:500}.dialog-card p{max-width:470px;margin:18px auto 0;font-size:17px;line-height:1.85;font-style:italic}.dialog-note{font:12px 'Nunito',sans-serif!important;color:var(--ink-soft);font-style:normal!important}
 .product-action{text-align:center;margin:28px auto 0}
 .product-action a{display:inline-block;padding:11px 20px;border-bottom:1px solid var(--coral);color:var(--ink);font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none}
 .product-action a:hover{color:var(--ink-soft)}
@@ -103,15 +97,13 @@ body{font-family:'Lora',serif;overflow-x:hidden}
   box-shadow:0 20px 50px rgba(13,31,60,.18);margin-bottom:16px}
 .back-caption{font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink-soft)}
 
-.bookmark-section{max-width:420px;margin:0 auto 14vh;padding:0 24px;text-align:center}
+.product-intro{max-width:590px;margin:-3vh auto 5vh;padding:0 24px;text-align:center;font-size:16px;line-height:1.9;font-style:italic;color:var(--ink)}
+.bookmark-section{max-width:760px;margin:0 auto 14vh;padding:0 24px;text-align:center;display:grid;grid-template-columns:minmax(230px,310px) minmax(240px,1fr);gap:clamp(28px,7vw,78px);align-items:center}
 .bookmark-img{width:100%;object-fit:contain;border-radius:2px;box-shadow:0 20px 50px rgba(13,31,60,.15);margin-bottom:16px;background:rgba(255,255,255,.4)}
-.bookmark-name{font-style:italic;font-size:22px;margin-bottom:6px}
+.bookmark-copy{text-align:left}.bookmark-name{font-style:italic;font-size:34px;line-height:1;margin-bottom:14px}.bookmark-story{font-size:15px;line-height:1.85;font-style:italic;margin:0 0 15px}.bookmark-details{font:11px/1.8 'Nunito',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px}
 .bookmark-price{font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink-soft)}
 
-.small-items{max-width:900px;margin:0 auto 4vh;padding:0 24px}
-.si-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
-.si-card{text-align:center}
-.si-visual{aspect-ratio:1/1;background:rgba(255,255,255,.5);border:1px solid rgba(13,31,60,.08);border-radius:4px;overflow:hidden;margin-bottom:10px}
+.small-items{max-width:980px;margin:0 auto 4vh;padding:0 24px}.si-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.si-card{text-align:center;position:relative;transform:rotate(var(--sticker-tilt))}.si-card:nth-child(even){margin-top:26px}.si-visual{aspect-ratio:1/1;background:#e6f2fb;border:1px solid rgba(13,31,60,.08);border-radius:47% 53% 48% 52% / 52% 45% 55% 48%;overflow:hidden;margin-bottom:10px;padding:8px;box-shadow:0 12px 25px rgba(13,31,60,.1);transition:transform .35s ease}.si-card:hover .si-visual{transform:translateY(-9px) rotate(-3deg)}
 .si-visual img{width:100%;height:100%;object-fit:cover}
 .si-name{font-style:italic;font-size:14px;margin-bottom:2px}
 .si-price{font-family:'Nunito',sans-serif;font-size:10.5px;color:var(--ink-soft)}
@@ -119,7 +111,7 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 .bundle-note b{color:var(--coral);font-weight:600}
 
 /* this is what arrives at your door */
-.unboxing{max-width:960px;margin:0 auto 10vh;padding:0 24px}
+.unboxing{max-width:960px;margin:0 auto 10vh;padding:0 24px}.unboxing .sec-label{margin-bottom:18px}
 .ub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ub-img{aspect-ratio:4/5;background-size:cover;background-position:center;border-radius:2px;box-shadow:0 16px 40px rgba(13,31,60,.16)}
 .ub-caption{text-align:center;font-style:italic;font-size:14px;color:var(--ink-soft);margin-top:22px}
@@ -132,7 +124,7 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 .cta-btn:hover{background:#1a3559}
 .back-to-shop{display:block;margin-top:22px;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
 
-@media(max-width:760px){.si-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.si-grid{grid-template-columns:repeat(3,1fr)}.bookmark-section{grid-template-columns:1fr;max-width:430px}.bookmark-copy{text-align:center}.postcard{width:min(53vw,330px)}.hero-index{display:none}.hero-copy{bottom:19vh}.hero-copy h1{font-size:clamp(60px,19vw,100px)}}
 </style>
 </head>
 <body>
@@ -152,7 +144,12 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 
 <!-- LAYER 2 · the image you chose becomes the door you walk through -->
 <div class="l2" style="background-image:url('../assets/ithaca/postcard-06-ithaca.jpg')">
-  <div class="l2-kicker"><span>voyage collection · yakumo</span></div>
+  <div class="hero-copy serif">
+    <div class="hero-meta">Kita-Sora object archive · vol. I</div>
+    <h1>To <span>Ithaca</span></h1>
+    <p>Six postcards from Yakumo, for the departures, returns, and becoming that make a life.</p>
+  </div>
+  <div class="hero-index"><b>06</b><br>postcards · one looping voyage<br>Yakumo, Hokkaido</div>
   <div class="l2-scroll">scroll</div>
 </div>
 
@@ -160,13 +157,18 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 <div class="l3" id="l3">
   <div class="envelope" id="envelope">
     <div class="env-back"></div>
-    <div class="letter"></div>
-    <div class="env-text serif">a letter from Ithaca</div>
+    <div class="env-text" aria-hidden="true">Kita-Sora</div>
     <div class="env-flap"></div>
     <div class="env-seal">
       <img src="https://res.cloudinary.com/ul3gr1pn/image/upload/v1783948147/Kita-Sora_icon_%E5%9C%86%E5%BD%A2%E7%89%88_hunf3n.png" alt="">
     </div>
   </div>
+  <article class="letter" aria-live="polite">
+    <div class="letter-kicker">a note before you enter</div>
+    <h2>for the parts of you that keep travelling</h2>
+    <p>These are not souvenirs of one neat journey. They are small witnesses to leaving, returning, and learning how to keep becoming.</p>
+    <button class="enter-collection" type="button" id="enterCollection">enter the collection</button>
+  </article>
   <div class="l3-hint" id="l3hint">tap to open</div>
 </div>
 
@@ -174,102 +176,32 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 <div class="l4" id="l4">
 
   <div class="intro">
-    <p>六张明信片，不是一段严格的顺序，而是我们都会在人生不同时刻经过的几种情绪状态。</p>
+    <p>To Ithaca began with a question: what if a journey did not need to end in order to mean something? These six cards hold the states we return to, again and again, while becoming someone new.</p>
   </div>
 
   <div class="prologue serif">
-    <div class="prologue-label">a journey that loops</div>
-
-    <div class="whisper">
-      <div class="whisper-name">01 · Leaving Things Behind</div>
-      <div class="whisper-line">窗外的风景慢慢向后退去，而我们继续向前。</div>
-    </div>
-    <div class="whisper">
-      <div class="whisper-name">02 · No Way Back</div>
-      <div class="whisper-line">车灯照亮的，不过前方几十米。</div>
-    </div>
-    <div class="whisper">
-      <div class="whisper-name">03 · Breathing Again</div>
-      <div class="whisper-line">空气很凉，我终于又能好好呼吸。</div>
-    </div>
-    <div class="whisper">
-      <div class="whisper-name">04 · Still Becoming</div>
-      <div class="whisper-line">一路跌跌撞撞，我们仍然在成为自己。</div>
-    </div>
-    <div class="whisper">
-      <div class="whisper-name">05 · Almost There</div>
-      <div class="whisper-line">快到了，却开始舍不得。</div>
-    </div>
-    <div class="whisper">
-      <div class="whisper-name">06 · Ithaca</div>
-      <div class="whisper-line">谢谢这一路，把我带到这里。</div>
-    </div>
-
-    <div class="loop-note">At first glance, these six chapters may seem like a linear progression.<br>
-    But the more I think about life, the more I realize it rarely moves in straight lines.<br><br>
-    After Ithaca comes another departure.<br>
-    After arrival comes another question.<br>
-    After becoming comes another version of yourself waiting to be discovered.</div>
+    <div class="prologue-label">the story hidden in the set</div>
+    <div class="whisper"><div class="whisper-line">The cards appear to move from departure to arrival. But life does not move in a straight line.</div></div>
+    <div class="loop-note">You might leave something behind, find yourself without a map, breathe again, become, arrive, and then begin all over again. Ithaca is not the end of this story. It is the gentle place where the next one begins.</div>
   </div>
 
-  <div class="sec-label">the postcards · from $6</div>
+  <div class="sec-label">six moments from one looping voyage · from $6</div>
   <div class="postcards">
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-01-leaving-things-behind.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">01</div>
-        <div class="pc-name">Leaving Things Behind</div>
-        <p class="pc-story">窗外的风景慢慢向后退去，而我们继续向前。</p>
-        <div class="pc-price">from $6</div>
-      </div>
+    <div class="postcard-deck" aria-label="Six postcards from the To Ithaca collection">
+      <button class="postcard" style="--tilt:-10deg;--x:-52%;--y:4%;--z:2" data-card="0"><img src="../assets/ithaca/postcard-01-leaving-things-behind.jpg" alt="Leaving Things Behind postcard"><span>01 · leaving things behind</span></button>
+      <button class="postcard" style="--tilt:9deg;--x:46%;--y:-2%;--z:3" data-card="1"><img src="../assets/ithaca/postcard-02-no-way-back.jpg" alt="No Way Back postcard"><span>02 · no way back</span></button>
+      <button class="postcard" style="--tilt:-3deg;--x:-8%;--y:-22%;--z:5" data-card="2"><img src="../assets/ithaca/postcard-03-breathing-again.jpg" alt="Breathing Again postcard"><span>03 · breathing again</span></button>
+      <button class="postcard" style="--tilt:14deg;--x:55%;--y:28%;--z:4" data-card="3"><img src="../assets/ithaca/postcard-04-still-becoming.jpg" alt="Still Becoming postcard"><span>04 · still becoming</span></button>
+      <button class="postcard" style="--tilt:-15deg;--x:-51%;--y:31%;--z:1" data-card="4"><img src="../assets/ithaca/postcard-05-almost-there.jpg" alt="Almost There postcard"><span>05 · almost there</span></button>
+      <button class="postcard" style="--tilt:2deg;--x:0%;--y:20%;--z:6" data-card="5"><img src="../assets/ithaca/postcard-06-ithaca.jpg" alt="Ithaca postcard"><span>06 · ithaca</span></button>
     </div>
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-02-no-way-back.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">02</div>
-        <div class="pc-name">No Way Back</div>
-        <p class="pc-story">车灯照亮的，不过前方几十米。</p>
-        <div class="pc-price">from $6</div>
-      </div>
-    </div>
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-03-breathing-again.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">03</div>
-        <div class="pc-name">Breathing Again</div>
-        <p class="pc-story">空气很凉，我终于又能好好呼吸。</p>
-        <div class="pc-price">from $6</div>
-      </div>
-    </div>
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-04-still-becoming.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">04</div>
-        <div class="pc-name">Still Becoming</div>
-        <p class="pc-story">一路跌跌撞撞，我们仍然在成为自己。</p>
-        <div class="pc-price">from $6</div>
-      </div>
-    </div>
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-05-almost-there.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">05</div>
-        <div class="pc-name">Almost There</div>
-        <p class="pc-story">快到了，却开始舍不得。</p>
-        <div class="pc-price">from $6</div>
-      </div>
-    </div>
-    <div class="pc-block">
-      <div class="pc-img" style="background-image:url('../assets/ithaca/postcard-06-ithaca.jpg')"></div>
-      <div class="pc-text serif">
-        <div class="pc-num">06</div>
-        <div class="pc-name">Ithaca</div>
-        <p class="pc-story">谢谢这一路，把我带到这里。</p>
-        <div class="pc-price">from $6</div>
-      </div>
-    </div>
+    <div class="deck-instruction">choose a card to read its small story</div>
   </div>
   <div class="product-action"><a href="https://ko-fi.com/s/bed45755ef" target="_blank" rel="noopener">choose a postcard on Ko-fi →</a></div>
+
+  <dialog class="postcard-dialog" id="postcardDialog">
+    <div class="dialog-card serif"><button class="dialog-close" type="button" aria-label="close">×</button><img id="dialogImage" src="" alt=""><div class="dialog-num" id="dialogNum"></div><h3 id="dialogName"></h3><p id="dialogStory"></p><p class="dialog-note">A card can hold a whole place for a while.</p><a class="cta-btn" href="https://ko-fi.com/s/bed45755ef" target="_blank" rel="noopener">find this card on Ko-fi →</a></div>
+  </dialog>
 
   <div class="back-section">
     <div class="back-img" style="background-image:url('../assets/ithaca/postcard-back.jpg')"></div>
@@ -277,37 +209,44 @@ body{font-family:'Lora',serif;overflow-x:hidden}
   </div>
 
   <div class="sec-label">the bookmark</div>
+  <p class="product-intro">A small piece of Yakumo to keep between the pages you are still living.</p>
   <div class="bookmark-section">
     <img class="bookmark-img" src="../assets/ithaca/bookmark-under-the-north-sky.jpg">
-    <div class="bookmark-name serif">under the north sky</div>
-    <div class="bookmark-price">from $8 · worldwide shipping included</div>
-    <div class="product-action"><a href="https://ko-fi.com/s/f57e0dce88" target="_blank" rel="noopener">take it north →</a></div>
+    <div class="bookmark-copy">
+      <div class="bookmark-name serif">under the north sky</div>
+      <p class="bookmark-story">Photographed by Lynn in Yakumo, then made into a reversible film bookmark. One side says <i>Under the North Sky</i>; the other, <i>Return to Yourself</i>.</p>
+      <p class="bookmark-details">Kita-Sora sky-blue border · reversal-film inspired finish · original crystal-ball logo</p>
+      <p class="bookmark-story">The logo holds Yakumo like a tiny crystal ball. Its red triangle is the peak of the red-roofed house from one of the collection’s most-loved photographs.</p>
+      <div class="bookmark-price">$8 · worldwide shipping included</div>
+      <div class="product-action"><a href="https://ko-fi.com/s/f57e0dce88" target="_blank" rel="noopener">take it north →</a></div>
+    </div>
   </div>
 
   <div class="sec-label">the stickers</div>
+  <p class="product-intro">Five small companions from the same world, made for letters, notebooks, luggage, and the little places that need a sign of life.</p>
   <div class="small-items">
     <div class="si-grid">
-      <div class="si-card">
+      <div class="si-card" style="--sticker-tilt:-7deg">
         <div class="si-visual"><img src="../assets/ithaca/sticker-winter-traveler.jpg"></div>
         <div class="si-name serif">Winter Traveler</div>
         <div class="si-price">sticker · $4</div>
       </div>
-      <div class="si-card">
+      <div class="si-card" style="--sticker-tilt:5deg">
         <div class="si-visual"><img src="../assets/ithaca/sticker-home-blooming.jpg"></div>
         <div class="si-name serif">Home, Blooming</div>
         <div class="si-price">sticker · $4</div>
       </div>
-      <div class="si-card">
+      <div class="si-card" style="--sticker-tilt:-2deg">
         <div class="si-visual"><img src="../assets/ithaca/sticker-the-bear.jpg"></div>
         <div class="si-name serif">The Bear</div>
         <div class="si-price">sticker · $4</div>
       </div>
-      <div class="si-card">
+      <div class="si-card" style="--sticker-tilt:8deg">
         <div class="si-visual"><img src="../assets/ithaca/sticker-the-swing-tree.jpg"></div>
         <div class="si-name serif">The Swing Tree</div>
         <div class="si-price">sticker · $4</div>
       </div>
-      <div class="si-card">
+      <div class="si-card" style="--sticker-tilt:-5deg">
         <div class="si-visual"><img src="../assets/ithaca/sticker-a-world-inside.jpg"></div>
         <div class="si-name serif">A World Inside</div>
         <div class="si-price">sticker · $4</div>
@@ -317,12 +256,13 @@ body{font-family:'Lora',serif;overflow-x:hidden}
   </div>
 
   <div class="unboxing">
+    <div class="sec-label">a small parcel from Yakumo</div>
     <div class="ub-grid">
       <div class="ub-img" style="background-image:url('../assets/ithaca/unboxing-envelope.jpg')"></div>
       <div class="ub-img" style="background-image:url('../assets/ithaca/unboxing-bookmark.jpg')"></div>
       <div class="ub-img" style="background-image:url('../assets/ithaca/unboxing-postcard.jpg')"></div>
     </div>
-    <div class="ub-caption serif">this is what arrives at your door</div>
+    <div class="ub-caption serif">A card, a bookmark, and small things made to be carried forward.</div>
   </div>
 
   <div class="closing">
@@ -363,19 +303,40 @@ body{font-family:'Lora',serif;overflow-x:hidden}
 })();
 
 /* ── envelope open → reveal layer 4 ── */
+/* Same close paper-rustle used by the Shop invitation. It begins only after a visitor chooses to open it. */
+function playEnvelopeSound(){
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
+  const audio=new AudioCtx(),now=audio.currentTime;
+  const rustle=(delay,duration,volume,frequency)=>{const buffer=audio.createBuffer(1,Math.ceil(audio.sampleRate*duration),audio.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*(1-i/data.length*.28);const noise=audio.createBufferSource(),filter=audio.createBiquadFilter(),gain=audio.createGain();noise.buffer=buffer;filter.type='bandpass';filter.frequency.value=frequency;filter.Q.value=.65;gain.gain.setValueAtTime(.0001,now+delay);gain.gain.exponentialRampToValueAtTime(volume,now+delay+.025);gain.gain.exponentialRampToValueAtTime(.0001,now+delay+duration);noise.connect(filter).connect(gain).connect(audio.destination);noise.start(now+delay);noise.stop(now+delay+duration)};
+  rustle(0,.18,.16,1350);rustle(.12,.35,.12,970);rustle(.31,.22,.075,1750);window.setTimeout(()=>audio.close(),900);
+}
 (function(){
   var envelope = document.getElementById('envelope');
   var hint = document.getElementById('l3hint');
   var l4 = document.getElementById('l4');
+  var enter = document.getElementById('enterCollection');
   envelope.addEventListener('click', function(){
     if(envelope.classList.contains('open')) return;
     envelope.classList.add('open');
     hint.classList.add('hidden');
-    setTimeout(function(){
-      l4.classList.add('open');
-      l4.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 700);
+    playEnvelopeSound();
   });
+  enter.addEventListener('click',function(){l4.classList.add('open');l4.scrollIntoView({behavior:'smooth',block:'start'});});
+})();
+
+/* ── six cards are a pile first; each has a private reading room ── */
+(function(){
+  var cards=[
+    ['01','Leaving Things Behind','窗外的风景慢慢向后退去，而我们继续向前。','../assets/ithaca/postcard-01-leaving-things-behind.jpg'],
+    ['02','No Way Back','车灯照亮的，不过前方几十米。','../assets/ithaca/postcard-02-no-way-back.jpg'],
+    ['03','Breathing Again','空气很凉，我终于又能好好呼吸。','../assets/ithaca/postcard-03-breathing-again.jpg'],
+    ['04','Still Becoming','一路跌跌撞撞，我们仍然在成为自己。','../assets/ithaca/postcard-04-still-becoming.jpg'],
+    ['05','Almost There','快到了，却开始舍不得。','../assets/ithaca/postcard-05-almost-there.jpg'],
+    ['06','Ithaca','谢谢这一路，把我带到这里。','../assets/ithaca/postcard-06-ithaca.jpg']
+  ],dialog=document.getElementById('postcardDialog');
+  document.querySelectorAll('.postcard').forEach(function(card){card.addEventListener('click',function(){var item=cards[Number(card.dataset.card)];document.getElementById('dialogImage').src=item[3];document.getElementById('dialogImage').alt=item[1]+' postcard';document.getElementById('dialogNum').textContent=item[0]+' · TO ITHACA';document.getElementById('dialogName').textContent=item[1];document.getElementById('dialogStory').textContent=item[2];dialog.showModal();})});
+  dialog.querySelector('.dialog-close').addEventListener('click',function(){dialog.close()});
+  dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()});
 })();
 </script>
 <script src="../assets/mascots/xiao-ba.js"></script>
