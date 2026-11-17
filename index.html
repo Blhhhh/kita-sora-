@@ -31,6 +31,14 @@
   .secondary:hover{background:var(--ink);color:#fff}
   .links{margin-top:22px;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:14px}
   .links a{color:var(--muted);margin:0 10px}
+  .work{margin-top:56px;padding-top:40px;border-top:1px solid rgba(34,54,74,.12)}
+  .work h2{font-size:27px;font-weight:normal;margin:0 0 12px;line-height:1.3}
+  .work .intro{font-size:17px;max-width:540px;margin:0 auto 24px;color:var(--ink)}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;margin:0 0 26px}
+  .card{background:#fff;border:1px solid rgba(34,54,74,.1);border-radius:16px;padding:18px 18px 16px}
+  .card h3{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:15px;margin:0 0 6px;color:var(--ink)}
+  .card p{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
+  @media (max-width:560px){.cards{grid-template-columns:1fr}}
   footer{margin-top:44px;font-size:13px;color:var(--muted);font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
   @media (max-width:480px){h1{font-size:36px}main{padding-top:32px}.btn{display:block;margin:10px auto;max-width:300px}}
 </style>
@@ -61,7 +69,21 @@
     <a href="https://lynnfromkitasora.substack.com/about">About</a>
     <a href="https://substack.com/@lynnfromkitasora">Notes</a>
     <a href="https://lynnfromkitasora.substack.com/archive">Archive</a>
+    <a href="#work">Work with me</a>
   </div>
+
+  <section class="work" id="work">
+    <p class="kicker">work with me</p>
+    <h2>Words that sound like you, in two languages.</h2>
+    <p class="intro">I'm a Chinese–English writer with an MA in Translation &amp; Interpreting. I grew Kita-Sora from 0 to 500 subscribers in six weeks; today it reaches ~900 readers in 83 countries.</p>
+    <div class="cards">
+      <div class="card"><h3>Substack growth</h3><p>About page, Notes strategy, welcome emails and a simple weekly review, built from what worked for my own newsletter.</p></div>
+      <div class="card"><h3>Brand &amp; creator copy</h3><p>Warm, human copy for slow-living brands and creators: bios, about pages, product descriptions, newsletters.</p></div>
+      <div class="card"><h3>English ⇄ Chinese localization</h3><p>AI-assisted, human-edited translation that reads naturally, with the tone adapted for the new audience, not just the words.</p></div>
+      <div class="card"><h3>China trip planning</h3><p>A day-by-day itinerary from a local who loves slow travel: food, transport, payments and the quiet places worth the detour.</p></div>
+    </div>
+    <a class="btn primary" href="https://www.fiverr.com/lynnxv">Work with me on Fiverr</a>
+  </section>
 
   <footer>© 2026 Kita-Sora · made slowly, by hand</footer>
 </main>
