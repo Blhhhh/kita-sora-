@@ -4,7 +4,7 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 .universe-nav a{position:static!important;color:var(--universe-ink)!important;text-decoration:none!important;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:0!important;letter-spacing:inherit;font:inherit}
 .universe-nav .universe-brand{font:500 21px/1 Georgia,serif;letter-spacing:.02em;text-transform:none;margin-right:auto}
 .universe-links{display:flex;gap:clamp(14px,2vw,28px);align-items:center}
-.universe-nav a[aria-current=page]{text-decoration:underline!important;text-underline-offset:7px;text-decoration-color:var(--universe-blue)!important}
+.universe-nav a[aria-current]{text-decoration:underline!important;text-underline-offset:7px;text-decoration-color:var(--universe-blue)!important}
 .universe-nav .universe-subscribe{border-radius:99px;background:var(--universe-ink);color:white!important;padding:0 19px;font-size:10px}
 .universe-menu{display:none;color:var(--universe-ink);background:transparent;border:1px solid #22364a55;border-radius:99px;padding:0 14px;min-height:44px;font:inherit;letter-spacing:inherit}
 .map-brand,.brand-icon,[data-page=index] nav[aria-label="Utility navigation"],[data-page=shop] header.site-header,[data-page=about] body>nav:not(.universe-nav),[data-page=crochet] .back-link,[data-page=ithaca] .v1-back,[data-page=yakumo] nav.nav,[data-page=china] a.back{display:none!important}
@@ -41,3 +41,87 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 /* Review 11/18: keep the shop title below the shared navigation. */
 [data-page=shop] .shop-heading{top:100px}
 @media(max-width:700px){[data-page=shop] .shop-heading{top:100px}[data-page=ithaca] .crate{top:36%}}
+/* Same sky, same page rhythm. Background replacements remain pending selection. */
+:root{--title-font:'Cormorant Garamond',Georgia,serif}
+.universe-heading,.shop-heading,[data-page=ithaca] .crate-header{position:absolute;top:98px;left:clamp(20px,3vw,40px);right:auto;padding:0;z-index:12;text-align:left;color:#22364a}
+.universe-heading p{margin:0 0 10px;font:10px/1.5 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.universe-heading h1,.shop-heading h1,[data-page=ithaca] .crate-header h1,[data-page=about] main>h1,[data-page=work] .work h1,[data-page=yakumo] .title{font:400 clamp(42px,4.5vw,64px)/1.02 var(--title-font);letter-spacing:-.025em;text-transform:none;margin:0}
+.universe-heading h1 em,.shop-heading h1 em{font-weight:400}
+[data-page=ithaca] .crate-header{position:fixed;left:0;right:0;top:98px;padding:0 clamp(20px,3vw,40px);align-items:center}
+[data-page=ithaca] .crate-header .k{font:10px/1.5 system-ui,sans-serif;margin-bottom:10px}
+[data-page=about] main,[data-page=work] main{max-width:none;padding:100px clamp(20px,3vw,40px) 50px;margin:0}
+[data-page=about] main>h1{max-width:760px;margin-top:14px}
+[data-page=about] .copy,[data-page=about] .signature{max-width:680px}
+[data-page=work] .work{max-width:900px;text-align:left;margin:0;padding:0}
+[data-page=work] .work .intro{margin:24px 0;max-width:650px}
+[data-page=work] .cards{max-width:820px}
+[data-page=yakumo] .title{top:100px;left:clamp(20px,3vw,40px);text-shadow:0 2px 15px #22364a55}
+[data-page=china] .china-heading{color:white;padding:12px 16px;border-radius:4px;background:linear-gradient(100deg,#22364ac9,#22364a44);max-width:90vw}
+[data-page=crochet] .harbor-heading{color:#fbf8f2;text-shadow:0 2px 14px #22364a66}
+[data-page=index] .map-heading{pointer-events:none}
+[data-page=index] .map-heading p{font-size:9px}
+[data-page=index] .map-heading h1{font-size:clamp(36px,3.6vw,54px)}
+.map[data-world-shell="v2"] .world-stage{inset:185px 0 125px}
+[data-page=index] .map-caption,[data-page=index] .map-invitation{display:none}
+[data-page=shop] .shop-room{height:100svh;min-height:850px;max-height:1200px}
+[data-page=shop] .shop-heading{top:100px;left:clamp(20px,3vw,40px);width:auto;max-width:650px;padding:12px 18px;background:linear-gradient(100deg,#22364ac7,#22364a44);border-radius:4px;color:#fff;text-shadow:0 1px 6px #22364a22}
+[data-page=shop] .shop-heading h1{font-size:clamp(40px,4.5vw,64px);margin:0}
+[data-page=shop] .shop-heading h1 span{font:11px/1.5 system-ui,sans-serif;letter-spacing:.13em;margin:10px 0 0;text-transform:uppercase}
+[data-page=shop] .origin{padding:14px 16px;background:linear-gradient(110deg,#172b3edf,#172b3e9e);border-radius:5px;color:#fff;text-shadow:none;font-size:22px}
+[data-page=shop] .origin p{color:#f0f4f8;margin-bottom:0;line-height:1.45}
+[data-page=shop] .object-label{min-width:180px;max-width:245px;padding:13px 16px;background:#fbf8f2;color:#22364a;white-space:normal}
+[data-page=shop] .object-label strong{font:500 20px/1.15 var(--title-font)}
+[data-page=shop] .object-label .action,[data-page=shop] .ready-label{font:12px/1.5 system-ui,sans-serif;color:#36566d;margin-top:6px}
+[data-page=shop] .ready-label{display:inline-flex;min-height:36px;align-items:center;text-decoration:underline;text-underline-offset:4px}
+[data-page=shop] .mugi .object-label{max-width:215px}
+.voyage-strip{position:relative;max-width:680px;margin:0 auto 10px;padding:0 0 0 32px}
+.voyage-strip ol{list-style:none;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin:0;padding:0;position:relative}
+.voyage-strip ol::before{content:"";position:absolute;left:25px;right:25px;top:27px;border-top:1px dashed #6f9cc0;z-index:0}
+.voyage-strip li{position:relative;flex:1;min-width:0;z-index:1}
+.universe-next .voyage-strip a{border:0;display:flex;flex-direction:column;gap:2px;min-height:74px;font:10px/1.3 system-ui,sans-serif;letter-spacing:.01em;text-decoration:none}
+.voyage-strip img{width:64px;height:44px;object-fit:contain;filter:drop-shadow(0 3px 3px #22364a22)}
+.voyage-strip small{font:8px/1.2 system-ui,sans-serif;color:#36566d;letter-spacing:.04em;text-transform:uppercase}
+.voyage-strip .is-next a span{font-weight:700;text-decoration:underline;text-decoration-color:#6f9cc0;text-underline-offset:3px}
+.voyage-strip [aria-current] img{opacity:.55}
+.voyage-boat{position:absolute;width:27px;height:38px;left:0;top:5px;filter:drop-shadow(0 2px 3px #22364a33)}
+.universe-next>div:last-child{font-size:11px}
+.universe-next>p{display:block!important;margin-bottom:8px}
+[data-page=index] .universe-next,[data-page=yakumo] .universe-next,[data-page=china] .universe-next,[data-page=ithaca] .universe-next{width:min(620px,calc(100% - 28px));border-radius:18px;padding:10px 18px;bottom:14px}
+[data-page=index] .universe-next>div:last-child,[data-page=yakumo] .universe-next>div:last-child,[data-page=china] .universe-next>div:last-child,[data-page=ithaca] .universe-next>div:last-child{display:none}
+[data-page=yakumo] .signature,[data-page=yakumo] .season,[data-page=china] .wall-cue{bottom:145px}
+[data-page=ithaca] .caption{bottom:220px}
+[data-page=ithaca] .dots{bottom:160px}
+[data-page=ithaca] .hint{bottom:176px}
+[data-page=ithaca] .stage{bottom:220px;top:145px}
+[data-page=ithaca] .close{bottom:210px}
+@media(max-width:700px){
+ .universe-heading,.shop-heading,[data-page=ithaca] .crate-header{top:95px;left:20px}
+ .universe-heading p{font-size:8px;letter-spacing:.13em}.universe-heading h1{font-size:40px}
+ [data-page=ithaca] .crate-header{left:0;top:94px;padding:0 18px}.crate-header h1{font-size:40px!important}.crate-header .k{font-size:8px!important;letter-spacing:.09em}
+ [data-page=ithaca] .stage{top:155px;bottom:245px}[data-page=ithaca] .crate{top:35%}
+ [data-page=ithaca] .caption{bottom:224px}[data-page=ithaca] .caption h3{font-size:28px}[data-page=ithaca] .caption p{font-size:12px}
+ [data-page=ithaca] .dots{bottom:158px}[data-page=ithaca] .close{bottom:180px}
+ [data-page=shop] .shop-room{height:100svh;min-height:840px}
+ [data-page=shop] .shop-heading{top:92px;left:18px;padding:12px 15px;max-width:calc(100% - 36px)}
+ [data-page=shop] .shop-heading h1{font-size:42px!important}
+ [data-page=shop] .origin{font-size:18px;padding:9px 10px;top:29%}
+ [data-page=shop] .origin-yakumo{left:13%}[data-page=shop] .origin-harbor{left:64%;max-width:110px}
+ [data-page=shop] .object-label{min-width:0;width:165px;max-width:165px;padding:11px 12px}
+ [data-page=shop] .object-label strong{font-size:18px}[data-page=shop] .object-label .action,[data-page=shop] .ready-label{font-size:11px;line-height:1.4}
+ [data-page=shop] .mugi .object-label{left:50%;transform:translateX(-50%);width:142px;max-width:142px}
+ [data-page=shop] .postcards .object-label{left:0;top:87%}
+ [data-page=shop] .bookmark .object-label{min-width:0;max-width:170px;width:170px}
+ [data-page=shop] .ready-label{min-height:36px;white-space:normal}
+ [data-page=index] .map-heading h1{font-size:36px}[data-page=index] .map-heading p{font-size:8px;max-width:280px}
+ .map[data-world-shell="v2"] .world-stage{inset:205px 0 150px}
+ [data-page=yakumo] .title{top:100px;font-size:44px}
+ [data-page=about] main>h1,[data-page=work] .work h1{font-size:44px}
+ [data-page=china] .china-heading h1{font-size:36px}
+ .voyage-strip{padding-left:21px;margin-bottom:0}.voyage-boat{width:21px;height:29px;top:8px}
+ .voyage-strip img{width:44px;height:34px}.voyage-strip ol::before{top:22px;left:20px;right:20px}
+ .universe-next .voyage-strip a{font-size:8px;min-height:60px}.voyage-strip small{font-size:7px}
+ [data-page=index] .universe-next,[data-page=yakumo] .universe-next,[data-page=china] .universe-next,[data-page=ithaca] .universe-next{padding:10px 10px 6px;bottom:12px}
+ .universe-next>p{font-size:8px;letter-spacing:.14em;margin-bottom:5px}
+ [data-page=yakumo] .signature,[data-page=yakumo] .season,[data-page=china] .wall-cue{bottom:125px}
+}
+@media(max-height:580px){[data-page=ithaca] .universe-next{bottom:3px;padding:3px 10px}[data-page=ithaca] .universe-next>p{display:none!important}[data-page=ithaca] .voyage-strip a{min-height:45px}[data-page=ithaca] .voyage-strip img{height:25px}[data-page=ithaca] .dots{bottom:75px}[data-page=ithaca] .stage{top:125px;bottom:120px}[data-page=ithaca] .close{bottom:80px}}
