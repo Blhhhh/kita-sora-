@@ -1,0 +1,70 @@
+/* Concept V2 shell: scoped to the world map. Existing type, colors and Loading stay owned by their original files. */
+.map[data-world-shell="v2"] .map-route{display:none}
+.map[data-world-shell="v2"] .world-stage{inset:88px 0 74px}
+.map[data-world-shell="v2"] .place--yakumo{--x:26%;--y:23%;--w:clamp(260px,32vw,490px)}
+.map[data-world-shell="v2"] .place--harbor{--x:76%;--y:27%;--w:clamp(280px,34vw,520px)}
+.map[data-world-shell="v2"] .place--china{--x:23%;--y:74%;--w:clamp(215px,25vw,370px)}
+.map[data-world-shell="v2"] .place--shop{--x:75%;--y:79%;--w:clamp(290px,36vw,555px)}
+.map[data-world-shell="v2"] .place-art{transform:none!important;transition:transform .85s cubic-bezier(.2,.65,.3,1),filter .85s ease!important;will-change:transform;filter:drop-shadow(0 10px 6px #22455835)}
+.map[data-world-shell="v2"] .place:hover .place-art,.map[data-world-shell="v2"] .place:focus-visible .place-art{transform:translateY(-5px) scale(1.04)!important;filter:drop-shadow(0 16px 8px #1f435f44)}
+.world-float{display:block;animation:world-breathe 15s ease-in-out infinite;animation-delay:var(--float-phase,0s)}
+.place--harbor{--float-phase:-5s}.place--china{--float-phase:-9s}.place--shop{--float-phase:-12s}
+@keyframes world-breathe{0%,100%{translate:0 0}50%{translate:0 -2px}}
+.map[data-world-shell="v2"] .shore-ripple{display:block;animation:shore-tide 17s ease-in-out infinite!important;transform:rotate(-4deg)!important;opacity:.45;bottom:1%;left:8%;right:8%;height:18%;border-bottom:1px solid #f3f9ea7a;box-shadow:0 5px 0 -4px #d1eceb77,0 12px 0 -11px #eff9e755;filter:blur(.35px)}
+.map[data-world-shell="v2"] .place--yakumo .place-art,.map[data-world-shell="v2"] .place--shop .place-art{aspect-ratio:1.5}
+.map[data-world-shell="v2"] .winter-land{inset:0;width:100%;height:100%}
+.map[data-world-shell="v2"] .is-integrated-yakumo .winter-house,.map[data-world-shell="v2"] .is-integrated-yakumo .winter-tree,.map[data-world-shell="v2"] .is-integrated-yakumo .house-contact{display:none}
+.map[data-world-shell="v2"] .harbor-mugi{left:47%;bottom:37%;width:18%;height:37%}
+.map[data-world-shell="v2"] .dressing-piku{left:31%;top:42%;width:12%;height:23%}
+.map[data-world-shell="v2"] .dressing-raku{left:69%;top:40%;width:11%;height:21%}
+.map[data-world-shell="v2"] .place--harbor .ground-contact{left:46%;bottom:36%;width:19%;height:4%;opacity:.32}
+.map[data-world-shell="v2"] .harbor-yarn,.map[data-world-shell="v2"] .harbor-daisy,.map[data-world-shell="v2"] .harbor-thread{display:none}
+.map[data-world-shell="v2"] .map-boat{width:clamp(58px,7.5vw,110px);left:50%;top:48%;transform:translate(-50%,-76%);transform-origin:50% 76%;z-index:2}
+.map[data-world-shell="v2"] .map-boat img{animation:none!important;transform:none!important;filter:drop-shadow(1px 4px 2px #17384655)}
+.map[data-world-shell="v2"] .map-boat::after{display:none}
+.boat-wake{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.boat-wake path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.map[data-world-shell="v2"] .place.is-arriving .place-art{transform:translateY(-7px) scale(1.065)!important}
+.map[data-world-shell="v2"].is-departing{transition:opacity .5s ease;opacity:0}
+.map[data-world-shell="v2"].motion-paused .world-float,.map[data-world-shell="v2"].motion-paused .shore-ripple{animation-play-state:paused!important}
+.map[data-world-shell="v2"] .shop-product{position:absolute;object-fit:contain;z-index:4;filter:drop-shadow(1px 2px 1px #342b2466)}
+@media(max-width:600px){
+ .map[data-world-shell="v2"] .world-stage{inset:130px 0 90px}
+ .map[data-world-shell="v2"] .place--yakumo{--x:25%;--y:18%;--w:48vw}
+ .map[data-world-shell="v2"] .place--harbor{--x:75%;--y:36%;--w:48vw}
+ .map[data-world-shell="v2"] .place--china{--x:24%;--y:67%;--w:42vw}
+ .map[data-world-shell="v2"] .place--shop{--x:74%;--y:83%;--w:49vw}
+ .map[data-world-shell="v2"] .map-boat{width:42px}
+ .map[data-world-shell="v2"] .place:hover .place-art{transform:translateY(-3px) scale(1.03)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .map[data-world-shell="v2"] .world-float,.map[data-world-shell="v2"] .shore-ripple{animation:none!important}
+ .map[data-world-shell="v2"] .place-art,.map[data-world-shell="v2"].is-departing{transition:none!important}
+ .map[data-world-shell="v2"] .place:hover .place-art,.map[data-world-shell="v2"] .place:focus-visible .place-art{transform:none!important}
+ .map[data-world-shell="v2"] .boat-wake{display:none}
+}
+
+.map[data-world-shell="v2"] .map-boat svg{display:block;width:100%;height:auto;filter:drop-shadow(1px 3px 2px #17384655)}
+
+/* Cleaned alpha now supplies the full Harbor outline, including original leaf tips. */
+.map[data-world-shell="v2"] .place--harbor .island-land{clip-path:none}
+.map[data-world-shell="v2"] .place-art>.island-land,.map[data-world-shell="v2"] .winter-land{z-index:0}
+.map[data-world-shell="v2"] .place-art>.shop-product{z-index:4}
+.map[data-world-shell="v2"] .place--shop .place-art{perspective:1100px}
+.map[data-world-shell="v2"] .paper-rack-a,.map[data-world-shell="v2"] .paper-rack-b,.map[data-world-shell="v2"] .paper-rack-c{transform:rotate(-7deg) rotateY(10deg);transform-origin:50% 100%}
+.map[data-world-shell="v2"] .paper-envelope{transform:rotateX(38deg) rotate(-3deg)}
+.map[data-world-shell="v2"] .paper-sticker-bear,.map[data-world-shell="v2"] .paper-sticker-home{transform:rotateX(25deg) rotate(-6deg)}
+
+/* Internal review magnification and deterministic reduced-motion preview. */
+.map[data-world-shell="v2"] .review-hover .place-art{transform:translateY(-5px) scale(1.04)!important;filter:drop-shadow(0 16px 8px #1f435f44)}
+.map[data-world-shell="v2"][data-focus] .place{display:none}
+.map[data-world-shell="v2"][data-focus="yakumo"] .place--yakumo,
+.map[data-world-shell="v2"][data-focus="harbor"] .place--harbor,
+.map[data-world-shell="v2"][data-focus="shop"] .place--shop,
+.map[data-world-shell="v2"][data-focus="china"] .place--china{display:block;--x:50%;--y:48%;--w:min(86vw,100vh)}
+.map[data-world-shell="v2"][data-focus="china"] .place--china{--w:min(72vw,72vh)}
+.map[data-world-shell="v2"][data-focus] .map-boat,.map[data-world-shell="v2"][data-focus] .map-caption,.map[data-world-shell="v2"][data-focus] .map-invitation,.map[data-world-shell="v2"][data-focus] .map-companion{display:none}
+.map[data-world-shell="v2"].reduced-motion-preview .world-float,.map[data-world-shell="v2"].reduced-motion-preview .shore-ripple{animation:none!important}
+.map[data-world-shell="v2"].reduced-motion-preview .place-art,.map[data-world-shell="v2"].reduced-motion-preview.is-departing{transition:none!important}
+.map[data-world-shell="v2"].reduced-motion-preview .place:hover .place-art,.map[data-world-shell="v2"].reduced-motion-preview .place:focus-visible .place-art{transform:none!important}
+.map[data-world-shell="v2"].reduced-motion-preview .boat-wake{display:none}

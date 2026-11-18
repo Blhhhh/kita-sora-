@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To Ithaca · Kita-Sora</title><meta name="description" content="Six postcards from Yakumo. Flip through the To Ithaca collection, and carry a little northern sky home."><link rel="canonical" href="https://kita-sora.com/shop/ithaca.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;1,400&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9f2f8;--ink:#22364a;--soft:#5c6b78;--accent:#6f9cc0;--paper:#fbf8f2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:radial-gradient(120% 90% at 50% 10%,#f6fafc 0%,var(--bg) 55%,#d9e7f1 100%);color:var(--ink);font-family:Lora,Georgia,serif;overflow:hidden;user-select:none}
+.sans{font-family:Nunito,-apple-system,Helvetica,Arial,sans-serif}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;padding:28px 40px;z-index:30}
+header .k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+header h1{margin:4px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(36px,4.4vw,56px);line-height:1}
+header h1 em{font-style:italic}
+.buy{font-size:13px;font-weight:600;letter-spacing:.06em;text-decoration:none;color:#fff;background:var(--ink);padding:12px 22px;border-radius:999px}
+/* crate */
+.stage{position:fixed;inset:0;perspective:1600px;perspective-origin:50% 40%}
+.crate{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d}
+.card{position:absolute;width:var(--w);aspect-ratio:3/2;left:calc(var(--w)/-2);top:calc(var(--w)/-3);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.75,.15,1),filter .6s;cursor:pointer;will-change:transform}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px;overflow:hidden;background:#fff;padding:2.2%;box-shadow:0 30px 60px rgba(34,54,74,.22),0 2px 6px rgba(34,54,74,.12)}
+.face img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.back{transform:rotateY(180deg);background:var(--paper)}
+.back img{opacity:.55}
+.back .txt{position:absolute;inset:0;padding:8% 9%;display:flex;flex-direction:column;justify-content:center}
+.back .n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--accent);font-size:clamp(28px,3vw,44px);line-height:1}
+.back h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(24px,2.6vw,38px);margin:.2em 0 .3em}
+.back p{font-size:clamp(13px,1.1vw,16px);line-height:1.6;color:var(--soft);margin:0 0 1.2em;max-width:30em}
+.back a{align-self:flex-start;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px}
+.card .spine{position:absolute;left:0;top:0;bottom:0;width:6px;transform:rotateY(-90deg);transform-origin:left;background:#fff}
+/* caption + controls */
+.caption{position:fixed;left:0;right:0;bottom:84px;text-align:center;z-index:20;transition:opacity .4s}
+.caption .n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--accent);font-size:22px}
+.caption h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:2px 0 4px}
+.caption p{margin:0;color:var(--soft);font-size:15px}
+.dots{position:fixed;left:50%;bottom:36px;transform:translateX(-50%);display:flex;gap:14px;z-index:20}
+.dots button{all:unset;cursor:pointer;font-size:12px;letter-spacing:.12em;color:var(--soft);padding:4px 2px;border-bottom:1px solid transparent}
+.dots button.on{color:var(--ink);border-color:var(--ink)}
+.hint{position:fixed;right:40px;bottom:40px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);z-index:20}
+body.pulled .caption,body.pulled .hint{opacity:0}
+.close{position:fixed;top:50%;right:4vw;transform:translateY(-50%);z-index:40;opacity:0;pointer-events:none;transition:opacity .4s}
+body.pulled .close{opacity:1;pointer-events:auto}
+.close button{all:unset;cursor:pointer;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:10px 18px;background:rgba(255,255,255,.6)}
+.buy{white-space:nowrap}
+@media (max-width:700px){header{padding:20px 18px}.buy{padding:10px 16px;font-size:12px}header .k{letter-spacing:.16em;font-size:10px}.hint{display:none}.caption{bottom:76px;padding:0 20px}.close{top:auto;bottom:24px;right:50%;transform:translateX(50%)}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+<link rel="stylesheet" href="../assets/universe/universe.css">
+</head>
+<body data-page="ithaca">
+<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="../index.html#map">Kita-Sora</a><div class="universe-links" id="universe-links"><a href="../index.html#map">Map</a><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer">Letters</a><a href="../shop.html" aria-current="location">Shop</a><a href="../shop/crochet.html">Harbor Loop</a><a href="../work.html">Work with me</a><a href="../about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
+<header class="crate-header">
+  <div><div class="k sans">Voyage Collection · Vol. I</div><h1>To <em>Ithaca</em></h1></div>
+  <a class="buy sans" href="https://ko-fi.com/s/bed45755ef">Get the set · from $6</a>
+</header>
+<main class="stage" aria-label="To Ithaca postcard crate"><div class="crate" id="crate"></div></main>
+<div class="caption" id="caption" aria-live="polite" aria-atomic="true"><div class="n" id="cn"></div><h3 id="ct"></h3><p id="cp"></p></div>
+<div class="dots sans" id="dots"></div>
+<div class="hint sans">scroll · drag · tap to pull out</div>
+<div class="close"><button class="sans" id="closeBtn">← put it back</button></div>
+<script>
+const cards=[
+ ['01','Leaving things behind','Choosing to move forward while still carrying what mattered.','postcard-01-leaving-things-behind'],
+ ['02','No way back','The moment you realize leaving has already changed you.','postcard-02-no-way-back'],
+ ['03','Breathing again','When uncertainty finally begins to loosen its grip.','postcard-03-breathing-again'],
+ ['04','Still becoming','There is no final version of us. We are always becoming.','postcard-04-still-becoming'],
+ ['05','Almost there','The fragile space between hope, hesitation, and arrival.','postcard-05-almost-there'],
+ ['06','Ithaca','Not an ending, but the place we realize we have been carrying within us all along.','postcard-06-ithaca']];
+const crate=document.getElementById('crate'),dots=document.getElementById('dots');
+let active=0,pulled=false;
+const els=cards.map((c,i)=>{
+ const el=document.createElement('div');el.className='card';el.tabIndex=i===0?0:-1;el.setAttribute('role','button');el.setAttribute('aria-label',c[0]+' '+c[1]);
+ el.innerHTML=`<div class="face"><img src="../assets/ithaca-crate/${c[3]}.jpg.webp" alt="Postcard ${c[0]}: ${c[1]}" decoding="async" loading="lazy"></div><div class="face back"><img src="../assets/ithaca-crate/postcard-back.jpg.webp" alt="" decoding="async" loading="lazy"><div class="txt"><div class="n">${c[0]}</div><h2>${c[1]}</h2><p>${c[2]}</p><a class="sans" href="https://ko-fi.com/s/bed45755ef">carry this one home →</a></div></div>`;
+ el.addEventListener('click',e=>{if(e.target.closest('a'))return; if(i!==active){go(i)}else togglePull()});
+ crate.appendChild(el);
+ const d=document.createElement('button');d.textContent=c[0];d.setAttribute('aria-label','View postcard '+c[0]+': '+c[1]);d.onclick=()=>go(i);dots.appendChild(d);
+ return el});
+function W(){return Math.min(innerWidth*(innerWidth<700?.72:.42),620)}
+function layout(){
+ const w=W();document.documentElement.style.setProperty('--w',w+'px');
+ const gap=innerWidth<700?w*.16:w*.2;
+ els.forEach((el,i)=>{
+  const o=i-active;let t;
+  if(pulled&&o===0){
+   t=`translate3d(0,${-innerHeight*.06}px,${innerWidth<700?120:260}px) rotateY(180deg) scale(${innerWidth<700?1.02:1.22})`;
+   el.style.zIndex=50;el.style.filter='none';
+  }else if(o===0){
+   t=`translate3d(0,${pulled?60:0}px,140px) rotateY(0deg)`;el.style.zIndex=40;el.style.filter='none';
+  }else{
+   const side=Math.sign(o),k=Math.abs(o);
+   const x=side*(w*.42+gap*(k-1)+gap*.6);
+   t=`translate3d(${x}px,${pulled?80:0}px,${-k*90}px) rotateY(${-side*68}deg)`;
+   el.style.zIndex=40-k;el.style.filter=`brightness(${1-k*.07}) saturate(${1-k*.06})`;
+  }
+  el.style.transform=t;el.tabIndex=i===active?0:-1;el.setAttribute('aria-expanded',String(pulled&&i===active));el.querySelector('.back').inert=!(pulled&&i===active);el.querySelector('.face:not(.back)').setAttribute('aria-hidden',String(pulled&&i===active));
+ });
+ [...dots.children].forEach((d,i)=>(d.classList.toggle('on',i===active),d.setAttribute('aria-pressed',String(i===active))));
+ const c=cards[active];document.getElementById('cn').textContent=c[0];document.getElementById('ct').textContent=c[1];document.getElementById('cp').textContent=c[2];
+ document.body.classList.toggle('pulled',pulled);
+}
+function go(i){active=Math.max(0,Math.min(cards.length-1,i));pulled=false;layout()}
+function togglePull(){pulled=!pulled;layout();if(pulled)document.getElementById('closeBtn').focus();else els[active].focus()}
+document.getElementById('closeBtn').onclick=()=>{pulled=false;layout();els[active].focus()};
+let lock=0;
+const stage=document.querySelector('.stage');
+stage.addEventListener('wheel',e=>{if(pulled)return;e.preventDefault();const now=Date.now();if(now-lock<520)return;const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;if(Math.abs(d)<8)return;lock=now;go(active+(d>0?1:-1))},{passive:false});
+addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&pulled){e.preventDefault();pulled=false;layout();els[active].focus();return;}
+ if(!e.target.closest('.stage,.dots'))return;
+ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();go(active+(e.key==='ArrowRight'?1:-1));els[active].focus();}
+ if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();togglePull();}
+});
+let sx=null,dragged=false;
+stage.addEventListener('pointerdown',e=>{if(e.target.closest('a'))return;sx=e.clientX;dragged=false;});
+stage.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40&&!pulled){dragged=true;go(active+(dx<0?1:-1));}});
+stage.addEventListener('pointercancel',()=>{sx=null;});
+stage.addEventListener('click',e=>{if(dragged){e.stopPropagation();dragged=false;}},true);
+addEventListener('resize',layout);
+// Stagger only the first entrance. Reduced motion starts in the final state.
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){layout();}else{
+ els.forEach(el=>{el.style.transition='none';el.style.transform='translate3d(120vw,0,-400px) rotateY(-70deg)'});
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{els.forEach((el,i)=>{el.style.transition=`transform .9s cubic-bezier(.2,.75,.15,1) ${i*.08}s`});layout();setTimeout(()=>els.forEach(el=>el.style.transition=''),1500)}));
+}
+</script>
+<footer class="universe-next" aria-label="Continue the voyage"><p>Continue the voyage</p><div><a href="../shop.html">Back to Shop</a><a href="https://ko-fi.com/s/bed45755ef" target="_blank" rel="noopener noreferrer">Buy on Ko-fi</a></div></footer><script src="../assets/universe/universe.js" defer></script></body></html>

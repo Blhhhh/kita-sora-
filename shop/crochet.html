@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harbor Loop · Kita-Sora</title>
+<meta name="description" content="Harbor Loop is where my mother's crochet creations meet the world.">
+<link rel="canonical" href="https://kita-sora.com/shop/crochet.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Lora:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5eed7; --ink:#0d1f3c; --ink-soft:#5f7485; --sky:#dceeff; --coral:#ff8ca0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif}
+
+.brand-icon{position:fixed;top:18px;left:27px;z-index:60;width:64px;height:64px;filter:drop-shadow(0 4px 10px rgba(13,31,60,.32))}
+.brand-icon img{width:100%;height:100%;display:block}
+.back-link{
+  position:fixed;top:32px;right:36px;z-index:60;
+  color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  font-family:'Nunito',sans-serif;mix-blend-mode:multiply;
+}
+.back-link:hover{color:var(--coral)}
+
+.harbor-entrance{position:relative;min-height:100svh;display:grid;place-items:center;padding:96px 24px 58px;overflow:hidden;isolation:isolate;background:#6d4835}
+.harbor-entrance::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(112deg,rgba(45,22,15,.45),transparent 45%),repeating-linear-gradient(92deg,#5d3c2c 0 3px,#704936 3px 13px,#5f3d2d 13px 19px);filter:saturate(.78) contrast(.9)}
+.harbor-entrance::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.6;background:radial-gradient(ellipse at 50% 63%,transparent 0 20%,rgba(40,21,16,.28) 74%),repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px)}
+.stage-kicker{font:10px 'Nunito',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:19px}
+.worktable-title{position:absolute;top:clamp(85px,10vh,125px);left:clamp(28px,6vw,90px);z-index:3;color:#fff5df;text-shadow:0 2px 18px rgba(33,16,11,.62)}.worktable-title .stage-kicker{margin:0 0 11px;color:rgba(255,244,222,.78)}.worktable-title h1{font:400 clamp(34px,5vw,64px)/.95 'Cormorant Garamond',serif;letter-spacing:-.04em}.worktable-title p{max-width:250px;margin-top:12px;font:13px/1.6 'Lora',serif;color:rgba(255,244,222,.86)}
+.harbor-photo-stack-layer{position:absolute;inset:0;z-index:2;display:grid;place-items:center;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}.harbor-photo-stack-layer .harbor-photo-stack{position:relative;width:100%;height:100%;pointer-events:none}.harbor-photo-stack-layer .harbor-photo-card{position:absolute;left:50%;top:48%;width:clamp(180px,18vw,280px);aspect-ratio:4/3;overflow:hidden;opacity:0;transform:translate(-50%,-50%) scale(.68) rotate(var(--from-r));pointer-events:none;user-select:none}.harbor-photo-stack-layer .harbor-photo-card img{display:block;width:100%;height:100%;object-fit:cover}@keyframes harbor-photo-spill{0%{opacity:0;transform:translate(-50%,calc(-50% + 7vh)) scale(.68) rotate(var(--from-r))}28%{opacity:1;transform:translate(-50%,calc(-50% - 13vh)) scale(.8) rotate(var(--from-r))}100%{opacity:1;transform:translate(calc(-50% + var(--spread-x)),calc(-50% + var(--spread-y))) scale(1) rotate(var(--spread-r))}}.harbor-entrance.is-open .harbor-photo-stack-layer{opacity:1;visibility:visible;transition-delay:0s}.harbor-entrance.is-open .harbor-photo-stack-layer .harbor-photo-card{animation:harbor-photo-spill 1.25s cubic-bezier(.2,.72,.24,1) var(--delay) both}
+.harbor-intro-trigger{position:absolute;inset:0;z-index:6;border:0;background:transparent;cursor:pointer}.harbor-intro-trigger:focus-visible{outline:2px solid rgba(255,245,226,.9);outline-offset:-10px}.worktable-title .stage-kicker{font:400 24px/1 'Great Vibes',cursive;letter-spacing:.02em;text-transform:none}.harbor-entrance:not(.is-entered) .harbor-photo-stack-layer,.harbor-entrance:not(.is-entered) .harbor-letter-stage{opacity:0;visibility:hidden;pointer-events:none}.harbor-entrance.is-entered .harbor-photo-stack-layer,.harbor-entrance.is-entered .harbor-letter-stage{opacity:1;visibility:visible;transition:opacity .65s ease}.harbor-entrance.is-entered .worktable-title,.harbor-entrance.is-entered .harbor-intro-trigger{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility 0s linear .45s}.harbor-entrance.is-entered .harbor-photo-stack-layer .harbor-photo-card{animation:harbor-photo-spill 1.25s cubic-bezier(.2,.72,.24,1) var(--delay) both}
+.harbor-entrance:not(.is-entered) .worktable-title{left:50%;top:50%;width:min(620px,88vw);transform:translate(-50%,-50%);text-align:center}.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{font-size:clamp(42px,7vw,82px);color:#fff5df}.harbor-entrance:not(.is-entered) .worktable-title h1{display:none}.harbor-entrance:not(.is-entered) .worktable-title p{max-width:330px;margin:24px auto 0;color:rgba(255,244,222,.8);font:14px/1.65 'Times New Roman',Times,serif}.harbor-entrance.is-entered:not(.is-open) .harbor-photo-stack-layer{opacity:0;visibility:hidden}.harbor-entrance.is-entered:not(.is-open) .harbor-photo-stack-layer .harbor-photo-card{animation:none}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(1){--spread-x:-48vw;--spread-y:-43vh;--spread-r:-7deg;--from-r:-3deg;--delay:0.04s;width:260px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(2){--spread-x:-18vw;--spread-y:-46vh;--spread-r:5deg;--from-r:2deg;--delay:0.12s;width:220px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(3){--spread-x:22vw;--spread-y:-44vh;--spread-r:-4deg;--from-r:-2deg;--delay:0.2s;width:250px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(4){--spread-x:49vw;--spread-y:-39vh;--spread-r:7deg;--from-r:3deg;--delay:0.28s;width:235px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(5){--spread-x:-50vw;--spread-y:-7vh;--spread-r:4deg;--from-r:-2deg;--delay:0.36s;width:225px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(6){--spread-x:51vw;--spread-y:-5vh;--spread-r:-6deg;--from-r:3deg;--delay:0.44s;width:245px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(7){--spread-x:-46vw;--spread-y:36vh;--spread-r:-5deg;--from-r:2deg;--delay:0.52s;width:240px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(8){--spread-x:-16vw;--spread-y:43vh;--spread-r:6deg;--from-r:-3deg;--delay:0.6s;width:210px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(9){--spread-x:21vw;--spread-y:41vh;--spread-r:-3deg;--from-r:2deg;--delay:0.68s;width:255px}
+.harbor-photo-stack-layer .harbor-photo-card:nth-child(10){--spread-x:48vw;--spread-y:34vh;--spread-r:5deg;--from-r:-2deg;--delay:0.76s;width:230px}
+.harbor-letter-sheet{position:absolute;left:50%;top:35%;z-index:2;width:min(42%,340px);aspect-ratio:3/5;padding:clamp(24px,3vw,38px) clamp(20px,2.8vw,32px);display:flex;justify-content:center;align-items:flex-start;background-color:#f7efd8;background-image:radial-gradient(ellipse at 21% 17%,rgba(255,255,255,.16) 0 1.2px,transparent 2.6px),radial-gradient(ellipse at 77% 63%,rgba(104,73,47,.052) 0 1px,transparent 2.8px),radial-gradient(ellipse at 42% 86%,rgba(255,255,255,.10) 0 .9px,transparent 2.4px),repeating-linear-gradient(117deg,rgba(116,83,54,.026) 0 1px,transparent 1px 13px),linear-gradient(108deg,rgba(255,255,255,.15),rgba(115,75,45,.035));background-size:29px 31px,37px 43px,47px 39px,53px 41px,100% 100%;color:#3c2b26;box-shadow:0 12px 24px rgba(40,22,14,.18);clip-path:inset(100% 0 0 0);transform:translate(-50%,92%) rotate(-2deg);opacity:1;transition:transform .95s cubic-bezier(.2,.7,.18,1) .58s,clip-path .95s cubic-bezier(.2,.7,.18,1) .58s;pointer-events:none}.harbor-letter-sheet::before{content:"";position:absolute;top:8%;left:50%;width:34%;aspect-ratio:1;transform:translateX(-50%);background:url('../assets/harbor-loop/harbor-loop-mark-crop.png.webp') center/contain no-repeat;opacity:.08;filter:sepia(.25)}.harbor-letter-sheet p{position:relative;z-index:1;margin-top:10%;text-align:left;font:13px/1.48 'Times New Roman',Times,serif}.harbor-letter-sheet p strong{display:inline-block;font:19px/1.1 'Times New Roman',Times,serif;font-weight:400}.harbor-letter-sheet .letter-signoff{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18em;line-height:1.15}.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet{clip-path:inset(0 0 40% 0);transform:translate(-50%,-56%) rotate(-2deg)}
+.harbor-letter-sheet{background-image:radial-gradient(ellipse 72% 58% at 17% 23%,rgba(255,255,255,.12),transparent 68%),radial-gradient(ellipse 66% 74% at 84% 71%,rgba(113,78,48,.032),transparent 72%),radial-gradient(ellipse 48% 42% at 54% 46%,rgba(255,255,255,.065),transparent 75%);background-size:auto;overflow:hidden;cursor:pointer;pointer-events:auto}.harbor-letter-sheet p{max-height:74%;overflow:hidden}.harbor-letter-sheet:hover,.harbor-letter-sheet:focus-visible{transform:translate(-50%,calc(-56% - 4px)) rotate(-2deg) scale(1.05);outline:none}
+.harbor-letter-sheet{overflow:visible}.harbor-letter-sheet p{max-height:none;overflow:visible}.harbor-letter-sheet::before{top:9%;left:auto;right:12%;width:22%;transform:none;opacity:.68}.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet{clip-path:inset(0);transform:translate(-50%,-56%) rotate(-2deg)}
+.character-foreground-overlay::after{content:none}.character-foreground-overlay{z-index:2}.character-foreground-overlay .character-entrance-mask{z-index:2}.character-foreground-overlay .harbor-letter-sheet{z-index:1}
+.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet:hover,.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet:focus-visible{transform:translate(-50%,calc(-56% - 4px)) rotate(-2deg) scale(1.05)}
+.harbor-entrance:not(.is-open) .character-foreground-overlay .harbor-letter-sheet{pointer-events:none}.harbor-entrance.is-open .character-foreground-overlay .harbor-letter-sheet{pointer-events:auto}
+.harbor-letter-stage{position:relative;z-index:4;width:min(940px,100%);min-height:610px;display:grid;place-items:center}.letter-stage-inner{width:min(780px,100%);min-height:540px;position:relative;display:grid;place-items:center;text-align:center}.character-intro,.bear-sheet{scroll-margin-top:12vh}
+.envelope-scene{position:relative;z-index:3;width:min(760px,88vw);aspect-ratio:3/2;perspective:1400px;filter:drop-shadow(0 20px 28px rgba(40,22,14,.24));transition:transform .5s ease,filter .5s ease}.envelope-scene:not(.is-open):hover{transform:translateY(-8px) rotate(-.5deg);filter:drop-shadow(0 28px 34px rgba(40,22,14,.28))}.envelope-layer{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}.envelope-back{z-index:1}.envelope-front{z-index:3}.envelope-flap{z-index:4;transform-origin:50% 4%;backface-visibility:visible;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.2,.7,.18,1) .42s,filter .7s ease .42s}.envelope-seal{z-index:8;transform-origin:50% 4%;backface-visibility:visible;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.2,.7,.18,1) .42s,filter .7s ease .42s}.envelope-open-hit{position:absolute;inset:4% 2% 4%;z-index:6;border:0;background:transparent;cursor:pointer}.envelope-open-hit:focus-visible{outline:2px solid rgba(255,244,222,.86);outline-offset:5px}.envelope-open-label{position:absolute;left:50%;bottom:-22px;z-index:7;transform:translateX(-50%);width:max-content;color:rgba(255,245,226,.9);font:italic 11px 'Lora',serif;letter-spacing:.04em;text-shadow:0 1px 5px rgba(31,15,10,.6);pointer-events:none;transition:opacity .25s ease}
+.envelope-contents-mask{position:absolute;inset:0 0 4.5%;z-index:1;overflow:hidden;pointer-events:none}.character-foreground-overlay{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:visible}.character-entrance-mask{position:absolute;inset:0;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 43%,0 43%);pointer-events:none;transition:clip-path .85s cubic-bezier(.2,.7,.18,1) .55s}.character-foreground-overlay.is-emerged .character-entrance-mask{overflow:visible;clip-path:none}.character-foreground-overlay .phase-one-bear,.character-foreground-overlay .phase-one-pig,.character-foreground-overlay .phase-one-tiger{z-index:10}.character-entrance-layer{position:absolute;inset:0;z-index:10;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 43%,0 43%);pointer-events:none;transition:clip-path .85s cubic-bezier(.2,.7,.18,1) .55s}.phase-one-bear,.phase-one-pig,.phase-one-tiger{position:absolute;border:0;padding:0;background:transparent;transform-origin:50% 85%;scale:1;pointer-events:none;opacity:0;visibility:hidden;filter:drop-shadow(0 12px 10px rgba(40,22,14,.3));transition:transform 1.5s cubic-bezier(.18,.72,.22,1),scale .3s ease,opacity .35s ease,visibility 0s linear .35s;cursor:pointer}.phase-one-bear{z-index:5;left:36.5%;bottom:19%;width:32%;transform:translateY(58%) rotate(0deg);transition:transform 1.5s cubic-bezier(.18,.72,.22,1) .58s}.phase-one-pig{z-index:5;left:12%;bottom:18%;width:27%;transform:translateY(78%) rotate(0deg);transition:transform 1.5s cubic-bezier(.18,.72,.22,1) 1.02s}.phase-one-tiger{z-index:5;right:11%;bottom:18%;width:28%;transform:translateY(76%) rotate(0deg);transition:transform 1.5s cubic-bezier(.18,.72,.22,1) .8s}.phase-one-bear img,.phase-one-pig img,.phase-one-tiger img{display:block;width:100%;height:auto}.phase-one-bear:focus-visible,.phase-one-pig:focus-visible,.phase-one-tiger:focus-visible{outline:2px solid rgba(255,244,222,.86);outline-offset:4px}
+.envelope-scene .envelope-seal{z-index:9}
+.envelope-scene.is-open{transform:rotate(4deg);filter:none}.envelope-scene.is-open .envelope-seal{z-index:4}.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-bear,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-pig,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-tiger{z-index:10;opacity:1;visibility:visible;transition:transform .85s cubic-bezier(.2,.7,.18,1),opacity .2s ease .58s,visibility 0s linear .55s}.harbor-letter-stage:has(.envelope-scene.is-open) .character-foreground-overlay{overflow:visible}.character-entrance-layer.is-emerged{overflow:visible;clip-path:none;}.envelope-scene.is-open .envelope-back{filter:drop-shadow(0 6px 10px rgba(40,22,14,.14))}.envelope-scene.is-open .envelope-flap{transform:rotateX(-165deg);filter:none}.envelope-scene.is-open .envelope-seal{transform:rotateX(-165deg);filter:none}.envelope-scene.is-open .envelope-contents-mask{pointer-events:none}.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-bear{transform:translateY(-18%) rotate(-2deg);pointer-events:auto}.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-tiger{transform:translate(-14%,-72%) rotate(5deg);pointer-events:auto}.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-pig{transform:translate(14%,-76%) rotate(-5deg);pointer-events:auto}.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-bear:hover,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-bear:focus-visible,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-pig:hover,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-pig:focus-visible,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-tiger:hover,.harbor-letter-stage:has(.envelope-scene.is-open) .phase-one-tiger:focus-visible{scale:1.1}.harbor-letter-stage:has(.envelope-scene.is-open) .envelope-open-hit{pointer-events:none}.envelope-scene.is-open .envelope-open-label{opacity:0}
+.envelope-scene.is-open .envelope-seal{z-index:9}
+
+/* Harbor hero state model: 0 intro, 1 closed envelope, 2 opened Harbor world. */
+body{overflow-x:hidden}
+body:has(.harbor-entrance:not(.is-entered)) .brand-icon{opacity:0;visibility:hidden;pointer-events:none}
+.harbor-entrance:not(.is-entered){background:var(--paper);overflow:hidden}
+.harbor-entrance:not(.is-entered)::before,.harbor-entrance:not(.is-entered)::after{opacity:0}
+.harbor-entrance:not(.is-entered) .worktable-title{z-index:7}
+.harbor-entrance:not(.is-entered) .worktable-title{pointer-events:none}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{display:flex;justify-content:center;gap:.28em;font-family:'Great Vibes',cursive;font-size:clamp(48px,8vw,96px);line-height:1.05;text-shadow:none}
+.harbor-entrance:not(.is-entered){--intro-roll:clamp(190px,30vw,440px)}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{position:relative;clip-path:inset(0 100% 0 0);animation:harbor-title-unspool 2.35s cubic-bezier(.24,.67,.25,1) .72s both}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{color:#6a4e3a}
+.harbor-entrance:not(.is-entered) .worktable-title .collab-word{animation:none;opacity:1;transform:none}
+.hazi-intro-cat,.intro-yarn-ball,.intro-yarn-line{display:none}
+.harbor-entrance:not(.is-entered) .hazi-intro-cat{display:block;position:absolute;left:clamp(5%,calc(50% - 440px),16%);bottom:clamp(12%,15vh,20%);z-index:5;width:clamp(150px,17vw,245px);height:auto;object-fit:contain;filter:drop-shadow(0 12px 13px rgba(38,26,18,.14));transform-origin:70% 74%;animation:hazi-intro-paw 3.18s cubic-bezier(.22,.68,.25,1) both}
+.harbor-entrance:not(.is-entered) .hazi-intro-idle{display:block;position:absolute;left:clamp(5%,calc(50% - 440px),16%);bottom:clamp(12%,15vh,20%);z-index:5;width:clamp(150px,17vw,245px);height:auto;object-fit:contain;filter:drop-shadow(0 12px 13px rgba(38,26,18,.14));opacity:0;animation:hazi-idle-pose 3.18s ease-out 2.55s forwards}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball{display:block;position:absolute;left:clamp(22%,calc(50% - 260px),32%);bottom:clamp(23%,26vh,32%);z-index:4;width:clamp(29px,3.25vw,46px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 29% 26%,rgba(255,241,205,.8) 0 7%,transparent 8%),repeating-radial-gradient(circle at 48% 48%,transparent 0 3px,rgba(115,72,44,.34) 4px 5px),#cf9362;box-shadow:0 5px 8px rgba(46,28,19,.18);animation:hazi-yarn-roll 2.35s cubic-bezier(.24,.67,.25,1) .72s both}
+.harbor-entrance:not(.is-entered) .intro-yarn-line{display:block;position:absolute;left:clamp(22%,calc(50% - 260px),32%);bottom:calc(clamp(23%,26vh,32%) + 20px);z-index:3;width:0;height:2px;border-radius:50%;background:repeating-linear-gradient(96deg,rgba(116,74,48,.5) 0 3px,rgba(208,148,98,.34) 3px 6px);transform-origin:left;animation:hazi-yarn-trail 2.35s cubic-bezier(.24,.67,.25,1) .72s both}
+.harbor-entrance:not(.is-entered) .worktable-title p{opacity:0;color:#6c5a4f;animation:hazi-intro-subtitle .7s ease-out 3.22s forwards}
+.harbor-entrance:not(.is-entered).is-intro-ready .hazi-intro-cat{animation:hazi-intro-idle 7.2s ease-in-out infinite}
+@keyframes hazi-intro-paw{0%,15%{transform:translate3d(0,0,0) rotate(0)}24%{transform:translate3d(8px,-5px,0) rotate(1.2deg)}33%{transform:translate3d(15px,1px,0) rotate(-1deg)}58%,100%{transform:translate3d(0,0,0) rotate(0)}}
+@keyframes hazi-idle-pose{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes hazi-yarn-roll{0%,22%{transform:translateX(0) rotate(0)}78%{transform:translateX(var(--intro-roll)) rotate(640deg)}100%{transform:translateX(calc(var(--intro-roll) + 10px)) rotate(700deg)}}
+@keyframes hazi-yarn-trail{0%,22%{width:0}78%,100%{width:var(--intro-roll)}}
+@keyframes harbor-title-unspool{to{clip-path:inset(0)}}
+@keyframes hazi-intro-subtitle{to{opacity:1}}
+@keyframes hazi-intro-idle{0%,78%,100%{transform:translate3d(0,0,0) rotate(0)}84%{transform:translate3d(2px,-2px,0) rotate(.45deg)}90%{transform:translate3d(-1px,0,0) rotate(-.25deg)}}
+.harbor-entrance:not(.is-entered) .worktable-title .collab-word{opacity:0;transform:translateY(10px);animation:harbor-intro-word .8s cubic-bezier(.2,.7,.2,1) forwards}
+.harbor-entrance:not(.is-entered) .worktable-title .collab-word:nth-child(2){animation-delay:.16s}.harbor-entrance:not(.is-entered) .worktable-title .collab-word:nth-child(3){animation-delay:.3s}
+.harbor-entrance:not(.is-entered) .worktable-title p{color:rgba(60,43,38,.74);text-shadow:none}
+@keyframes harbor-intro-word{to{opacity:1;transform:translateY(0)}}
+
+/* Intro correction: a single Hazi frame, one-line title, and an unspooling yarn path. */
+.harbor-entrance:not(.is-entered){--intro-roll:clamp(210px,31vw,450px)}
+.harbor-entrance:not(.is-entered) .worktable-title{top:43%;width:min(860px,90vw)}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{display:block;white-space:nowrap;overflow:hidden;clip-path:inset(0 100% 0 0);font-size:clamp(48px,5.5vw,88px);line-height:1.1;color:#6a4e3a;animation:harbor-title-unspool 2s cubic-bezier(.2,.68,.28,1) 1.55s both}
+.harbor-entrance:not(.is-entered) .worktable-title .collab-word{display:inline;opacity:1;transform:none;animation:none}
+.harbor-entrance:not(.is-entered) .worktable-title .collab-word:not(:last-child)::after{content:" "}
+.harbor-entrance:not(.is-entered) .worktable-title p{max-width:420px;margin:18px auto 0;opacity:0;color:#6c5a4f;animation:hazi-intro-subtitle .7s ease-out 3.55s forwards}
+.harbor-entrance:not(.is-entered) .hazi-intro-cat{display:block;position:absolute;left:clamp(5%,calc(50% - 470px),15%);bottom:clamp(10%,13vh,17%);z-index:5;width:clamp(180px,21vw,300px);height:auto;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(38,26,18,.12));transform-origin:65% 75%;animation:none}
+.harbor-entrance:not(.is-entered) .hazi-intro-idle{display:none!important}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball{display:block;left:clamp(25%,calc(50% - 270px),34%);bottom:clamp(20%,23vh,28%);z-index:4;animation:hazi-yarn-roll 2s cubic-bezier(.2,.68,.28,1) 1.55s both}
+.harbor-entrance:not(.is-entered) .intro-yarn-line{display:block;left:clamp(25%,calc(50% - 270px),34%);bottom:calc(clamp(20%,23vh,28%) + 15px);z-index:3;width:var(--intro-roll);height:clamp(24px,3vw,38px);background:none;animation:none}
+.harbor-entrance:not(.is-entered) .intro-yarn-line path{fill:none;stroke:#b77e56;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:560;stroke-dashoffset:560;animation:hazi-yarn-path 2s cubic-bezier(.2,.68,.28,1) 1.55s forwards}
+.harbor-entrance:not(.is-entered) .phase-one-pig{display:none}
+.harbor-entrance:not(.is-entered).is-intro-ready .hazi-intro-cat{animation:hazi-intro-idle 7.2s ease-in-out infinite}
+@keyframes hazi-yarn-path{to{stroke-dashoffset:0}}
+
+/* Phase 1 uses the supplied Hazi and yarn frame assets only. */
+.harbor-entrance:not(.is-entered){--hazi-assets:'../assets/harbor-loop/harbor_loop_hazi_assets/';--intro-roll:clamp(300px,27vw,410px)}
+.harbor-entrance:not(.is-entered) .hazi-intro-idle,.harbor-entrance:not(.is-entered) .intro-yarn-line{display:none!important}
+.harbor-entrance:not(.is-entered) .hazi-intro-cat{left:clamp(5%,calc(50% - 470px),15%);bottom:clamp(10%,13vh,17%);width:clamp(180px,21vw,300px);height:auto;animation:none!important;transform:none!important}
+.harbor-entrance:not(.is-entered){--intro-ball-size:clamp(42px,4vw,62px)}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball{left:clamp(25%,calc(50% - 270px),34%);bottom:clamp(20%,23vh,28%);z-index:4;width:var(--intro-ball-size);height:var(--intro-ball-size);aspect-ratio:1;border-radius:0;background:none;box-shadow:none;animation:none!important;transform:translate3d(0,0,0) rotate(0);transform-origin:center center}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball img{display:block;width:100%;height:100%;object-fit:contain}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage{display:block;position:absolute;left:clamp(25%,calc(50% - 270px),34%);bottom:calc(clamp(20%,23vh,28%) + 11px);z-index:3;width:var(--intro-roll);height:clamp(24px,3vw,40px);pointer-events:none}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage img{position:absolute;bottom:0;display:block;height:100%;width:auto;opacity:0}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-short{left:0;opacity:0;animation:yarn-stage-short .01s step-end 1 1.25s forwards}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-medium{left:17%;opacity:0;animation:yarn-stage-medium .01s step-end 1 1.95s forwards}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-long{left:38%;opacity:0;animation:yarn-stage-long .01s step-end 1 2.65s forwards}
+.harbor-entrance:not(.is-entered) .worktable-title{top:43%;width:min(860px,90vw)}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{display:block;white-space:nowrap;overflow:visible;clip-path:inset(-.22em 100% -.22em 0);padding-block:.18em;font-size:clamp(48px,5.5vw,88px);line-height:1.2;color:#6a4e3a;animation:intro-title-unroll 1.95s cubic-bezier(.2,.68,.28,1) 1.78s forwards}
+.harbor-entrance:not(.is-entered) .worktable-title p{max-width:420px;margin:18px auto 0;opacity:0;color:#6c5a4f;animation:intro-subtitle-in .72s ease-out 3.5s forwards}
+.harbor-entrance:not(.is-entered).is-intro-ready .hazi-intro-cat{animation:none!important}
+.harbor-entrance:not(.is-entered).is-intro-ready .intro-yarn-ball{transform:translate3d(var(--intro-roll),0,0) rotate(700deg)}
+@keyframes yarn-stage-short{to{opacity:1}}@keyframes yarn-stage-medium{to{opacity:1}}@keyframes yarn-stage-long{to{opacity:1}}
+@keyframes intro-title-unroll{to{clip-path:inset(0)}}@keyframes intro-subtitle-in{to{opacity:1;transform:translateY(0)}}
+
+/* Refinement: one thin, non-scaling SVG yarn strand, revealed from Hazi's paw to the ball. */
+.harbor-entrance:not(.is-entered){--intro-roll:clamp(195px,42vw,610px);--intro-yarn-overlap:4px;--intro-ground:clamp(12%,14vh,18%)}
+.harbor-entrance:not(.is-entered) .hazi-intro-cat{bottom:var(--intro-ground)}
+.harbor-entrance:not(.is-entered) .intro-yarn-assembly{position:absolute;left:clamp(25%,calc(50% - 270px),34%);bottom:var(--intro-ground);z-index:4;width:var(--intro-ball-size);aspect-ratio:154/190;height:auto;transform:translate3d(0,0,0);will-change:transform}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball{display:block!important;position:relative;left:auto;bottom:auto;z-index:2;width:100%;height:100%;transform:rotate(0);transform-origin:center center;animation:none!important;will-change:transform}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball img{display:block;width:100%;height:100%;object-fit:contain;transform:none}
+.harbor-entrance:not(.is-entered).is-intro-ready .intro-yarn-ball{transform:rotate(360deg)}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage{display:block;position:absolute;inset:0;z-index:3;width:100%;height:100%;overflow:visible;pointer-events:none}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage svg{display:block;width:100%;height:100%;overflow:visible}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage path{fill:none;stroke:#b77e56;stroke-width:2.35;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.harbor-loading-percent{position:absolute;z-index:6;left:0;top:-19px;transform:translateX(-50%);font:400 13px/1 'Cormorant Garamond','Times New Roman',serif;color:#6a4e3a;opacity:0;white-space:nowrap;pointer-events:none;transition:opacity .35s ease}
+.harbor-entrance:not(.is-entered){background:#e9dfcb}
+.harbor-entrance:not(.is-entered)::before{background:radial-gradient(ellipse at 24% 74%,rgba(126,83,54,.10),transparent 34%),repeating-linear-gradient(102deg,rgba(113,75,51,.055) 0 1px,transparent 1px 16px),linear-gradient(120deg,#e9dfcb,#f2eadb 58%,#e4d5bd);filter:none}
+.harbor-entrance:not(.is-entered)::after{opacity:.5;background:radial-gradient(ellipse at 70% 28%,rgba(255,255,255,.32),transparent 38%),repeating-linear-gradient(0deg,rgba(103,71,48,.035) 0 1px,transparent 1px 5px)}
+.harbor-entrance:not(.is-entered) .intro-yarn-ball{animation:none!important}
+.harbor-entrance:not(.is-entered) .intro-yarn-stage path{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+@media (prefers-reduced-motion:reduce){.harbor-entrance:not(.is-entered) .intro-yarn-ball{transform:rotate(360deg)!important}}
+/* Prevent unopened-envelope character artwork from ever flashing in the Hazi intro. */
+.harbor-entrance:not(.is-entered) .phase-one-bear,.harbor-entrance:not(.is-entered) .phase-one-pig,.harbor-entrance:not(.is-entered) .phase-one-tiger{display:none!important}
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{overflow:visible;line-height:1.28;padding-block:.24em;clip-path:inset(-.28em 100% -.28em 0);animation-delay:1.03s;animation-duration:2.05s}
+@keyframes intro-yarn-unroll{to{clip-path:inset(0)}}
+.harbor-entrance.is-entered{overflow-x:clip;overflow-y:visible}
+.harbor-entrance.is-entered .harbor-letter-stage{opacity:1;visibility:visible;pointer-events:auto}
+.harbor-entrance.is-entered:not(.is-open) .intro-yarn-stage,.harbor-entrance.is-entered:not(.is-open) .intro-yarn-assembly{display:none!important}
+.harbor-entrance.is-entered:not(.is-open) .harbor-photo-stack-layer,.harbor-entrance.is-entered:not(.is-open) .harbor-photo-stack-layer .harbor-photo-card{opacity:0;visibility:hidden;animation:none}
+.harbor-entrance.is-open .harbor-photo-stack-layer{opacity:1;visibility:visible;transition-delay:0s}
+.harbor-entrance.is-open .harbor-photo-stack-layer .harbor-photo-card{animation:harbor-photo-spill 1.25s cubic-bezier(.2,.72,.24,1) var(--delay) both}
+
+/* Independent open-envelope composition: back → contents → one front pocket → flap/seal. */
+.harbor-letter-stage{z-index:3}
+.envelope-scene{isolation:isolate}
+.envelope-back{z-index:1}.character-foreground-overlay{z-index:2}.envelope-front{z-index:3}.envelope-flap{z-index:4}.envelope-seal,.envelope-scene.is-open .envelope-seal{z-index:9}
+.envelope-scene.is-open .envelope-flap{z-index:1}
+.character-foreground-overlay::before,.character-foreground-overlay::after,.envelope-scene::before,.envelope-scene::after{content:none}
+.envelope-contents-mask{display:none}
+.character-foreground-overlay{overflow:visible}
+
+/* Compact opening excerpt: the pocket, not an oversized document, masks its lower edge. */
+.harbor-letter-sheet{top:31%;width:50%;max-width:380px;aspect-ratio:4/5;padding:clamp(18px,2.3vw,27px) clamp(15px,2vw,22px);overflow:hidden;clip-path:inset(100% 0 0 0);transform:translate(-50%,76%) rotate(-2deg);transition:transform .95s cubic-bezier(.2,.7,.18,1) .58s,clip-path .95s cubic-bezier(.2,.7,.18,1) .58s}
+.harbor-letter-sheet p{max-height:100%;overflow:hidden;margin-top:13%;font-size:clamp(10px,1.15vw,13px);line-height:1.43}
+.harbor-letter-sheet::before{top:6%;right:9%;width:20%;opacity:.68}
+.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet{clip-path:inset(0);transform:translate(-50%,-35%) rotate(-2deg)}
+.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet:hover,.harbor-letter-stage:has(.envelope-scene.is-open) .harbor-letter-sheet:focus-visible{transform:translate(-50%,calc(-35% - 4px)) rotate(-2deg) scale(1.05)}
+.first-release{position:relative;padding:12vh 24px 15vh;overflow:hidden;background:#f8f1df}.release-heading{max-width:650px;margin:0 auto 8vh;text-align:center}.release-heading .stage-kicker{color:#aa5d46}.release-heading h2{font:400 clamp(42px,6vw,74px)/.95 'Cormorant Garamond',serif;letter-spacing:-.06em}.release-heading p{max-width:470px;margin:22px auto 0;font:15px/1.8 'Lora',serif;color:var(--ink-soft)}
+.character-intros{max-width:1000px;margin:0 auto;display:grid;gap:11vh}.character-intro{display:grid;grid-template-columns:minmax(150px,.65fr) minmax(260px,1fr);gap:clamp(34px,9vw,110px);align-items:center}.character-intro:nth-child(even){grid-template-columns:minmax(260px,1fr) minmax(150px,.65fr)}.character-intro:nth-child(even) .character-image{order:2}.character-image{border:0;background:transparent;padding:0;cursor:pointer;justify-self:center;filter:drop-shadow(0 22px 19px rgba(13,31,60,.16));transition:transform .35s ease}.character-image:hover,.character-image:focus-visible{transform:scale(1.04);outline:none}.character-image img{display:block;width:min(100%,250px);max-height:300px;object-fit:contain}.character-copy .stage-kicker{margin-bottom:14px}.character-copy h3{font:400 clamp(32px,4.6vw,55px)/.98 'Shippori Mincho',serif;letter-spacing:-.05em}.character-copy p{margin-top:16px;font:15px/1.85 'Times New Roman',Times,serif;color:var(--ink-soft)}.story-link{margin-top:21px;padding:0 0 6px;border:0;border-bottom:1px solid var(--coral);background:transparent;font:10px 'Nunito',sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.release-heading{margin-bottom:4.5vh}.release-heading .stage-kicker{font-family:'Times New Roman',Times,serif;letter-spacing:.12em}.release-heading p{margin-top:14px;font-family:'Times New Roman',Times,serif}.character-intros{gap:8vh}.character-role{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;font-family:'Times New Roman',Times,serif;color:var(--ink-soft)}.character-role-number{font-size:11px;letter-spacing:.1em}.character-role-title{font-size:clamp(17px,2vw,22px);line-height:1.2;letter-spacing:0}.character-image{transition:transform .35s ease-out,filter .35s ease-out}.character-intro:nth-child(1) .character-image:hover,.character-intro:nth-child(1) .character-image:focus-visible{transform:scale(1.055) rotate(-1.2deg);filter:drop-shadow(0 24px 20px rgba(13,31,60,.19));outline:none}.character-intro:nth-child(2) .character-image:hover,.character-intro:nth-child(2) .character-image:focus-visible{transform:scale(1.05) rotate(1deg);filter:drop-shadow(0 24px 20px rgba(13,31,60,.19));outline:none}.character-intro:nth-child(3) .character-image:hover,.character-intro:nth-child(3) .character-image:focus-visible{transform:scale(1.06) rotate(-.8deg);filter:drop-shadow(0 24px 20px rgba(13,31,60,.19));outline:none}
+
+.bear-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:22px;background:rgba(13,31,60,.47);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}.bear-modal.is-open{opacity:1;visibility:visible}.bear-sheet{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.82fr);gap:28px;width:min(890px,94vw);max-height:88vh;overflow:auto;padding:28px;background:#f8f1df;box-shadow:0 25px 80px rgba(13,31,60,.35)}
+.bear-gallery-main{width:100%;min-height:360px;max-height:59vh;object-fit:cover}.bear-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.bear-thumb{padding:0;border:1px solid transparent;background:transparent;cursor:pointer}.bear-thumb.is-active{border-color:var(--coral)}.bear-thumb img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}.bear-copy{align-self:center}.bear-kicker{font:10px 'Nunito',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}.bear-copy h2{margin:10px 0 18px;font-size:clamp(28px,3.6vw,43px);line-height:1.04;font-style:italic;font-weight:500}.bear-copy p{font:15px/1.8 'Times New Roman',Times,serif;margin:0 0 15px}.bear-facts{margin:21px 0;font:12px/1.9 'Nunito',sans-serif;color:var(--ink-soft)}.bear-close{position:absolute;right:13px;top:10px;border:0;background:transparent;color:var(--ink);font-size:27px;cursor:pointer}.bear-buy{display:inline-block;padding:13px 22px;background:var(--ink);color:var(--paper);font:11px 'Nunito',sans-serif;letter-spacing:.13em;text-transform:uppercase;text-decoration:none}.bear-buy:hover{background:#1a3559}
+
+.intro{max-width:640px;margin:7vh auto 4vh;padding:0 24px}
+.intro p{font-size:17px;line-height:1.95;color:var(--ink);margin-bottom:18px;text-align:left;font-family:'Lora',serif}
+.harbor-letter-story p{font-family:'Times New Roman',Times,serif;line-height:1.8}.harbor-letter-story .signoff{font-family:'Times New Roman',Times,serif;font-style:normal;text-align:left;line-height:1.55}
+.harbor-letter-story.is-reveal-ready p,.harbor-letter-story.is-reveal-ready .signoff{opacity:0;transform:translateY(16px);transition:opacity .65s ease-out,transform .65s ease-out}.harbor-letter-story.is-reveal-ready .is-revealed{opacity:1;transform:translateY(0)}
+.intro p.center{text-align:center;font-style:italic;color:var(--ink-soft)}
+.signoff{font-style:italic;font-size:15px;color:var(--ink-soft);text-align:center;margin-top:14px}
+
+.echo{max-width:560px;margin:6vh auto 9vh;padding:26px 30px;text-align:center;
+  border-top:1px solid rgba(13,31,60,.12);border-bottom:1px solid rgba(13,31,60,.12)}
+.echo p{font-style:italic;font-size:19px;line-height:1.7;color:var(--ink)}
+
+.sec-label{text-align:center;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5vh}
+
+
+.works{max-width:920px;margin:0 auto 13vh;padding:0 24px}
+.works-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.w-img{aspect-ratio:1/1;background-size:cover;background-position:center;border-radius:50%;box-shadow:0 14px 32px rgba(13,31,60,.14);margin-bottom:12px}
+.w-name{font-style:italic;font-size:15px;text-align:center}
+
+.closing{max-width:560px;margin:0 auto;padding:0 24px 15vh;text-align:center}
+.closing p{font-size:16px;font-style:italic;line-height:1.8;margin-bottom:10px;color:var(--ink)}
+.closing p.final{font-size:17px;margin-top:20px;margin-bottom:28px}
+.cta-btn{display:inline-block;padding:14px 36px;border-radius:999px;background:var(--ink);color:var(--paper);
+  font-family:'Nunito',sans-serif;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer}
+.cta-btn:hover{background:#1a3559}
+.back-to-shop{display:block;margin-top:22px;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+
+@media(max-width:700px){
+  .harbor-entrance{min-height:100svh;padding:80px 16px 30px}.worktable-title{top:84px;left:24px}.worktable-title p{max-width:190px;font-size:11px}.harbor-letter-stage{min-height:575px}.letter-stage-inner{min-height:460px}.envelope-scene{width:min(540px,88vw)}.harbor-photo-stack-layer .harbor-photo-card{width:clamp(130px,30vw,185px)}.harbor-photo-stack-layer .harbor-photo-card:nth-child(1){--spread-x:-38vw;--spread-y:-34vh;--spread-r:-6deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(2){--spread-x:-14vw;--spread-y:-37vh;--spread-r:5deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(3){--spread-x:17vw;--spread-y:-35vh;--spread-r:-4deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(4){--spread-x:39vw;--spread-y:-28vh;--spread-r:6deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(5){--spread-x:-42vw;--spread-y:0vh;--spread-r:3deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(6){--spread-x:42vw;--spread-y:1vh;--spread-r:-5deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(7){--spread-x:-34vw;--spread-y:25vh;--spread-r:-5deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(8){--spread-x:-8vw;--spread-y:29vh;--spread-r:6deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(9){--spread-x:20vw;--spread-y:26vh;--spread-r:-3deg}.harbor-photo-stack-layer .harbor-photo-card:nth-child(10){--spread-x:38vw;--spread-y:23vh;--spread-r:5deg}.harbor-letter-sheet{width:min(44%,250px);aspect-ratio:3/5;padding:22px 18px}.harbor-letter-sheet p{font-size:12px}.phase-one-bear{left:37%;width:26%}.character-intro,.character-intro:nth-child(even){grid-template-columns:1fr;gap:20px;text-align:center}.character-intro:nth-child(even) .character-image{order:0}.character-copy .stage-kicker{margin-bottom:12px}.character-role{justify-content:center}.character-role-title{font-size:17px}.character-image img{width:180px;max-height:220px}.bear-sheet{grid-template-columns:1fr;padding:21px;gap:17px}.bear-gallery-main{min-height:260px;max-height:43vh}
+  .harbor-letter-sheet{width:50%;max-width:250px;aspect-ratio:4/5}
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .brand-icon{top:16px;left:20px;width:46px;height:46px}
+  .back-link{top:24px;right:22px;font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{clip-path:none}.harbor-entrance:not(.is-entered) .worktable-title p{opacity:1}.harbor-entrance:not(.is-entered) .hazi-intro-cat,.harbor-entrance:not(.is-entered) .intro-yarn-ball,.harbor-entrance:not(.is-entered) .intro-yarn-line{animation:none!important}.harbor-entrance:not(.is-entered) .intro-yarn-line{width:0}}
+@media (prefers-reduced-motion:reduce){.harbor-entrance:not(.is-entered) .hazi-intro-cat{opacity:0}.harbor-entrance:not(.is-entered) .hazi-intro-idle{display:block;opacity:1;animation:none}.harbor-entrance:not(.is-entered) .intro-yarn-ball{display:block;animation:none}.harbor-entrance:not(.is-entered) .worktable-title .collab-word{opacity:1}}
+@media (prefers-reduced-motion:reduce){.harbor-entrance:not(.is-entered) .hazi-intro-cat{display:block;opacity:1;animation:none!important}.harbor-entrance:not(.is-entered) .intro-yarn-stage{display:block}.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-short,.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-medium{display:none}.harbor-entrance:not(.is-entered) .intro-yarn-stage .yarn-long{opacity:1;animation:none}.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{clip-path:none;animation:none}.harbor-entrance:not(.is-entered) .intro-yarn-ball{transform:translate3d(var(--intro-roll),0,0) rotate(700deg)}}
+@media(max-width:600px){.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{font-size:clamp(26px,8.5vw,48px)!important}}
+/* One progress-driven reveal; no character animation or independent title timeline. */
+.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{animation:none!important;clip-path:none!important;-webkit-mask-image:linear-gradient(transparent,transparent);mask-image:linear-gradient(transparent,transparent)}
+@media(prefers-reduced-motion:reduce){.harbor-entrance:not(.is-entered) .worktable-title .stage-kicker{transition:opacity .18s ease}}
+</style>
+<link rel="stylesheet" href="../assets/v1-consolidation/shell.css">
+<link rel="stylesheet" href="../assets/universe/universe.css">
+</head>
+<body data-page="crochet">
+<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="../index.html#map">Kita-Sora</a><div class="universe-links" id="universe-links"><a href="../index.html#map">Map</a><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer">Letters</a><a href="../shop.html">Shop</a><a href="../shop/crochet.html" aria-current="page">Harbor Loop</a><a href="../work.html">Work with me</a><a href="../about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
+
+<a class="brand-icon" href="#harbor-title" aria-label="Harbor Loop">
+  <img src="../assets/harbor-loop/harbor-loop-mark-crop.png.webp" alt="Harbor Loop" decoding="async" loading="lazy">
+</a>
+<a class="back-link" href="../index.html#map">← World Map</a>
+
+<section class="harbor-entrance is-entered" aria-labelledby="harbor-title">
+  <div class="worktable-title">
+    <div class="stage-kicker"><span class="collab-word">Kita-Sora</span><span class="collab-word">×</span><span class="collab-word">Harbor Loop</span></div>
+    <h1 id="harbor-title">a harbor<br>that stays</h1>
+    <p>Made at my mother's table, wherever the rest of the journey goes.</p>
+  </div>
+  <div class="harbor-photo-stack-layer" aria-hidden="true">
+    <div class="harbor-photo-stack" aria-label="Harbor Loop making photographs">
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_5956.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_5244.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_5235.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_5169.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_4958.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_4963.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_5389.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_4632.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_4633.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+      <div class="harbor-photo-card" tabindex="0"><img src="../assets/harbor-loop/process/IMG_4730.jpeg.webp" alt="" decoding="async" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="harbor-letter-stage" id="harbor-letter" aria-labelledby="letter-title">
+    <div class="letter-stage-inner">
+      <div class="envelope-scene" data-envelope-scene>
+        <img class="envelope-layer envelope-back" src="../assets/harbor-loop/envelope-back-v3.png.webp" alt="" decoding="async">
+        <div class="envelope-contents-mask" aria-hidden="true"></div>
+        <div class="character-foreground-overlay" aria-label="Harbor Loop characters">
+
+          <div class="character-entrance-mask">
+          <button class="phase-one-pig" type="button" data-open-pig aria-label="Meet the little pig">
+            <img src="../assets/crochet/little-pig-cutout.png.webp" alt="A handmade crochet little pig in an orange bear hood" decoding="async" loading="lazy">
+          </button>
+          <button class="phase-one-bear" type="button" data-open-bear aria-label="Meet the Hokkaido bear">
+            <img src="../assets/crochet/hokkaido-bear-cutout.png.webp" alt="A handmade brown crochet bear holding a salmon" decoding="async" loading="lazy">
+          </button>
+          <button class="phase-one-tiger" type="button" data-open-tiger aria-label="Meet the little tiger">
+            <img src="../assets/crochet/little-tiger-cutout.png.webp" alt="A handmade orange crochet little tiger" decoding="async" loading="lazy">
+          </button>
+          </div>
+        </div>
+        <img class="envelope-layer envelope-front" src="../assets/harbor-loop/envelope-front-pocket-v4.png.webp" alt="" decoding="async">
+        <img class="envelope-layer envelope-flap" src="../assets/harbor-loop/envelope-flap.png.webp" alt="" decoding="async">
+        <img class="envelope-layer envelope-seal" src="../assets/harbor-loop/envelope-seal.png.webp" alt="" decoding="async">
+        <button class="envelope-open-hit" type="button" data-open-harbor-letter aria-expanded="false" aria-label="Open the Harbor Loop envelope"></button>
+        <span class="envelope-open-label" id="letter-title">open the letter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="intro harbor-letter-story" id="harbor-letter-story">
+  <p>Dear traveler,</p>
+  <p>Harbor Loop was never created with the intention of becoming a brand. It grew out of something my mom simply loved doing, an interest she kept nurturing over time through the joy of making things with her own hands.</p>
+  <p>My mom has always loved making things, and our home has always been filled with inventions of all shapes and sizes. There were pen holders made from plastic bottles, storage boxes made from old cardboard, and even an old electric fan that she taught herself how to repair. So when she started crocheting, I was genuinely happy to see her find another thing she loved doing, and slowly, more and more of her creations began appearing around our home.</p>
+  <p>I wanted more people around the world to see and love the things she made. So sometime in the second half of 2025, I made her a rather bold promise. I told her that one day, I would sell her crochet pieces around the world, so that more people could discover these delicate little things and so that she could feel proud of what she had created.</p>
+  <p>At first, Mom did not take me very seriously. She always thought I was joking. But now, almost a year has passed. There are more and more balls of yarn around the house, slowly turning into little handmade creatures full of life. Mom has her own workspace now, and the little online home that belongs to her creations has finally taken shape too.</p>
+  <p>And that is how Harbor Loop came to be. Everything is still growing, just as our lives are.</p>
+  <p>I hope you will love these handmade crochet pieces, just as much as my mom loves making them.</p>
+  <div class="signoff">Love,<br>Lynn &amp; Mom</div>
+</div>
+
+<section class="first-release" id="first-release" aria-labelledby="release-title">
+  <div class="release-heading">
+    <div class="stage-kicker">HARBOR LOOP · SERIES 01 · LITTLE WAYS OF LIVING</div>
+    <h2 id="release-title">The ones who<br>arrived first.</h2>
+  </div>
+  <div class="character-intros" aria-label="Meet the first three Harbor Loop characters">
+    <article class="character-intro" id="bear-from-hokkaido-intro">
+      <button class="character-image" type="button" data-open-bear aria-haspopup="dialog"><img src="../assets/crochet/hokkaido-bear-cutout.png.webp" alt="A handmade brown crochet bear holding a salmon" decoding="async" loading="lazy"></button>
+      <div class="character-copy"><div class="character-role"><span class="character-role-number">01</span><span class="character-role-title">The Keeper of Little Routines</span></div><h3>Mugi</h3><p>Mugi likes his days to have a rhythm.</p><button class="story-link" type="button" data-open-bear>see his story &amp; four views</button><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe">Tell me when they’re ready →</a></div>
+    </article>
+    <article class="character-intro" id="little-pig-intro">
+      <button class="character-image" type="button" data-open-pig aria-haspopup="dialog"><img src="../assets/crochet/little-pig-cutout.png.webp" alt="A handmade crochet little pig in an orange bear hood" decoding="async" loading="lazy"></button>
+      <div class="character-copy"><div class="character-role"><span class="character-role-number">02</span><span class="character-role-title">The Little Collector</span></div><h3>Piku</h3><p>Piku has a talent for finding treasures nobody else notices.</p><button class="story-link" type="button" data-open-pig>see her story &amp; four views</button><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe">Tell me when they’re ready →</a></div>
+    </article>
+    <article class="character-intro" id="little-tiger-intro">
+      <button class="character-image" type="button" data-open-tiger aria-haspopup="dialog"><img src="../assets/crochet/little-tiger-cutout.png.webp" alt="A handmade orange crochet little tiger" decoding="async" loading="lazy"></button>
+      <div class="character-copy"><div class="character-role"><span class="character-role-number">03</span><span class="character-role-title">The Little Pathfinder</span></div><h3>Raku</h3><p>Raku notices things before most people do.</p><button class="story-link" type="button" data-open-tiger>see his story &amp; four views</button><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe">Tell me when they’re ready →</a></div>
+    </article>
+  </div>
+</section>
+
+
+
+<div class="sec-label" hidden>other companions</div>
+<div class="works" hidden>
+  <div class="works-grid">
+    <div>
+      <div class="w-img" style="background-image:url('../assets/crochet/work-cherry-and-daisy.jpg.webp')"></div>
+      <div class="w-name">Cherry &amp; Daisy</div>
+    </div>
+    <div>
+      <div class="w-img" style="background-image:url('../assets/crochet/work-still-in-progress.jpg.webp')"></div>
+      <div class="w-name">Still in Progress</div>
+    </div>
+    <div>
+      <div class="w-img" style="background-image:url('../assets/crochet/work-the-little-guardians.jpg.webp')"></div>
+      <div class="w-name">The Little Guardians</div>
+    </div>
+    <div>
+      <div class="w-img" style="background-image:url('../assets/crochet/work-window-companions.jpg.webp')"></div>
+      <div class="w-name">Window Companions</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="bear-modal" id="bear-modal" role="dialog" aria-modal="true" aria-labelledby="bear-title" aria-hidden="true">
+  <article class="bear-sheet" id="bear-from-hokkaido">
+    <button class="bear-close" type="button" data-close-bear aria-label="Close">×</button>
+    <div class="bear-gallery">
+      <img class="bear-gallery-main" src="../assets/crochet/hokkaido-bear-front.jpg.webp" alt="Front view of the handmade crochet bear holding a salmon" data-bear-main decoding="async" loading="lazy">
+      <div class="bear-thumbs" aria-label="Bear photo gallery">
+        <button class="bear-thumb is-active" type="button" data-bear-image="../assets/crochet/hokkaido-bear-front.jpg.webp" data-bear-alt="Front view of the handmade crochet bear holding a salmon"><img src="../assets/crochet/hokkaido-bear-front.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-bear-image="../assets/crochet/hokkaido-bear-side.jpg.webp" data-bear-alt="Side view of the handmade crochet bear and salmon"><img src="../assets/crochet/hokkaido-bear-side.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-bear-image="../assets/crochet/hokkaido-bear-back.jpg.webp" data-bear-alt="Back view of the handmade crochet bear"><img src="../assets/crochet/hokkaido-bear-back.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-bear-image="../assets/crochet/hokkaido-bear-on-bag.jpg.webp" data-bear-alt="The handmade crochet bear hanging from a bag"><img src="../assets/crochet/hokkaido-bear-on-bag.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+      </div>
+    </div>
+    <div class="bear-copy">
+      <div class="bear-kicker">Harbor Loop · Series 01 · The Keeper of Little Routines</div>
+      <h2 id="bear-title">Mugi</h2>
+      <p>Mugi likes his days to have a rhythm.</p>
+      <p>He wakes up slowly, follows the same little paths, and goes fishing whenever the water feels right. Salmon happens to be his favorite — catching one is simply part of a very good day.</p>
+      <p>Mugi believes ordinary things become special when you return to them often enough. Different day, different fish, same way home.</p>
+      <div class="bear-facts">12–13 cm · yarn · bag charm<br>Coming soon · not yet available to order<br><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener">Tell me when they’re ready →</a></div>
+      <a class="bear-buy" href="#first-release" data-continue-harbor>meet the companions →</a>
+    </div>
+  </article>
+</div>
+
+<div class="bear-modal" id="pig-modal" role="dialog" aria-modal="true" aria-labelledby="pig-title" aria-hidden="true">
+  <article class="bear-sheet" id="little-pig">
+    <button class="bear-close" type="button" data-close-pig aria-label="Close">×</button>
+    <div class="bear-gallery">
+      <img class="bear-gallery-main" src="../assets/crochet/little-pig-front.jpg.webp" alt="Front view of the handmade crochet little pig" data-pig-main decoding="async" loading="lazy">
+      <div class="bear-thumbs" aria-label="Little pig photo gallery">
+        <button class="bear-thumb is-active" type="button" data-pig-image="../assets/crochet/little-pig-front.jpg.webp" data-pig-alt="Front view of the handmade crochet little pig"><img src="../assets/crochet/little-pig-front.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-pig-image="../assets/crochet/little-pig-side-left.jpg.webp" data-pig-alt="Left-side view of the handmade crochet little pig"><img src="../assets/crochet/little-pig-side-left.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-pig-image="../assets/crochet/little-pig-side-right.jpg.webp" data-pig-alt="Right-side view of the handmade crochet little pig"><img src="../assets/crochet/little-pig-side-right.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-pig-image="../assets/crochet/little-pig-back.jpg.webp" data-pig-alt="Back view of the handmade crochet little pig"><img src="../assets/crochet/little-pig-back.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+      </div>
+    </div>
+    <div class="bear-copy">
+      <div class="bear-kicker">Harbor Loop · Series 01 · The Little Collector</div>
+      <h2 id="pig-title">Piku</h2>
+      <p>Piku has a talent for finding treasures nobody else notices.</p>
+      <p>Buttons, ribbons, tiny flowers, a very good pebble — if it feels important to her, it goes straight into the little pocket on her bib.</p>
+      <p>Nobody quite knows how much she keeps in there. Piku only knows one thing: there’s always room for one more.</p>
+      <div class="bear-facts">Handmade crochet · coming soon · not yet available to order<br><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener">Tell me when they’re ready →</a></div>
+    </div>
+  </article>
+</div>
+
+<div class="bear-modal" id="tiger-modal" role="dialog" aria-modal="true" aria-labelledby="tiger-title" aria-hidden="true">
+  <article class="bear-sheet" id="little-tiger">
+    <button class="bear-close" type="button" data-close-tiger aria-label="Close">×</button>
+    <div class="bear-gallery">
+      <img class="bear-gallery-main" src="../assets/crochet/little-tiger-front.jpg.webp" alt="Front view of the handmade orange crochet little tiger" data-tiger-main decoding="async" loading="lazy">
+      <div class="bear-thumbs" aria-label="Little tiger photo gallery">
+        <button class="bear-thumb is-active" type="button" data-tiger-image="../assets/crochet/little-tiger-front.jpg.webp" data-tiger-alt="Front view of the handmade orange crochet little tiger"><img src="../assets/crochet/little-tiger-front.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-tiger-image="../assets/crochet/little-tiger-side-left.jpg.webp" data-tiger-alt="Left-side view of the handmade orange crochet little tiger"><img src="../assets/crochet/little-tiger-side-left.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-tiger-image="../assets/crochet/little-tiger-side-right.jpg.webp" data-tiger-alt="Right-side view of the handmade orange crochet little tiger"><img src="../assets/crochet/little-tiger-side-right.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+        <button class="bear-thumb" type="button" data-tiger-image="../assets/crochet/little-tiger-back.jpg.webp" data-tiger-alt="Back view of the handmade orange crochet little tiger"><img src="../assets/crochet/little-tiger-back.jpg.webp" alt="" decoding="async" loading="lazy"></button>
+      </div>
+    </div>
+    <div class="bear-copy">
+      <div class="bear-kicker">Harbor Loop · Series 01 · The Little Pathfinder</div>
+      <h2 id="tiger-title">Raku</h2>
+      <p>Raku notices things before most people do.</p>
+      <p>A shift in the wind, a tiny trail in the grass, a sound somewhere behind the trees — his senses always seem to be turned up just a little higher.</p>
+      <p>He is brave, but exploration does not have to mean going somewhere dangerous. Sometimes the biggest discoveries are already close by, waiting for someone to look carefully enough.</p>
+      <p>Raku never leaves without his compass, a tiny magnifying glass, and a little backpack — just in case something worth following appears.</p>
+      <div class="bear-facts">Handmade crochet · coming soon · not yet available to order<br><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener">Tell me when they’re ready →</a></div>
+    </div>
+  </article>
+</div>
+
+<!-- V1: wandering companion paused; source retained in assets/mascots. -->
+<script>
+  let lastTrigger = null;
+  const bindStoryModal = (name) => {
+    const modal = document.getElementById(`${name}-modal`);
+    const close = modal.querySelector(`[data-close-${name}]`);
+    const main = modal.querySelector(`[data-${name}-main]`);
+    const open = (trigger) => {
+      lastTrigger = trigger;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      close.focus();
+    };
+    const closeStory = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      if (lastTrigger) lastTrigger.focus();
+    };
+    document.querySelectorAll(`[data-open-${name}]`).forEach((trigger) => trigger.addEventListener('click', () => open(trigger)));
+    close.addEventListener('click', closeStory);
+    modal.addEventListener('click', (event) => { if (event.target === modal) closeStory(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeStory(); });
+    modal.querySelectorAll(`[data-${name}-image]`).forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        main.src = thumb.dataset[`${name}Image`];
+        main.alt = thumb.dataset[`${name}Alt`];
+        modal.querySelectorAll(`[data-${name}-image]`).forEach((item) => item.classList.toggle('is-active', item === thumb));
+      });
+    });
+  };
+  ['bear', 'pig', 'tiger'].forEach(bindStoryModal);
+
+  document.querySelector('[data-continue-harbor]').addEventListener('click', () => {
+    document.querySelector('[data-close-bear]').click();
+  });
+
+  const envelopeScene = document.querySelector('[data-envelope-scene]');
+  const openLetter = document.querySelector('[data-open-harbor-letter]');
+  const harborEntrance = document.querySelector('.harbor-entrance');
+  const fullLetter = document.getElementById('harbor-letter-story');
+  fullLetter.hidden = true;
+  openLetter.setAttribute('aria-controls', fullLetter.id);
+  openLetter.addEventListener('click', () => {
+    if (envelopeScene.classList.contains('is-open')) return;
+    envelopeScene.classList.add('is-open');
+    harborEntrance.classList.add('is-open');
+    openLetter.setAttribute('aria-expanded', 'true');
+    fullLetter.hidden = false;
+    fullLetter.tabIndex = -1;
+    fullLetter.focus({preventScroll:true});
+    fullLetter.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+  });
+</script>
+<script src="../assets/v1-consolidation/shell.js" defer></script>
+<footer class="universe-next" aria-label="Continue the voyage"><p>Continue the voyage</p><div><a href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Tell me when they’re ready</a><a href="../shop.html">Visit the shop</a></div></footer><script src="../assets/universe/universe.js" defer></script></body>
+</html>

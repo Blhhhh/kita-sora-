@@ -1,109 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kita-Sora · Exploring outward, settling inward</title>
-<meta name="description" content="Kita-Sora (北空) is a letter series by Lynn about leaving the default path, moving through places, and slowly building a life of her own.">
-<link rel="icon" href="assets/icon.png">
-<meta property="og:title" content="Kita-Sora">
-<meta property="og:description" content="Exploring outward, settling inward. Letters from Lynn.">
-<meta property="og:image" content="assets/yakumo.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kita-Sora — The Map</title>
+<meta name="description" content="A hand-drawn map of a life being built — anchor by anchor. Kita-Sora: a life that can travel without losing itself.">
+<link rel="canonical" href="https://kita-sora.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet">
 <style>
-  :root{--sky:#a8d8f5;--ink:#22364a;--coral:#f28c84;--paper:#fbf8f2;--muted:#5c6b78}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Georgia","Times New Roman",serif;line-height:1.6}
-  main{max-width:640px;margin:0 auto;padding:48px 24px 64px;text-align:center}
-  .kicker{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
-  h1{font-size:44px;font-weight:normal;margin:0;letter-spacing:.01em}
-  h1 span{font-size:22px;color:var(--muted);margin-left:6px}
-  .tagline{font-style:italic;font-size:19px;margin:6px 0 28px;color:var(--ink)}
-  figure{margin:0 auto 28px;position:relative;max-width:460px}
-  figure img.hero{width:100%;height:auto;border-radius:18px;display:block;box-shadow:0 10px 30px rgba(34,54,74,.12)}
-  figure img.boat{position:absolute;width:76px;right:-10px;bottom:-26px;transform:rotate(-6deg)}
-  .letter{text-align:left;font-size:17.5px;margin:0 auto 32px;max-width:540px}
-  .letter p{margin:0 0 14px}
-  .sign{font-style:italic}
-  .btn{display:inline-block;text-decoration:none;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;font-weight:600;border-radius:999px;padding:14px 26px;margin:6px}
-  .primary{background:var(--coral);color:#fff}
-  .primary:hover{filter:brightness(.95)}
-  .secondary{border:1.5px solid var(--ink);color:var(--ink)}
-  .secondary:hover{background:var(--ink);color:#fff}
-  .links{margin-top:22px;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:14px}
-  .links a{color:var(--muted);margin:0 10px}
-  .gallery{margin:8px auto 36px;max-width:600px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .grid img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block}
-  .caption{font-style:italic;font-size:14.5px;color:var(--muted);margin:10px 0 0}
-  @media (max-width:480px){.grid{grid-template-columns:repeat(2,1fr)}}
-  .work{margin-top:56px;padding-top:40px;border-top:1px solid rgba(34,54,74,.12)}
-  .work h2{font-size:27px;font-weight:normal;margin:0 0 12px;line-height:1.3}
-  .work .intro{font-size:17px;max-width:540px;margin:0 auto 24px;color:var(--ink)}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;margin:0 0 26px}
-  .card{background:#fff;border:1px solid rgba(34,54,74,.1);border-radius:16px;padding:18px 18px 16px}
-  .card h3{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:15px;margin:0 0 6px;color:var(--ink)}
-  .card p{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
-  @media (max-width:560px){.cards{grid-template-columns:1fr}}
-  footer{margin-top:44px;font-size:13px;color:var(--muted);font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
-  @media (max-width:480px){h1{font-size:36px}main{padding-top:32px}.btn{display:block;margin:10px auto;max-width:300px}}
+/* ─────────────────────────────────────────────
+   KITA-SORA · THE MAP ENGINE
+   Art assets are swappable: see ASSET_SPEC.md
+   Every slot = <img class="asset" data-asset="..." decoding="async">
+   or a CSS background pointing into /assets
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#f0e7d3;
+  --ink:#2c3e50;
+  --ink-soft:#5f7485;
+  --sky:#dceeff;
+  --coral:#ff8ca0;
+  --letter:#f5eed7;
+  --graphite:#8a8f96;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);
+  background:var(--paper);overflow:hidden;
+}
+
+/* ── OPENING · approved KitaSoraLoading web implementation ── */
+.map{opacity:1;transform:scale(1);transition:opacity 1.8s ease,transform 2.4s cubic-bezier(.2,.7,.2,1)}
+body.intro-active .map{opacity:0;transform:scale(1.035)}
+body.intro-active #bearBubble,body.intro-active #roamingBear,body.intro-active .dynamic-island{visibility:hidden;pointer-events:none}
+.opening{
+  position:fixed;inset:0;z-index:100000;overflow:hidden;background:#f4efe2;color:var(--ink);
+  opacity:1;visibility:visible;transition:opacity .8s ease,visibility .8s ease;
+}
+body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none}
+.loading-plate,.loading-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.loading-plate{object-fit:cover;z-index:1}
+.loading-layer{z-index:2;overflow:hidden}
+.loading-asset{position:absolute;display:block;object-fit:contain;opacity:0;filter:blur(1.5px);will-change:opacity,filter,clip-path}
+.loading-icon{z-index:6;left:50%;top:23%;width:8.01vw;height:10.07vh;transform:translateX(-50%)}
+.loading-wordmark{z-index:6;left:50%;top:15%;width:38.67vw;height:43.47vh;transform:translateX(-50%)}
+.loading-fragment{z-index:3}.loading-tl{left:-3.91vw;top:-4.65vh;width:25.98vw;height:30.97vh}.loading-tr{right:-3.59vw;top:-4.03vh;width:24.02vw;height:26.74vh}.loading-bl{left:-4.34vw;bottom:-5.21vh;width:28.91vw;height:34.79vh}.loading-br{right:-4.06vw;bottom:-4.65vh;width:26.95vw;height:30.97vh}
+.loading-note-left{z-index:3;left:7%;top:41%;width:150px;height:150px;opacity:0}.loading-note-right{z-index:3;right:8%;top:38%;width:150px;height:150px;opacity:0}
+.loading-boat{z-index:5;left:18%;top:74%;width:210px;height:180px;transform:translate(-50%,-100%);opacity:1;filter:none}
+.loading-sound-hint{position:absolute;z-index:6;left:50%;top:62%;transform:translateX(-50%);font:italic 15px/1 Georgia,serif;letter-spacing:.06em;color:#536b82;opacity:0;transition:opacity .6s ease;white-space:nowrap;pointer-events:none}.loading-sound-hint.is-visible{opacity:.64}.loading-sound-hint.is-fading{opacity:0}
+.loading-traces{z-index:2;left:20%;top:28%;width:60%;height:32%;opacity:0;filter:saturate(.5) blur(1.5px);clip-path:inset(0 100% 0 0)}
+.loading-slogan{position:absolute;z-index:6;left:50%;top:50%;transform:translateX(-50%);width:max-content;white-space:nowrap;overflow:visible;font:300 52.5px/1.45 Georgia,serif;letter-spacing:2px;color:#536b82;opacity:0;clip-path:inset(0 100% 0 0);pointer-events:none}
+.loading-route{position:absolute;z-index:4;inset:0;width:100%;height:100%;pointer-events:none}.loading-route path{fill:none;stroke:#df8a87;stroke-width:.16;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}.loading-route circle{fill:#f4efe2;stroke:#df8a87;stroke-width:.12;vector-effect:non-scaling-stroke}.loading-route text{fill:#536b82;font:1.8px Georgia,serif}.loading-route .loading-percent{fill:#df8a87;font-size:2px}
+.loading-boat{z-index:5;left:18%;top:74%;width:210px;height:180px;transform:translate(-50%,-100%);opacity:1;filter:none}.loading-status{z-index:6;left:50%;top:80%;width:320px;height:70px;transform:translateX(-50%);clip-path:inset(0 100% 0 0)}
+.loading-playing .loading-icon{animation:loading-reveal .75s ease .45s both}.loading-playing .loading-wordmark{animation:loading-reveal 1s ease .75s both}.loading-playing .loading-slogan{animation:loading-wipe 1s ease 1.45s both}.loading-playing .loading-tl,.loading-playing .loading-tr{animation:loading-reveal 1.1s ease 2.15s both}.loading-playing .loading-bl,.loading-playing .loading-br{animation:loading-reveal 1.35s ease 2.8s both}.loading-playing .loading-note-left,.loading-playing .loading-note-right{animation:loading-reveal 1.2s ease 3.55s both}.loading-playing .loading-traces{animation:loading-trace 1.35s ease 3.9s both}.loading-playing .loading-status{animation:loading-wipe .8s ease .3s both}
+@keyframes loading-reveal{from{opacity:0;filter:blur(1.5px)}to{opacity:1;filter:blur(0)}}@keyframes loading-wipe{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}@keyframes loading-trace{from{opacity:0;filter:saturate(.5) blur(1.5px);clip-path:inset(0 100% 0 0)}to{opacity:.16;filter:saturate(.5) blur(0);clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.loading-playing .loading-asset,.loading-playing .loading-slogan{animation:loading-reduced .24s ease both}.loading-playing .loading-traces{animation:loading-trace-reduced .24s ease both}.loading-route,.loading-boat,.loading-status{display:none}@keyframes loading-reduced{to{opacity:1;filter:none;clip-path:inset(0)}}@keyframes loading-trace-reduced{to{opacity:.16;filter:saturate(.5);clip-path:inset(0)}}}
+
+/* ── BRAND ICON · fixed top-left on every page ── */
+.brand-icon{
+  position:fixed;top:22px;left:32px;z-index:30;
+  width:44px;height:44px;
+  filter:drop-shadow(0 4px 10px rgba(13,31,60,.18));
+}
+.brand-icon img{width:100%;height:100%;display:block}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:26px 44px 0;
+}
+.links{display:flex;gap:30px;align-items:center}
+.links a{
+  color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid transparent;transition:.3s;
+}
+.links a:hover{border-color:var(--coral)}
+.hero-card{width:min(500px,88vw);padding:34px 38px 30px;background:rgba(255,252,244,.88);border:1px solid rgba(44,62,80,.12);border-radius:4px;box-shadow:0 24px 60px rgba(44,62,80,.16);backdrop-filter:blur(8px);text-align:left;animation:heroCardIn 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes heroCardIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.hero-card .eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.hero-card h1{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-size:clamp(42px,6vw,72px);font-weight:500;font-style:italic;line-height:1.02;margin-bottom:16px}
+.hero-card p{font-family:'Lora',serif;font-size:14px;line-height:1.75;color:var(--ink-soft);margin-bottom:22px}
+.hero-card .hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;background:var(--ink);color:var(--letter);text-decoration:none;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:transform .3s,background .3s}
+.hero-card .hero-cta:hover{transform:translateY(-2px);background:#3d5365}
+.hero-card .hero-note{display:block;margin-top:14px;font-size:10px;letter-spacing:.08em;color:var(--ink-soft)}
+.lang{display:flex;gap:8px;font-size:12px;color:var(--ink-soft)}
+.lang button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;padding:2px}
+.lang button.on{color:var(--ink);border-bottom:1px solid var(--coral)}
+
+/* ── LEGEND ── */
+.legend{position:fixed;right:44px;bottom:40px;z-index:20;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:right;line-height:2}
+.legend b{color:var(--coral);font-weight:500}
+
+/* ── PANEL ── */
+.panel{
+  position:fixed;inset:0;z-index:40;display:grid;place-items:center;
+  background:rgba(240,231,211,.55);backdrop-filter:blur(9px);
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+.panel.open{opacity:1;pointer-events:auto}
+.card{
+  width:min(440px,88vw);background:rgba(255,252,244,.9);border-radius:4px;
+  padding:38px 38px 30px;text-align:center;
+  box-shadow:0 30px 90px rgba(44,62,80,.28);
+  border:1px solid rgba(44,62,80,.08);
+  transform:translateY(16px);transition:transform .45s ease;
+}
+.panel.open .card{transform:none}
+.card .photo{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px;margin-bottom:22px;box-shadow:0 10px 30px rgba(44,62,80,.18)}
+.card h2{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-size:30px;font-style:italic}
+.card .mods{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:10px 0 16px}
+.card p{font-size:14px;line-height:1.8;font-family:'Lora',serif}
+.card .actions{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.card a{
+  display:inline-block;padding:11px 24px;border-radius:999px;text-decoration:none;font-size:12.5px;letter-spacing:.08em;
+}
+.card a.solid{background:var(--ink);color:var(--letter)}
+.card a.ghost{color:var(--ink);border:1px solid rgba(44,62,80,.3)}
+.card .close{margin-top:16px;background:none;border:none;color:var(--ink-soft);font-size:11.5px;cursor:pointer;font-family:inherit;letter-spacing:.06em}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── ROAMING BEAR (legacy mascot, migrated) ── */
+#roamingBear{
+  display:none;position:fixed;top:0;left:0;width:122px;z-index:99999;
+  cursor:pointer;pointer-events:all;
+  filter:drop-shadow(0 8px 20px rgba(44,62,80,.18));
+  will-change:transform;transform:translate(0,0);
+}
+#roamingBear.playing{filter:drop-shadow(0 0 16px rgba(255,140,160,.55)) drop-shadow(0 6px 14px rgba(44,62,80,.16))}
+@media (max-width:768px){#roamingBear{width:78px}}
+@media (max-width:680px){
+  .sea{background-image:url("assets/sea-watercolor-mobile.png.webp");background-position:center center}
+  nav{padding:14px 16px 0 72px}
+  .links{gap:8px 14px;flex-wrap:wrap;justify-content:flex-end}
+  .links a{min-height:32px;display:inline-flex;align-items:center}
+  .loading-slogan{font-size:clamp(17px,4.5vw,30px);letter-spacing:.04em;max-width:94vw}
+  .loading-sound-hint{font-size:13px}
+  .links a{font-size:11px}
+  .hero-card{width:min(440px,88vw);padding:24px 22px 22px;text-align:center}
+  .hero-card h1{font-size:clamp(38px,12vw,62px)}
+  .hero-card p{font-size:12px;line-height:1.6}
+  .brand-icon{top:16px;left:20px;width:36px;height:36px}
+  .opening h1{font-size:clamp(38px,12vw,62px)}
+  .legend{right:22px;bottom:28px;font-size:9px}
+  /* vertical drift of node layout on small screens */
+  .n-china{left:16%!important;top:86%!important}
+  .n-yakumo{left:32%!important;top:35%!important}
+  .n-my{left:72%!important;top:66%!important}
+  .n-eu{left:82%!important;top:26%!important}
+  .n-jp{left:88%!important;top:82%!important}
+  .distant-island{left:2%;top:30%;width:66vw;opacity:.82}
+  .slot-yakumo{width:clamp(186px,58vw,250px);height:clamp(140px,43.5vw,188px)}
+  .slot-china{width:clamp(126px,34vw,168px);height:clamp(126px,34vw,168px)}
+  .future-mist{left:62%;right:-8%;top:8%;bottom:4%;filter:blur(7px)}
+}
+/* Launch P0: constrain entrance text to the visible viewport. */
+.loading-slogan{width:92vw;max-width:1100px;white-space:normal;text-align:center;font-size:clamp(17px,3.6vw,52.5px);letter-spacing:.038em;line-height:1.35}
+.loading-sound-hint{top:64%;max-width:94vw;text-align:center;white-space:normal}
+@media(max-height:460px){.loading-slogan{top:47%;font-size:clamp(17px,3.2vw,28px)}.loading-sound-hint{top:67%}}
 </style>
+<link rel="stylesheet" href="assets/world-map-v1/map.css">
+<link rel="stylesheet" href="assets/world-map-correction/islands.css">
+<link rel="stylesheet" href="assets/world-map-pass-a/static-world.css">
+<link rel="stylesheet" href="assets/launch-20260915/dressing.css">
+<link rel="stylesheet" href="assets/launch-20260915/shell.css">
+<link rel="stylesheet" href="assets/v1-consolidation/shell.css">
+<link rel="stylesheet" href="assets/universe/universe.css">
 </head>
-<body>
-<main>
-  <p class="kicker">start here</p>
-  <h1>Kita-Sora <span>北空</span></h1>
-  <p class="tagline">Exploring outward, settling inward.</p>
+<body data-page="index">
+<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="index.html#map">Kita-Sora</a><div class="universe-links" id="universe-links"><a href="index.html#map" aria-current="page">Map</a><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer">Letters</a><a href="shop.html">Shop</a><a href="shop/crochet.html">Harbor Loop</a><a href="work.html">Work with me</a><a href="about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
 
-  <figure>
-    <img class="hero" src="assets/yakumo.jpg" alt="A hand-painted little house with a red roof in Yakumo, Hokkaido, surrounded by green hills" width="1200" height="1200">
-    <img class="boat" src="assets/boat.png" alt="" aria-hidden="true">
-  </figure>
-
-  <div class="letter">
-    <p>hi, i'm Lynn.</p>
-    <p>Kita-Sora means "the northern sky." it started with half a month in a small Hokkaido town called Yakumo, where i learned what it feels like to come home to myself.</p>
-    <p>these days i write letters about leaving the default path, moving through places, and slowly building a life that's actually mine, with the numbers and the feelings.</p>
-    <p>a bigger, hand-drawn version of this little world is on its way. until then, the letters are where it all lives.</p>
-    <p class="sign">— Lynn</p>
+<a class="map-brand" href="index.html#map" aria-label="Kita-Sora — World Map">Kita-Sora</a>
+<main class="map" data-world-pass="a" data-world-shell="v2" id="map" aria-label="Kita-Sora world map — explore four places">
+  <div class="sea" aria-hidden="true"></div>
+  <div class="water-depth" aria-hidden="true"><div class="water-depth__wash"></div></div>
+  <div class="water-depth water-depth--far" aria-hidden="true"><div class="water-depth__wash"></div></div>
+  <div class="world-stage">
+    <svg class="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sailing-fade" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fffbed" stop-opacity="0"/><stop offset=".35" stop-color="#fffbed" stop-opacity=".5"/><stop offset=".6" stop-color="#fffbed" stop-opacity=".8"/><stop offset="1" stop-color="#fffbed" stop-opacity="0"/></linearGradient></defs><path class="sailing-trace" d="M 27 73 C 19 66,17 57,21 50 S 34 45,37 33"/><path class="sailing-trace sailing-trace--long" d="M 40 28 C 46 32,38 43,45 48 S 58 54,60 62 S 64 74,69 76"/></svg>
+    <a class="place place--yakumo is-integrated-yakumo" data-place="yakumo" href="nodes/yakumo.html" aria-label="Yakumo — enter the world">
+      <span class="world-float"><span class="place-art"><img class="winter-land" src="assets/launch-20260915/yakumo-clean-alpha.png.webp" alt="A snowy rocky winter landscape, evergreens and a small dock" decoding="async"><span class="house-contact"></span>
+<svg class="winter-house" viewBox="350 575 570 405" role="img" aria-label="The original red-roof Yakumo clay house"><defs><clipPath id="winter-house-cut"><path d="M350 580H850L915 790L890 934L830 940L770 939L710 946L630 943L562 950L488 944L420 949L375 941Z"/></clipPath></defs><image href="assets/world-map-v1/yakumo.webp" x="30" y="350" width="1224" height="778" clip-path="url(#winter-house-cut)"/></svg>
+<svg class="winter-tree" viewBox="842 350 375 610" role="img" aria-label="The original Yakumo clay tree"><defs><clipPath id="winter-tree-cut"><path d="M842 350H1217V875L1060 899L1037 958H996V897L914 876L852 804Z"/></clipPath></defs><image href="assets/world-map-v1/yakumo.webp" x="30" y="350" width="1224" height="778" clip-path="url(#winter-tree-cut)"/></svg>
+</span></span>
+      <span class="place-label"><span class="place-name">Yakumo</span><span class="place-note" data-en="Memory lives here" data-jp="記憶の場所" data-cn="记忆停靠的地方">Memory lives here</span><span class="place-enter">explore this place ↗</span></span>
+    </a>
+    <a class="place place--harbor" data-place="harbor" href="shop/crochet.html" aria-label="Harbor Loop — enter the handmade world">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="island-land" src="assets/launch-20260915/harbor-clean-alpha.png.webp" alt="A miniature making garden with a worktable, supplies, workshop shelves and dock" decoding="async"><span class="ground-contact"></span>
+        <img class="harbor-daisy" src="assets/world-map-v1/crochet-daisy.webp" alt="A real handmade crochet daisy" decoding="async">
+        <img class="harbor-mugi" src="assets/world-map-v1/mugi.webp" alt="Mugi holding his salmon" decoding="async">
+        <svg class="dressing-character dressing-piku" viewBox="145 210 810 980" role="img" aria-label="Piku, the existing orange-hooded crochet pig"><image href="assets/crochet/little-pig-cutout.png.webp" width="1086" height="1448"/></svg><svg class="dressing-character dressing-raku" viewBox="210 220 735 940" role="img" aria-label="Raku, the existing orange and white crochet tiger"><image href="assets/crochet/little-tiger-cutout.png.webp" width="1122" height="1402"/></svg><img class="harbor-yarn" src="assets/world-map-v1/yarn.webp" alt="" decoding="async">
+        <svg class="harbor-thread" viewBox="0 0 400 242" aria-hidden="true"><path d="M 89 203 C 75 225,118 238,138 227 S 179 216,178 231 S 216 237,230 229"/></svg>
+      </span></span>
+      <span class="place-label"><span class="place-name">Harbor Loop</span><span class="place-note" data-en="Made by hand" data-jp="手から生まれる" data-cn="手作的生活">Made by hand</span><span class="place-enter">explore this place ↗</span></span>
+    </a>
+    <a class="place place--china" data-place="china" href="nodes/china.html" aria-label="China — enter the first shore">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="china-main" src="assets/world-map-v1/china.webp" alt="The existing suitcase and departure island" decoding="async"></span></span>
+      <span class="place-label"><span class="place-name">China</span><span class="place-note" data-en="The first shore" data-jp="最初の岸" data-cn="第一片岸">The first shore</span><span class="place-enter">explore this place ↗</span></span>
+    </a>
+    <a class="place place--shop" data-place="shop" href="shop.html" aria-label="Shop — explore stories you can carry">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="island-land" src="assets/launch-20260915/shop-clean-alpha.png.webp" alt="A miniature wooden souvenir market, paper display racks, handmade shelves, packing counter and dock" decoding="async"><img class="shop-product paper-rack-a" src="assets/launch-20260915/postcard-05-almost-there.png.webp" alt="To Ithaca — Almost There" style="left:22%;top:21%;width:9%;height:8%" decoding="async">
+<img class="shop-product paper-rack-b" src="assets/launch-20260915/postcard-06-ithaca.png.webp" alt="To Ithaca — Ithaca" style="left:23%;top:29%;width:10%;height:8%" decoding="async">
+<img class="shop-product paper-rack-c" src="assets/launch-20260915/postcard-02-no-way-back.png.webp" alt="To Ithaca — No Way Back" style="left:24%;top:37%;width:10%;height:8%" decoding="async">
+<img class="shop-product paper-counter-a" src="assets/launch-20260915/postcard-01-leaving-things-behind.png.webp" alt="To Ithaca — Leaving Things Behind" style="left:45%;top:28%;width:7%;height:7%" decoding="async">
+<img class="shop-product paper-counter-b" src="assets/launch-20260915/postcard-03-breathing-again.png.webp" alt="To Ithaca — Breathing Again" style="left:46%;top:33%;width:7%;height:7%" decoding="async">
+<img class="shop-product paper-bookmark" src="assets/launch-20260915/bookmark-upright.png.webp" alt="Under the North Sky bookmark" style="left:54%;top:29%;width:3%;height:13%" decoding="async">
+<img class="shop-product paper-envelope" src="assets/world-map-v1/envelope.webp" alt="Kita-Sora packaging" style="left:56%;top:35%;width:9%;height:9%" decoding="async">
+<img class="shop-product paper-sticker-bear" src="assets/launch-20260915/sticker-bear.png.webp" alt="The Bear sticker" style="left:51%;top:37%;width:4%;height:6%" decoding="async">
+<img class="shop-product paper-sticker-home" src="assets/launch-20260915/sticker-home.png.webp" alt="Home Blooming sticker" style="left:63%;top:35%;width:3%;height:6%" decoding="async">
+<img class="shop-product handmade-mugi" src="assets/launch-20260915/mugi.png.webp" alt="Mugi holding his salmon" style="left:65%;top:16.5%;width:7%;height:13%" decoding="async"><svg class="shop-product" style="left:59%;top:20.5%;width:5%;height:9%" viewBox="145 210 810 980" role="img" aria-label="Piku"><image href="assets/crochet/little-pig-cutout.png.webp" width="1086" height="1448"/></svg>
+<svg class="shop-product" style="left:75%;top:20%;width:5%;height:10%" viewBox="210 220 735 940" role="img" aria-label="Raku"><image href="assets/crochet/little-tiger-cutout.png.webp" width="1122" height="1402"/></svg><svg class="shop-product" style="left:62%;top:32%;width:6%;height:6%" viewBox="77 225 185 207" role="img" aria-label="Handmade crochet burger"><defs><clipPath id="shop-real-burger"><path d="M167 228L190 234L212 257L230 280L237 312L252 327L258 357L253 383L239 404L199 423L150 421L105 411L84 393L76 371L83 337L80 320L98 314L98 284L125 254Z"/></clipPath></defs><image href="assets/launch-20260915/burger-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-burger)"/></svg><svg class="shop-product" style="left:59%;top:30%;width:4%;height:8%" viewBox="165 170 145 213" role="img" aria-label="Handmade crochet coffee"><defs><clipPath id="shop-real-coffee"><path d="M217 175L249 170L280 187L299 208L307 224L297 245L278 264L282 291L271 342L279 358L263 378L232 379L204 366L203 342L211 290L188 277L169 267L171 244L181 213L198 195Z"/></clipPath></defs><image href="assets/launch-20260915/coffee-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-coffee)"/></svg><svg class="shop-product" style="left:71%;top:44%;width:6%;height:7%" viewBox="115 158 133 219" role="img" aria-label="Handmade crochet bananas"><defs><clipPath id="shop-real-bananas"><path d="M219 161L235 158L239 172L225 190L218 219L237 221L243 242L237 271L224 300L204 322L183 341L155 360L137 371L122 373L119 359L128 347L143 334L152 305L168 289L147 298L138 285L145 251L162 220L182 190L208 171Z"/></clipPath></defs><image href="assets/launch-20260915/bananas-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-bananas)"/></svg><img class="shop-product" style="left:67%;top:43%;width:5%;height:6%" src="assets/world-map-v1/yarn.webp" alt="Existing yarn and making trace" decoding="async">
+<img class="shop-product" style="left:79%;top:30%;width:4%;height:7%;transform:rotate(-8deg)" src="assets/world-map-v1/crochet-daisy.webp" alt="Real crochet daisy" decoding="async">
+</span></span>
+      <span class="place-label"><span class="place-name">Shop</span><span class="place-note" data-en="Stories you can carry" data-jp="持ち帰る物語" data-cn="可以带走的故事">Stories you can carry</span><span class="place-enter">explore this place ↗</span></span>
+    </a>
+    <div class="map-boat" aria-hidden="true"><svg viewBox="600 100 360 490"><defs><clipPath id="shell-boat-cut"><path d="M611 369L649 347L740 174L751 120L769 110L780 144L887 182L887 197L789 215L926 440L949 451L952 469L919 485L881 555L862 581L748 546L677 491L628 434L611 396Z"/></clipPath></defs><image href="assets/world-map-pass-a/boat.webp" width="1200" height="800" clip-path="url(#shell-boat-cut)"/></svg></div>
   </div>
+  <p class="map-caption"><span>A map for carrying</span><span>your own universe.</span></p>
+  <p class="map-invitation" data-en="Choose a place. Follow a thread." data-jp="場所を選んで、糸をたどる。" data-cn="选一处地方，循着线索出发。">Choose a place. Follow a thread.</p>
 
-  <section class="gallery" aria-label="Photos from Yakumo, Hokkaido">
-    <p class="kicker">from yakumo, hokkaido</p>
-    <div class="grid">
-      <img src="assets/yakumo/house-and-mountain.jpg" alt="A small snow-covered house below a forested mountain in Yakumo" loading="lazy" width="1200" height="900">
-      <img src="assets/yakumo/bear-in-snow.jpg" alt="A small brown teddy bear resting in fresh snow" loading="lazy" width="1200" height="900">
-      <img src="assets/yakumo/red-roof.jpg" alt="A red-roofed house in falling snow" loading="lazy" width="1200" height="900">
-      <img src="assets/yakumo/blue-hour.jpg" alt="A quiet building lit by a single lamp at blue hour" loading="lazy" width="1200" height="900">
-      <img src="assets/yakumo/station-clock.jpg" alt="An outdoor clock in a snowy park under a pale sky" loading="lazy" width="1200" height="900">
-      <img src="assets/yakumo/bear-and-vending-machine.jpg" alt="A teddy bear sitting on snow beside a red vending machine" loading="lazy" width="1200" height="900">
-    </div>
-    <p class="caption">winter in Yakumo, where Kita-Sora began. the same photos became our first postcard series.</p>
-  </section>
+  <span class="companion-note" role="status"></span>
 
-  <a class="btn primary" href="https://lynnfromkitasora.substack.com/subscribe">Read the letters · subscribe free</a>
-  <a class="btn secondary" href="https://ko-fi.com/lynnfromkitasora/shop">Little shop on Ko-fi</a>
-
-  <div class="links">
-    <a href="https://lynnfromkitasora.substack.com/about">About</a>
-    <a href="https://substack.com/@lynnfromkitasora">Notes</a>
-    <a href="https://lynnfromkitasora.substack.com/archive">Archive</a>
-    <a href="#work">Work with me</a>
-  </div>
-
-  <section class="work" id="work">
-    <p class="kicker">work with me</p>
-    <h2>Words that sound like you, in two languages.</h2>
-    <p class="intro">I'm a Chinese–English writer with an MA in Translation &amp; Interpreting. I grew Kita-Sora from 0 to 500 subscribers in six weeks; today it reaches ~900 readers in 83 countries.</p>
-    <div class="cards">
-      <div class="card"><h3>Substack growth</h3><p>About page, Notes strategy, welcome emails and a simple weekly review, built from what worked for my own newsletter.</p></div>
-      <div class="card"><h3>Brand &amp; creator copy</h3><p>Warm, human copy for slow-living brands and creators: bios, about pages, product descriptions, newsletters.</p></div>
-      <div class="card"><h3>English ⇄ Chinese localization</h3><p>AI-assisted, human-edited translation that reads naturally, with the tone adapted for the new audience, not just the words.</p></div>
-      <div class="card"><h3>China trip planning</h3><p>A day-by-day itinerary from a local who loves slow travel: food, transport, payments and the quiet places worth the detour.</p></div>
-    </div>
-    <a class="btn primary" href="https://www.fiverr.com/lynnxv">Work with me on Fiverr</a>
-  </section>
-
-  <footer>© 2026 Kita-Sora · made slowly, by hand</footer>
 </main>
-</body>
+
+
+
+
+
+
+
+<script src="assets/world-map-pass-a/static-world.js"></script>
+<script src="assets/launch-20260915/route.js?v=boat-docks-20260915"></script>
+<script src="assets/launch-20260915/shell.js?v=boat-docks-20260915"></script>
+<script src="assets/v1-consolidation/shell.js" defer></script>
+<footer class="universe-next" aria-label="Continue the voyage"><p>Continue the voyage</p><div><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer">Read the letters</a><a href="shop.html">Visit the shop</a></div></footer><script src="assets/universe/universe.js" defer></script></body>
 </html>

@@ -1,0 +1,40 @@
+:root{--universe-ink:#22364a;--universe-blue:#6f9cc0;--universe-paper:#fbf8f2;--coral:#6f9cc0!important}
+html{scroll-padding-top:90px}body{overflow-x:clip}
+.universe-nav{position:fixed!important;inset:0 0 auto!important;z-index:300!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:22px;padding:10px clamp(18px,3vw,40px)!important;min-height:66px;background:rgba(251,248,242,.9);backdrop-filter:blur(14px);border-bottom:1px solid #22364a18;color:var(--universe-ink)!important;font:11px/1.4 system-ui,sans-serif!important;letter-spacing:.1em;text-transform:uppercase;text-shadow:none!important}
+.universe-nav a{position:static!important;color:var(--universe-ink)!important;text-decoration:none!important;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:0!important;letter-spacing:inherit;font:inherit}
+.universe-nav .universe-brand{font:500 21px/1 Georgia,serif;letter-spacing:.02em;text-transform:none;margin-right:auto}
+.universe-links{display:flex;gap:clamp(14px,2vw,28px);align-items:center}
+.universe-nav a[aria-current=page]{text-decoration:underline!important;text-underline-offset:7px;text-decoration-color:var(--universe-blue)!important}
+.universe-nav .universe-subscribe{border-radius:99px;background:var(--universe-ink);color:white!important;padding:0 19px;font-size:10px}
+.universe-menu{display:none;color:var(--universe-ink);background:transparent;border:1px solid #22364a55;border-radius:99px;padding:0 14px;min-height:44px;font:inherit;letter-spacing:inherit}
+.map-brand,.brand-icon,[data-page=index] nav[aria-label="Utility navigation"],[data-page=shop] header.site-header,[data-page=about] body>nav:not(.universe-nav),[data-page=crochet] .back-link,[data-page=ithaca] .v1-back,[data-page=yakumo] nav.nav,[data-page=china] a.back{display:none!important}
+.universe-next{position:relative;z-index:10;margin:40px auto 0;padding:34px 24px 45px;text-align:center;color:var(--universe-ink);font:12px/1.6 system-ui,sans-serif;letter-spacing:.03em}
+.universe-next p{font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 14px;color:#4f687d}
+.universe-next div{display:flex;justify-content:center;gap:12px 24px;flex-wrap:wrap}.universe-next a{color:inherit;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid #6f9cc0}
+[data-page=index] .universe-next,[data-page=yakumo] .universe-next,[data-page=china] .universe-next,[data-page=ithaca] .universe-next{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 28px);margin:0;padding:5px 16px;background:rgba(251,248,242,.94);backdrop-filter:blur(8px);border-radius:28px;box-shadow:0 3px 16px #22364a18}
+[data-page=index] .universe-next p,[data-page=yakumo] .universe-next p,[data-page=china] .universe-next p,[data-page=ithaca] .universe-next p{display:none}
+[data-page=yakumo] .signature,[data-page=yakumo] .season{bottom:90px}
+[data-page=china] .wall-cue{bottom:90px}
+[data-page=shop] .shop-room{padding-top:95px}.origin h2{font:inherit;margin:0;line-height:1.15}
+[data-page=crochet] .harbor-letter-sheet{display:none!important}
+[data-page=crochet] .harbor-letter-story{scroll-margin-top:100px}
+[data-page=crochet] .harbor-entrance{min-height:90svh;padding-top:90px}
+[data-page=crochet] .ready-link{display:inline-flex;align-items:center;min-height:44px;color:#22364a;font:12px/1.5 system-ui,sans-serif;text-underline-offset:5px;margin-top:10px}
+[data-page=crochet] .harbor-photo-stack-layer{overflow:hidden}
+[data-page=crochet] .envelope-open-hit{touch-action:manipulation}
+[data-page=ithaca] .crate-header{top:66px;padding-top:23px;align-items:center}
+[data-page=ithaca] .stage{top:100px;bottom:140px;touch-action:pan-y;overflow:hidden}
+[data-page=ithaca] .crate{top:50%}
+[data-page=ithaca] .caption{bottom:150px;pointer-events:none;padding:0 22px}
+[data-page=ithaca] .dots{bottom:93px;gap:12px}
+[data-page=ithaca] .dots button{min-width:32px;min-height:44px;text-align:center;box-sizing:border-box}
+[data-page=ithaca] .hint{bottom:110px;font-size:9px}
+[data-page=ithaca] .close{top:auto;bottom:160px;right:50%;transform:translateX(50%)}
+[data-page=ithaca] .close button{min-height:44px;box-sizing:border-box;white-space:nowrap}
+[data-page=ithaca] .back .txt{padding:5% 7%;background:rgba(251,248,242,.35)}
+[data-page=ithaca] .back a{min-height:34px;display:inline-flex;align-items:center}
+[data-page=ithaca].pulled .dots{visibility:hidden}
+@media(max-width:1000px){.universe-nav{gap:10px}.universe-menu{display:block}.universe-links{display:none;position:absolute;left:0;right:0;top:100%;padding:14px 22px 22px;background:#fbf8f2;box-shadow:0 14px 20px #22364a18;flex-direction:column;align-items:stretch;gap:0}.is-menu-open .universe-links{display:flex}.universe-nav .universe-subscribe{margin-left:auto}.universe-nav .universe-brand{font-size:20px}.universe-next{font-size:11px}.universe-next div{gap:0 16px}}
+@media(max-width:700px){[data-page=ithaca] .crate-header{top:66px;gap:8px;padding:20px 18px}.crate-header h1{font-size:38px}.crate-header .buy{padding:12px 14px;font-size:10px;letter-spacing:.02em}.crate-header .k{font-size:8px;letter-spacing:.09em}[data-page=ithaca] .stage{top:145px;bottom:190px}[data-page=ithaca] .caption{bottom:160px}[data-page=ithaca] .caption p{font-size:12px;line-height:1.5;max-width:300px;margin:auto}[data-page=ithaca] .caption h3{font-size:25px}[data-page=ithaca] .close{bottom:150px}[data-page=ithaca] .back h2{font-size:22px}[data-page=ithaca] .back p{font-size:11px;line-height:1.4;margin-bottom:6px}[data-page=ithaca] .back .n{font-size:22px}[data-page=ithaca] .back a{font-size:9px;letter-spacing:.06em}[data-page=yakumo] .universe-next div,[data-page=china] .universe-next div{gap:0 12px}[data-page=yakumo] .universe-next,[data-page=china] .universe-next{font-size:10px;padding:5px 12px}[data-page=crochet] .harbor-letter-stage{min-height:430px}[data-page=shop] .shop-room{padding-top:90px}}
+@media(max-height:580px){[data-page=ithaca] .crate-header{padding-top:10px}[data-page=ithaca] .crate-header h1{font-size:28px}[data-page=ithaca] .stage{top:100px;bottom:85px}[data-page=ithaca] .caption{display:none}[data-page=ithaca] .dots{bottom:65px}[data-page=ithaca] .universe-next{bottom:4px}[data-page=ithaca] .close{bottom:65px}[data-page=ithaca] .hint{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
