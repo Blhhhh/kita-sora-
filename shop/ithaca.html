@@ -69,7 +69,7 @@ const cards=[
  ['05','Almost there','The fragile space between hope, hesitation, and arrival.','postcard-05-almost-there'],
  ['06','Ithaca','Not an ending, but the place we realize we have been carrying within us all along.','postcard-06-ithaca']];
 const crate=document.getElementById('crate'),dots=document.getElementById('dots');
-let active=0,pulled=false;
+let active=innerWidth>700?2:0,pulled=false;
 const els=cards.map((c,i)=>{
  const el=document.createElement('div');el.className='card';el.tabIndex=i===0?0:-1;el.setAttribute('role','button');el.setAttribute('aria-label',c[0]+' '+c[1]);
  el.innerHTML=`<div class="face"><img src="../assets/ithaca-crate/${c[3]}.jpg.webp" alt="Postcard ${c[0]}: ${c[1]}" decoding="async" loading="lazy"></div><div class="face back"><img src="../assets/ithaca-crate/postcard-back.jpg.webp" alt="" decoding="async" loading="lazy"><div class="txt"><div class="n">${c[0]}</div><h2>${c[1]}</h2><p>${c[2]}</p><a class="sans" href="https://ko-fi.com/s/bed45755ef">carry this one home →</a></div></div>`;
