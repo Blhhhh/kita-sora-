@@ -130,9 +130,9 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 [data-page=crochet] .harbor-entrance{background:#c8e9ed;min-height:100svh}
 [data-page=crochet] .harbor-entrance::before{background:url('harbor-daylight-1119.webp') center center/cover no-repeat;filter:none}
 [data-page=crochet] .harbor-entrance::after{background:linear-gradient(180deg,#d9f1f533,transparent 45%,#c6e4e91a);opacity:1}
-[data-page=crochet] .harbor-heading{color:#22364a;text-shadow:0 1px 10px #fff9;padding:12px 16px;border-radius:5px;background:linear-gradient(100deg,#fbf8f2df,#fbf8f244)}
+[data-page=crochet] .harbor-heading{color:#22364a;text-shadow:0 1px 2px #fbf8f2,0 0 8px #fbf8f2b3}
 [data-page=crochet] .envelope-open-label{color:#22364a;background:#fbf8f2ed;padding:8px 18px;border-radius:99px;text-shadow:none;bottom:-25px}
-.mugi-peek{position:absolute;width:30%;height:auto;left:36%;top:-24%;z-index:0;transition:opacity .25s ease;pointer-events:none}
+.mugi-peek{position:absolute;width:26%;height:auto;left:39%;bottom:100%;z-index:5;transition:opacity .25s ease;pointer-events:none}
 .envelope-scene.is-open .mugi-peek{opacity:0}
 @media(min-width:701px){[data-page=shop] .postcards .object-label{top:66%}}
-@media(max-width:700px){[data-page=crochet] .harbor-entrance::before{background-image:url('harbor-daylight-mobile-1119.webp');background-position:center}[data-page=crochet] .harbor-heading{max-width:calc(100% - 36px);left:18px;padding:10px 14px}.mugi-peek{top:-24%}}
+@media(max-width:700px){[data-page=crochet] .harbor-entrance::before{background-image:url('harbor-daylight-mobile-1119.webp');background-position:center}[data-page=crochet] .harbor-heading{max-width:calc(100% - 36px);left:18px}}
