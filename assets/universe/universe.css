@@ -136,3 +136,42 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 .envelope-scene.is-open .mugi-peek{opacity:0}
 @media(min-width:701px){[data-page=shop] .postcards .object-label{top:66%}}
 @media(max-width:700px){[data-page=crochet] .harbor-entrance::before{background-image:url('harbor-daylight-mobile-1119.webp');background-position:center}[data-page=crochet] .harbor-heading{max-width:calc(100% - 36px);left:18px}}
+
+/* Lynn approved navigation revision 02 · 2026-11-22. */
+.universe-nav{background:transparent;backdrop-filter:none;border-bottom:0;min-height:64px;padding:12px clamp(20px,3vw,40px)!important;text-transform:none;letter-spacing:.025em;box-shadow:none}
+.universe-nav .universe-brand{font:500 24px/1 Georgia,serif}
+.universe-links{gap:26px}
+.universe-nav .universe-subscribe{background:none;color:#22364a!important;border-radius:0;padding:0 0 0 15px;font-size:12px;text-decoration:underline!important;text-underline-offset:5px}
+.universe-menu{border:0;border-radius:0;padding:0 0 0 15px;font-size:12px}
+.universe-next .voyage-strip,.universe-next>p{display:none!important}
+.universe-next{background:transparent!important;backdrop-filter:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0 20px!important;width:auto!important;max-width:calc(100% - 24px)!important}
+.universe-next>div:last-child{display:flex!important;gap:24px;font-size:12px;letter-spacing:.02em}
+.universe-next>div:last-child a{border:0;text-decoration:underline;text-decoration-color:#6f9cc0;text-underline-offset:5px}
+[data-page=index] .universe-next{display:none}
+[data-page=ithaca] .universe-next{bottom:12px}
+[data-page=ithaca] .caption{bottom:145px}
+[data-page=ithaca] .dots{bottom:85px}
+[data-page=ithaca] .hint{bottom:98px}
+[data-page=ithaca] .close{bottom:90px}
+[data-page=ithaca] .stage{bottom:175px}
+@media(max-width:1000px){.universe-nav{gap:8px}.universe-links{background:rgba(251,248,242,.97);box-shadow:none;border-bottom:1px solid #22364a18;gap:0}.universe-nav .universe-brand{font-size:22px}.universe-nav .universe-subscribe{margin-left:auto;padding-left:6px;font-size:11px}.universe-menu{padding-left:12px}}
+@media(max-width:700px){[data-page=ithaca] .caption{bottom:145px}[data-page=ithaca] .dots{bottom:80px}[data-page=ithaca] .stage{bottom:195px;top:160px}[data-page=ithaca] .crate{top:39%}[data-page=ithaca] .close{bottom:100px}.universe-next>div:last-child{font-size:11px;gap:22px}}
+[data-page=ithaca] .universe-next{width:max-content!important}
+.universe-next>div:last-child{flex-wrap:nowrap!important;white-space:nowrap}
+/* Clearer headline and product navigation. */
+[data-page=index] .map-heading h1{font-size:clamp(48px,4.7vw,68px);font-weight:500;line-height:1.04;color:#142e43;letter-spacing:-.035em;text-shadow:0 1px 2px #f5faff,0 0 24px #f5faffb3}
+[data-page=index] .map-heading p{font-size:10px;letter-spacing:.16em;color:#22364a}
+[data-page=ithaca] .dots{gap:12px}
+[data-page=ithaca] .dots button{font-size:14px;font-weight:600;color:#526b7d;letter-spacing:.05em;min-width:36px;border-bottom-width:2px}
+[data-page=ithaca] .dots button.on{color:#142e43;border-bottom-color:#142e43}
+[data-page=ithaca] .universe-next>div:last-child{align-items:center;gap:26px;font-size:14px;font-weight:600}
+[data-page=ithaca] .universe-next>div:last-child a{color:#22364a;min-height:44px;text-decoration-color:#22364a;text-decoration-thickness:1px;text-underline-offset:6px}
+[data-page=ithaca] .universe-next>div:last-child a:last-child{padding:0 20px;min-height:40px;border-radius:99px;background:#22364a;color:#fff;text-decoration:none;letter-spacing:.015em;font-size:13px;font-weight:500}
+@media(max-width:700px){[data-page=index] .map-heading h1{font-size:46px;max-width:340px}[data-page=index] .map-heading p{font-size:8px}[data-page=ithaca] .dots{gap:10px}[data-page=ithaca] .universe-next{bottom:14px}}
+
+/* Keep longer page-specific onward links within small viewports. */
+[data-page=yakumo] .universe-next,[data-page=china] .universe-next{width:max-content!important}
+@media(max-width:700px){[data-page=yakumo] .universe-next>div:last-child,[data-page=china] .universe-next>div:last-child{white-space:normal;flex-wrap:wrap!important;gap:0 18px;justify-content:center}}
+/* Preserve readable text links on the photographic worlds without restoring a bar. */
+[data-page=china] .universe-nav,[data-page=yakumo] .universe-nav,[data-page=shop] .universe-nav{ text-shadow:0 1px 2px #fbf8f2,0 0 10px #fbf8f2b3!important }
+[data-page=china] .universe-next>div:last-child,[data-page=yakumo] .universe-next>div:last-child{font-size:13px;font-weight:600;text-shadow:0 1px 2px #fbf8f2,0 0 8px #fbf8f2,0 0 16px #fbf8f2}
