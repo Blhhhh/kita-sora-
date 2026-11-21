@@ -8,14 +8,18 @@
   const close=shell.querySelector('button');
   const update=()=>{
    const open=shell.getAttribute('aria-hidden')==='false';
+   // Details must be interactive before focus can leave the page behind them.
+   shell.inert=!open;
    if(open&&!shell.dataset.v1Open){
     shell.dataset.v1Open='true';trigger=page==='china'?document.activeElement:null;
     priorOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
-    close?.focus();
+    // Allow an opening visibility transition to reach its visible state first.
+    requestAnimationFrame(()=>{
+     if(shell.getAttribute('aria-hidden')==='false')close?.focus();
+    });
    }else if(!open&&shell.dataset.v1Open){
     delete shell.dataset.v1Open;document.body.style.overflow=priorOverflow;trigger?.focus();
    }
-   shell.inert=!open;
   };
   new MutationObserver(update).observe(shell,{attributes:true,attributeFilter:['aria-hidden']});update();
   shell.addEventListener('keydown',e=>{
