@@ -7,7 +7,7 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 .universe-nav a[aria-current]{text-decoration:underline!important;text-underline-offset:7px;text-decoration-color:var(--universe-blue)!important}
 .universe-nav .universe-subscribe{border-radius:99px;background:var(--universe-ink);color:white!important;padding:0 19px;font-size:10px}
 .universe-menu{display:none;color:var(--universe-ink);background:transparent;border:1px solid #22364a55;border-radius:99px;padding:0 14px;min-height:44px;font:inherit;letter-spacing:inherit}
-.map-brand,.brand-icon,[data-page=index] nav[aria-label="Utility navigation"],[data-page=shop] header.site-header,[data-page=about] body>nav:not(.universe-nav),[data-page=crochet] .back-link,[data-page=ithaca] .v1-back,[data-page=yakumo] nav.nav,[data-page=china] a.back{display:none!important}
+.map-brand,.brand-icon,[data-page=index] nav[aria-label="Utility navigation"],[data-page=shop] header.site-header,body[data-page=about]>nav:not(.universe-nav),[data-page=crochet] .back-link,[data-page=ithaca] .v1-back,[data-page=yakumo] nav.nav,[data-page=china] a.back{display:none!important}
 .universe-next{position:relative;z-index:10;margin:40px auto 0;padding:34px 24px 45px;text-align:center;color:var(--universe-ink);font:12px/1.6 system-ui,sans-serif;letter-spacing:.03em}
 .universe-next p{font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 14px;color:#4f687d}
 .universe-next div{display:flex;justify-content:center;gap:12px 24px;flex-wrap:wrap}.universe-next a{color:inherit;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid #6f9cc0}

@@ -59,7 +59,7 @@ body.pulled .close{opacity:1;pointer-events:auto}
 <div class="caption" id="caption" aria-live="polite" aria-atomic="true"><div class="n" id="cn"></div><h3 id="ct"></h3><p id="cp"></p></div>
 <div class="dots sans" id="dots"></div>
 <div class="hint sans">scroll · drag · tap to pull out</div>
-<div class="close"><button class="sans" id="closeBtn">← put it back</button></div>
+<div class="close" inert><button class="sans" id="closeBtn">← put it back</button></div>
 <script>
 const cards=[
  ['01','Leaving things behind','Choosing to move forward while still carrying what mattered.','postcard-01-leaving-things-behind'],
@@ -99,6 +99,7 @@ function layout(){
  [...dots.children].forEach((d,i)=>(d.classList.toggle('on',i===active),d.setAttribute('aria-pressed',String(i===active))));
  const c=cards[active];document.getElementById('cn').textContent=c[0];document.getElementById('ct').textContent=c[1];document.getElementById('cp').textContent=c[2];
  document.body.classList.toggle('pulled',pulled);
+ document.querySelector('.close').inert=!pulled;
 }
 function go(i){active=Math.max(0,Math.min(cards.length-1,i));pulled=false;layout()}
 function togglePull(){pulled=!pulled;layout();if(pulled)document.getElementById('closeBtn').focus();else els[active].focus()}
