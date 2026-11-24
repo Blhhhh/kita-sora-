@@ -1,0 +1,136 @@
+/* Four-island minimum release. Existing compositions are retained. */
+:root{--v2-ink:#223f50;--v2-muted:#4c6877;--v2-paper:#f7f4eb}
+body{color:var(--v2-ink)}
+a:focus-visible,button:focus-visible{outline:2px solid #406d86;outline-offset:5px}
+.universe-nav{font-size:13px!important}
+.universe-links{gap:clamp(14px,1.7vw,26px)}
+.universe-nav .universe-subscribe,.universe-menu{font-size:13px}
+.map[data-world-shell="v2"] .world-stage{inset:190px 3% 50px}
+.map[data-world-pass="a"] .place-label{margin-top:0}
+.map[data-world-pass="a"] .place-note{font-size:13px;letter-spacing:.04em;text-transform:none}
+.map[data-world-pass="a"] .place-name{font-size:clamp(26px,2.5vw,38px)}
+.map[data-world-pass="a"] .place--yakumo{--x:46%;--y:19%;--w:31%}
+.map[data-world-pass="a"] .place--harbor{--x:76%;--y:55%;--w:28%}
+.map[data-world-pass="a"] .place--china{--x:22%;--y:67%;--w:23%}
+.map[data-world-pass="a"] .place--shop{--x:51%;--y:83%;--w:24%}
+.map[data-world-pass="a"] .place--china .place-art{aspect-ratio:1.5}
+.map[data-world-pass="a"] .place--china .china-main{inset:0;width:100%;height:100%;object-fit:contain}
+.map-route .sailing-trace{stroke:#fff7df;stroke-width:1.4;opacity:.75;stroke-dasharray:4 7}
+.map-route .sailing-trace--long{display:none}
+.map[data-world-pass="a"] .map-boat{width:70px;top:50%;left:43%}
+.page-intro{margin:0 0 36px}
+.page-intro .eyebrow{font:13px/1.6 Nunito,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+.page-intro h1{font:400 clamp(46px,5vw,74px)/1.02 'Cormorant Garamond',Georgia,serif;margin:0;letter-spacing:-.025em}
+.page-intro em{font-weight:400}
+body[data-page=journey]{background:#dcebee url('../world-map-pass-a/ocean.webp') center/cover fixed;overflow:auto;font-family:Nunito,system-ui,sans-serif}
+.journey-main{padding:112px max(24px,4vw) 40px}
+.journey-main .page-intro{max-width:1100px;margin:0 auto}
+.journey-map{position:relative;max-width:1100px;height:920px;margin:25px auto 20px}
+.journey-map ol{position:absolute;inset:0;list-style:none;margin:0;padding:0}
+.journey-stop{position:absolute;width:35%;display:flex;align-items:flex-start;gap:18px}
+.journey-stop article{padding:16px 20px 20px;background:#f8f6edeb;box-shadow:0 4px 18px #274d5b0d}
+.journey-stop h2{font:400 34px/1.05 'Cormorant Garamond',Georgia,serif;margin:5px 0 12px}
+.stop-region{font:13px/1.5 Nunito,system-ui,sans-serif;color:var(--v2-muted);margin:0}
+.journey-stop a,.journey-letters a{font:15px/1.6 Nunito,system-ui,sans-serif;color:var(--v2-ink);text-underline-offset:4px;display:inline-block;padding:6px 0}
+.station-dot{width:13px;height:13px;border-radius:50%;background:#faf4df;border:2px solid #416a78;flex:none;margin-top:22px;box-shadow:0 0 0 5px #e4f0eb66}
+.stop-china{left:4%;top:3%}.stop-hokkaido{left:57%;top:19%}.stop-korea{left:16%;top:39%}.stop-europe{left:59%;top:59%}.stop-japan{left:29%;top:80%}
+.stop-europe .station-dot{background:transparent;border-style:dashed}
+.stop-japan .station-dot{background:#f0e7b2}
+.future-note{font-size:15px;line-height:1.7;margin:0}
+.journey-route{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.journey-route path{fill:none;stroke:#477587;stroke-width:1.4;stroke-linecap:round;opacity:.7}
+.journey-route .future-route{stroke-dasharray:5 8;opacity:.65}
+.journey-boat{position:absolute;width:46px;height:52px;left:0;top:0;pointer-events:none;z-index:2;will-change:transform}
+.journey-boat img{width:100%;height:100%;object-fit:contain}
+.sailing-toggle{position:absolute;bottom:0;right:0;border:0;border-bottom:1px solid #537787;background:#eff6f1b3;color:var(--v2-ink);padding:12px;font:13px Nunito,sans-serif;cursor:pointer}
+.journey-letters{max-width:720px;margin:20px auto;padding:40px clamp(24px,4vw,52px);background:#faf7eee8}
+.journey-letters h2{font:400 38px 'Cormorant Garamond',Georgia,serif;margin:0 0 20px}
+.journey-letters ul{list-style:none;margin:0 0 20px;padding:0}
+.journey-letters li{border-bottom:1px solid #466b7620;padding:8px 0}
+.journey-letters>a{display:block;width:fit-content}
+.journey-letters .subscribe-letter{margin-top:25px}
+body[data-page=market]{background:#f1f3ed;font-family:Nunito,system-ui,sans-serif}
+.market-main{max-width:1120px;margin:0 auto;padding:112px 32px 40px}
+.market-table{padding:34px 0 50px;border-top:1px solid #466b7630}
+.market-table h2{font:400 38px 'Cormorant Garamond',Georgia,serif;margin:0 0 7px}
+.market-table header p{font-size:15px;margin:0 0 30px;color:var(--v2-muted)}
+.goods{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.product-image{display:block;background:#e7e9df;aspect-ratio:4/3;overflow:hidden}
+.product-image img{display:block;width:100%;height:100%;object-fit:contain}
+.bookmark-photo img{object-fit:cover;object-position:50% 52%}
+.goods h3{font:400 30px 'Cormorant Garamond',Georgia,serif;margin:22px 0 8px}
+.goods p{font-size:15px;color:var(--v2-muted)}
+.goods article>a:not(.product-image),.market-table>a{display:inline-flex;align-items:center;min-height:44px;margin-right:20px;font-size:14px;color:var(--v2-ink);text-underline-offset:5px}
+.harbor-table{margin-top:20px}
+.coming-soon{font:italic 24px Georgia,serif}
+.work-steps h2{font:400 32px 'Cormorant Garamond',Georgia,serif}
+.work-steps ol{padding-left:22px;font-size:16px;line-height:2}
+[data-page=work] .btn{font-size:14px}
+body[data-page=crochet]{background-color:#d3e8e8;background-image:linear-gradient(#d3e8e8dd,#eaf1e5ed),url('../universe/harbor-daylight-1119.webp');background-size:cover;background-attachment:fixed}
+[data-page=crochet] .harbor-entrance::before{mask-image:linear-gradient(#000 0%,#000 75%,transparent 100%)}
+[data-page=crochet] .harbor-entrance{background:transparent}
+[data-page=crochet] .harbor-entrance::after{background:linear-gradient(transparent 60%,#d3e8e8 100%)}
+[data-page=crochet] .first-release{background:transparent}
+[data-page=crochet] .universe-next{background:transparent}
+[data-page=crochet] .harbor-letter-story{padding:28px 24px;margin:30px auto;background:#f7f5e9c9}
+[data-page=crochet] .harbor-letter-story[hidden]{display:none}
+[data-page=crochet] .harbor-letter-story h2{font-size:32px;font-weight:400}
+[data-page=crochet] #pig-modal .bear-gallery-main{aspect-ratio:1;min-height:0;height:auto;max-height:none;object-fit:contain;transform:rotate(90deg)}
+[data-page=crochet] #pig-modal .bear-thumb img{transform:rotate(90deg)}
+[data-page=crochet] .bear-modal{z-index:500}
+[data-page=crochet] .bear-close{min-width:44px;min-height:44px}
+@media(max-width:700px){
+ .map[data-world-shell="v2"] .world-stage{inset:205px 0 40px}
+ .map[data-world-pass="a"] .place--yakumo{--x:32%;--y:14%;--w:57%}
+ .map[data-world-pass="a"] .place--harbor{--x:72%;--y:39%;--w:50%}
+ .map[data-world-pass="a"] .place--china{--x:26%;--y:64%;--w:44%}
+ .map[data-world-pass="a"] .place--shop{--x:72%;--y:84%;--w:44%}
+ .map[data-world-pass="a"] .place-name{font-size:27px}
+ .map[data-world-pass="a"] .place-note{font-size:12px;letter-spacing:0}
+ .map[data-world-pass="a"] .map-boat{width:54px}
+ .journey-main{padding:110px 20px 20px}
+ .journey-map{height:1120px;margin-top:35px}
+ .journey-stop{left:16%;width:82%}
+ .journey-stop article{padding:14px 16px 18px}
+ .journey-stop h2{font-size:31px}
+ .journey-stop a{font-size:14px}
+ .stop-china{top:2%}.stop-hokkaido{top:21%}.stop-korea{top:40%}.stop-europe{top:61%}.stop-japan{top:81%}
+ .journey-boat{width:33px;height:42px}
+ .journey-letters{padding:30px 22px}
+ .market-main{padding:110px 22px 30px}
+ .goods{grid-template-columns:1fr;gap:40px}
+ .market-table{padding-top:26px}
+}
+@media(max-height:680px) and (min-width:701px){
+ .map[data-world-shell="v2"] .world-stage{inset:140px 5% 45px}
+ .map[data-world-pass="a"] .place--yakumo{--w:26%}
+ .map[data-world-pass="a"] .place--harbor{--w:24%}
+ .map[data-world-pass="a"] .place--shop,.map[data-world-pass="a"] .place--china{--w:20%}
+}
+.island-editing .place{touch-action:none;cursor:move;outline:1px dashed #274b65}
+.island-editing .island-resize{position:absolute;bottom:0;right:0;width:32px;height:32px;background:#f7f3e8;border:1px solid #335c70;color:#335c70;cursor:nwse-resize;font-size:22px;z-index:20}
+@media(max-width:700px){.map[data-world-shell="v2"] .world-stage{top:240px}[data-page=index] .map-heading h1{font-size:32px}}
+.journey-sailboat{width:100%;height:100%}
+[data-page=crochet] .envelope-scene.is-open .envelope-open-hit{pointer-events:auto}
+[data-page=crochet] .envelope-scene.is-open .envelope-open-label{pointer-events:none}
+/* Existing homepage sea holds the page together while new scenes await selection. */
+body[data-page=market],body[data-page=work],body[data-page=crochet]{
+ background:#dcebee url('../world-map-pass-a/ocean.webp') center/cover fixed;
+}
+[data-page=crochet] .harbor-entrance::before,[data-page=crochet] .harbor-entrance::after{background:none;mask-image:none}
+[data-page=crochet] .harbor-heading{text-shadow:0 1px 7px #f8f4e8}
+[data-page=work] .work,[data-page=market] .market-table{background:linear-gradient(105deg,#f8f5e9e8,#f8f5e9cd);padding:28px clamp(20px,3vw,40px);box-shadow:0 5px 20px #243f4810}
+[data-page=work] .card{background:#f9f5e7d9;border:1px solid #456b791f;border-radius:2px;box-shadow:1px 3px 5px #2343510a}
+[data-page=market] .market-table{border-top:1px solid #f9f4e3;margin-top:28px}
+[data-page=crochet] .first-release{background:none}
+[data-page=crochet] .character-copy{background:#f7f4e8d9;padding:22px}
+[data-page=crochet] .release-heading{padding:24px;background:#f8f6e8c9}
+.map[data-world-shell="v2"] .map-route{display:block}
+.map[data-world-pass="a"] .map-route .sailing-trace{stroke:#fff4d6;stroke-width:1.5;opacity:.8;stroke-dasharray:5 8}
+body[data-page=about]{background:#dcebee url('../world-map-pass-a/ocean.webp') center/cover fixed}
+[data-page=about] main{max-width:1000px;margin:95px auto 20px;padding:32px clamp(24px,4vw,48px);background:#f8f5e9e3}
+body[data-page=ithaca]{background:#dcebee url('../world-map-pass-a/ocean.webp') center/cover fixed}
+/* A single scene covers each document, including its footer. */
+body[data-page=journey],body[data-page=market],body[data-page=work],body[data-page=crochet],body[data-page=about]{
+ min-height:100svh;background-attachment:scroll;background-size:cover;background-repeat:no-repeat;
+}

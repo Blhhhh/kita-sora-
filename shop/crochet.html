@@ -222,9 +222,10 @@ body:has(.harbor-entrance:not(.is-entered)) .brand-icon{opacity:0;visibility:hid
 </style>
 <link rel="stylesheet" href="../assets/v1-consolidation/shell.css">
 <link rel="stylesheet" href="../assets/universe/universe.css">
+<link rel="stylesheet" href="../assets/universe/v2.css">
 </head>
 <body data-page="crochet">
-<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="../index.html#map">Kita-Sora</a><div class="universe-links" id="universe-links"><a href="../index.html#map">Map</a><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer">Letters</a><a href="../shop.html">Shop</a><a href="../shop/crochet.html" aria-current="page">Harbor Loop</a><a href="../work.html">Work with me</a><a href="../about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
+<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="../index.html#map">Kita-Sora</a><div class="universe-links" id="universe-links"><a href="../index.html#map">Map</a><a href="../ithaca.html">Ithaca</a><a href="../shop/crochet.html" aria-current="page">Harbor Loop</a><a href="../shop.html">Market</a><a href="../work.html">Workshop</a><a href="../about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
 
 <a class="brand-icon" href="#harbor-title" aria-label="Harbor Loop">
   <img src="../assets/harbor-loop/harbor-loop-mark-crop.png.webp" alt="Harbor Loop" decoding="async" loading="lazy">
@@ -277,15 +278,7 @@ body:has(.harbor-entrance:not(.is-entered)) .brand-icon{opacity:0;visibility:hid
   </div>
 </section>
 
-<div class="intro harbor-letter-story" id="harbor-letter-story">
-  <p>Dear traveler,</p>
-  <p>Harbor Loop was never created with the intention of becoming a brand. It grew out of something my mom simply loved doing, an interest she kept nurturing over time through the joy of making things with her own hands.</p>
-  <p>My mom has always loved making things, and our home has always been filled with inventions of all shapes and sizes. There were pen holders made from plastic bottles, storage boxes made from old cardboard, and even an old electric fan that she taught herself how to repair. So when she started crocheting, I was genuinely happy to see her find another thing she loved doing, and slowly, more and more of her creations began appearing around our home.</p>
-  <p>I wanted more people around the world to see and love the things she made. So sometime in the second half of 2025, I made her a rather bold promise. I told her that one day, I would sell her crochet pieces around the world, so that more people could discover these delicate little things and so that she could feel proud of what she had created.</p>
-  <p>At first, Mom did not take me very seriously. She always thought I was joking. But now, almost a year has passed. There are more and more balls of yarn around the house, slowly turning into little handmade creatures full of life. Mom has her own workspace now, and the little online home that belongs to her creations has finally taken shape too.</p>
-  <p>And that is how Harbor Loop came to be. Everything is still growing, just as our lives are.</p>
-  <p>I hope you will love these handmade crochet pieces, just as much as my mom loves making them.</p>
-  <div class="signoff">Love,<br>Lynn &amp; Mom</div>
+<div class="intro harbor-letter-story" id="harbor-letter-story"><h2>Mom’s story</h2><p>Coming soon.</p><a class="ready-link" href="https://lynnfromkitasora.substack.com/subscribe">Let Mugi bring you a letter</a></div>
 </div>
 
 <section class="first-release" id="first-release" aria-labelledby="release-title">
@@ -449,16 +442,15 @@ body:has(.harbor-entrance:not(.is-entered)) .brand-icon{opacity:0;visibility:hid
   fullLetter.hidden = true;
   openLetter.setAttribute('aria-controls', fullLetter.id);
   openLetter.addEventListener('click', () => {
-    if (envelopeScene.classList.contains('is-open')) return;
-    envelopeScene.classList.add('is-open');
-    harborEntrance.classList.add('is-open');
-    openLetter.setAttribute('aria-expanded', 'true');
-    fullLetter.hidden = false;
-    fullLetter.tabIndex = -1;
-    fullLetter.focus({preventScroll:true});
-    fullLetter.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+    const opened = !envelopeScene.classList.contains('is-open');
+    envelopeScene.classList.toggle('is-open', opened);
+    harborEntrance.classList.toggle('is-open', opened);
+    openLetter.setAttribute('aria-expanded', String(opened));
+    openLetter.setAttribute('aria-label', opened ? 'Close the Harbor Loop envelope' : 'Open the Harbor Loop envelope');
+    document.getElementById('letter-title').textContent = opened ? 'close the letter' : 'open the letter';
+    fullLetter.hidden = !opened;
   });
 </script>
 <script src="../assets/v1-consolidation/shell.js" defer></script>
-<footer class="universe-next" aria-label="Continue the voyage"><p>continue the voyage</p><div class="voyage-strip" aria-label="Voyage through the islands"><svg class="voyage-boat" viewBox="600 100 360 490" aria-hidden="true"><defs><clipPath id="voyage-boat-cut"><path d="M611 369L649 347L740 174L751 120L769 110L780 144L887 182L887 197L789 215L926 440L949 451L952 469L919 485L881 555L862 581L748 546L677 491L628 434L611 396Z"/></clipPath></defs><image href="../assets/world-map-pass-a/boat.webp" width="1200" height="800" clip-path="url(#voyage-boat-cut)"/></svg><ol><li><a href="../nodes/yakumo.html"><img src="../assets/launch-20260915/yakumo-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Yakumo</span></a></li><li><a href="../shop/crochet.html" aria-current="location"><img src="../assets/launch-20260915/harbor-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Harbor Loop</span></a></li><li class="is-next"><a href="../shop.html"><img src="../assets/launch-20260915/shop-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Shop</span><small>next stop</small></a></li><li><a href="../shop/ithaca.html"><img src="../assets/shop-hero-v1/postcard-03.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>To Ithaca</span></a></li><li><a href="../index.html#map"><img src="../assets/world-map-v1/china.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Map</span></a></li></ol></div><div><a href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Tell me when they’re ready</a><a href="../shop.html">Visit the shop</a></div></footer><script src="../assets/universe/universe.js" defer></script></body>
+<footer class="universe-next" aria-label="Continue the voyage"><p>continue the voyage</p><div class="voyage-strip" aria-label="Voyage through the islands"><svg class="voyage-boat" viewBox="600 100 360 490" aria-hidden="true"><defs><clipPath id="voyage-boat-cut"><path d="M611 369L649 347L740 174L751 120L769 110L780 144L887 182L887 197L789 215L926 440L949 451L952 469L919 485L881 555L862 581L748 546L677 491L628 434L611 396Z"/></clipPath></defs><image href="../assets/world-map-pass-a/boat.webp" width="1200" height="800" clip-path="url(#voyage-boat-cut)"/></svg><ol><li><a href="../ithaca.html"><img src="../assets/launch-20260915/yakumo-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Ithaca</span></a></li><li><a href="../shop/crochet.html" aria-current="location"><img src="../assets/launch-20260915/harbor-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Harbor Loop</span></a></li><li class="is-next"><a href="../shop.html"><img src="../assets/launch-20260915/shop-clean-alpha.png.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Market</span><small>next stop</small></a></li><li><a href="../shop/ithaca.html"><img src="../assets/shop-hero-v1/postcard-03.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>To Ithaca</span></a></li><li><a href="../index.html#map"><img src="../assets/world-map-v1/china.webp" alt="" width="64" height="44" decoding="async" loading="lazy"><span>Map</span></a></li></ol></div><div><a href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Tell me when they’re ready</a><a href="../shop.html">Visit the shop</a></div></footer><script src="../assets/universe/universe.js" defer></script></body>
 </html>
