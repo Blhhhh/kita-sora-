@@ -41,3 +41,41 @@
 [data-page=about] .mist-passage::before{left:65%;height:310px;opacity:.55}
 [data-page=crochet] .mist-title::before{left:55%;width:min(740px,92vw);height:200px;opacity:.6}
 @media(max-width:700px){.sea-mist.sea-mist::before{width:85vw;height:210px;left:46%}.sea-mist.mist-passage::before{width:75vw;height:260px;left:55%}}
+/* Final reading size: darker copy and links, without adding atmospheric surfaces. */
+:root{--reading-ink:#092439}
+body[data-page] main p:not(.about-poem):not(.eyebrow):not(.kicker):not(.stop-region):not(.stage-kicker),
+body[data-page] main li:not(.journey-stop),
+body[data-page] .character-copy p,
+body[data-page] .harbor-letter-story p,
+body[data-page] .release-heading p,
+body[data-page] .island-caption,
+body[data-page] .postcard-world .caption p{
+ color:var(--reading-ink)!important;
+ font-size:25px!important;
+ font-weight:500!important;
+ line-height:1.6!important;
+ text-shadow:var(--halo);
+}
+body[data-page] main a:not(.letter-card):not(.letter-title):not(.shore-subscribe):not(.place):not(.about-island-link),
+body[data-page] .ready-link,
+body[data-page] .story-link,
+body[data-page] .site-footer a,
+body[data-page] .social-links a{
+ color:var(--reading-ink)!important;
+ font-size:25px!important;
+ font-weight:600!important;
+ line-height:1.45!important;
+ text-shadow:var(--halo);
+}
+body[data-page] .social-pending{color:var(--reading-ink)!important;font-size:23px!important}
+body[data-page] .stop-region,body[data-page] .future-note{color:var(--reading-ink)!important;font-size:24px!important}
+.map[data-world-pass=a] .place-note{color:var(--reading-ink)!important;font-size:21px!important;font-weight:600}
+@media(max-width:700px){
+ body[data-page] main p:not(.about-poem):not(.eyebrow):not(.kicker):not(.stop-region):not(.stage-kicker),body[data-page] main li:not(.journey-stop),body[data-page] .character-copy p,body[data-page] .harbor-letter-story p,body[data-page] .release-heading p,body[data-page] .island-caption,body[data-page] .postcard-world .caption p{font-size:23px!important}
+ body[data-page] main a:not(.letter-card):not(.letter-title):not(.shore-subscribe):not(.place):not(.about-island-link),body[data-page] .ready-link,body[data-page] .story-link,body[data-page] .site-footer a,body[data-page] .social-links a{font-size:23px!important}
+ body[data-page] .social-pending{font-size:21px!important}
+ body[data-page] .stop-region,body[data-page] .future-note{font-size:23px!important}
+}
+/* Let the larger purchase link breathe beside the postcard viewer heading. */
+[data-page=ithaca] .crate-header .buy{background:none!important;border:0;border-radius:0;padding:6px 0;text-shadow:var(--halo)}
+@media(max-width:700px){[data-page=ithaca] .crate-header{display:block;top:85px;padding-top:8px}[data-page=ithaca] .crate-header h1{white-space:nowrap}[data-page=ithaca] .crate-header .buy{display:inline-flex;margin-top:6px;min-height:40px}[data-page=ithaca] .crate-header .k{font-size:12px;color:#092439;text-shadow:var(--halo)}}
