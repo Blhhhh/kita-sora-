@@ -1,0 +1,80 @@
+/* Pass A is intentionally static. Existing typography and entrance are retained. */
+.map[data-world-pass="a"]{background:#d5e4e1;--px:0px;--py:0px}
+.map[data-world-pass="a"] .sea{background:url('ocean-optimized.webp') center/cover no-repeat}
+.map[data-world-pass="a"] .water-depth{display:none}
+.map[data-world-pass="a"] .world-stage{inset:82px 0 78px}
+.map[data-world-pass="a"] .place-art,.map[data-world-pass="a"] .map-boat img,.map[data-world-pass="a"] .shore-ripple{animation:none!important;transition:none!important;transform:none!important}
+.map[data-world-pass="a"] .place:hover .place-art,.map[data-world-pass="a"] .place:focus-visible .place-art{transform:none!important}
+.map[data-world-pass="a"] .place-enter{display:none}
+.map[data-world-pass="a"] .shore-ripple,.map[data-world-pass="a"] .map-boat::after{display:none}
+.map[data-world-pass="a"] .place-label{text-shadow:0 1px 9px #f5f5e9,0 0 18px #e1efec}
+.map[data-world-pass="a"] .place--yakumo{--x:30%;--y:23%;--w:clamp(260px,30vw,485px)}
+.map[data-world-pass="a"] .place--harbor{--x:75%;--y:30%;--w:clamp(285px,34vw,545px)}
+.map[data-world-pass="a"] .place--china{--x:24%;--y:73%;--w:clamp(225px,23vw,370px)}
+.map[data-world-pass="a"] .place--shop{--x:73%;--y:78%;--w:clamp(300px,35vw,570px)}
+.map[data-world-pass="a"] .place--yakumo .place-art,.map[data-world-pass="a"] .place--harbor .place-art,.map[data-world-pass="a"] .place--shop .place-art{aspect-ratio:1.5;perspective:1000px}
+.winter-land,.map[data-world-pass="a"] .island-land{inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(1px 4px 3px #34657822);z-index:0}
+.winter-house{left:34%;top:27%;width:34%;height:35%;z-index:3;filter:drop-shadow(2px 3px 1px #243d5138)}
+.winter-tree{left:62%;top:15%;width:17%;height:40%;z-index:2;filter:saturate(.65) drop-shadow(2px 3px 2px #38555a33)}
+.house-contact{position:absolute;left:35%;top:58%;width:32%;height:5%;border-radius:50%;background:#6e8a9b66;filter:blur(3px);z-index:1}
+.map[data-world-pass="a"] .harbor-mugi{left:41%;bottom:27%;width:20%;height:42%;z-index:3;filter:drop-shadow(2px 4px 2px #30281c65)}
+.map[data-world-pass="a"] .harbor-yarn{left:25%;bottom:32%;width:9%;height:13%;z-index:3}
+.map[data-world-pass="a"] .harbor-daisy{left:62%;bottom:26%;width:13%;height:auto;z-index:3;transform:rotate(-12deg) scaleY(.6);filter:drop-shadow(1px 3px 1px #3d423b66)}
+.map[data-world-pass="a"] .harbor-thread{display:none}
+.map[data-world-pass="a"] .place--harbor .ground-contact{left:42%;bottom:26%;width:18%;height:5%;opacity:.25;filter:blur(3px)}
+.map[data-world-pass="a"] .place--shop .ground-contact{left:39%;bottom:30%;width:24%;height:5%;opacity:.2;filter:blur(2px)}
+.map[data-world-pass="a"] .shop-postcard{width:23%;height:27%;z-index:3;filter:drop-shadow(2px 3px 1px #42362d55)}
+.map[data-world-pass="a"] .shop-postcard--back{left:19%;top:20%;transform:rotate(-7deg) rotateY(14deg)}
+.map[data-world-pass="a"] .shop-postcard--front{left:32%;top:25%;transform:rotate(5deg) rotateY(-8deg)}
+.map[data-world-pass="a"] .shop-envelope{left:44%;bottom:34%;width:23%;height:22%;z-index:4;transform:rotate(-5deg) rotateY(8deg);filter:drop-shadow(2px 3px 1px #312d2455)}
+.map[data-world-pass="a"] .shop-bookmark{right:31%;top:29%;width:10%;height:28%;z-index:4;transform:rotate(9deg);filter:drop-shadow(2px 3px 1px #312d2455)}
+.map[data-world-pass="a"] .shop-sticker{width:9%;height:13%;bottom:30%;z-index:5;filter:drop-shadow(1px 2px 1px #312d2455)}
+.map[data-world-pass="a"] .shop-sticker--bear{left:44%;transform:rotate(-8deg) rotateX(18deg)}
+.map[data-world-pass="a"] .shop-sticker--home{left:55%;transform:rotate(5deg) rotateX(18deg)}
+.map[data-world-pass="a"] .china-main{filter:drop-shadow(0 5px 3px #204b5b44)}
+.map[data-world-pass="a"] .place--china .place-art::after{content:'';position:absolute;left:7%;right:3%;bottom:2%;height:24%;border-bottom:2px solid #edf8e7aa;border-radius:47%;transform:rotate(-9deg);box-shadow:0 6px 0 -5px #e1f2e5a6;pointer-events:none}
+.map[data-world-pass="a"] .map-boat{left:51%;top:51%;width:clamp(80px,8.5vw,140px)}
+.map[data-world-pass="a"] .map-boat img{filter:drop-shadow(2px 4px 2px #254d6533)}
+.map[data-world-pass="a"] .map-route .sailing-trace{stroke:url(#sailing-fade);stroke-width:1.1;stroke-dasharray:24 7 3 18 31 29 6 35;opacity:.6}
+.map[data-world-pass="a"] .map-route .sailing-trace--long{stroke-width:1.4;stroke-dasharray:42 11 4 7 20 26 5 29;opacity:.7}
+@media(max-width:1000px){
+ .map[data-world-pass="a"] .world-stage{inset:110px 0 75px}
+ .map[data-world-pass="a"] .place--yakumo{--x:27%;--y:22%;--w:40vw}
+ .map[data-world-pass="a"] .place--harbor{--x:74%;--y:32%;--w:45vw}
+ .map[data-world-pass="a"] .place--china{--x:24%;--y:73%;--w:32vw}
+ .map[data-world-pass="a"] .place--shop{--x:73%;--y:79%;--w:47vw}
+}
+@media(max-width:600px){
+ .map[data-world-pass="a"] .world-stage{inset:133px 0 82px}
+ .map[data-world-pass="a"] .place--yakumo{--x:27%;--y:19%;--w:49vw}
+ .map[data-world-pass="a"] .place--harbor{--x:74%;--y:36%;--w:49vw}
+ .map[data-world-pass="a"] .place--china{--x:25%;--y:68%;--w:43vw}
+ .map[data-world-pass="a"] .place--shop{--x:73%;--y:84%;--w:50vw}
+ .map[data-world-pass="a"] .map-boat{top:48%;left:48%;width:64px}
+ .map[data-world-pass="a"] .sea{background-position:49% center}
+}
+@media(max-height:690px){
+ .map[data-world-pass="a"] .place--yakumo{--w:min(35vw,38vh)}
+ .map[data-world-pass="a"] .place--harbor{--w:min(41vw,42vh)}
+ .map[data-world-pass="a"] .place--china{--w:min(32vw,31vh)}
+ .map[data-world-pass="a"] .place--shop{--w:min(42vw,44vh)}
+}
+/* Contact points follow the generated table, display rack and courtyard. */
+.map[data-world-pass="a"] .harbor-mugi{left:43%;bottom:39%;width:18%;height:37%}
+.map[data-world-pass="a"] .place--harbor .ground-contact{left:44%;bottom:38%;width:16%;height:4%}
+.map[data-world-pass="a"] .harbor-yarn{left:26%;bottom:58%;width:7%;height:10%}
+.map[data-world-pass="a"] .harbor-daisy{left:34%;bottom:57%;width:9%;transform:rotate(-12deg) scaleY(.55)}
+.map[data-world-pass="a"] .shop-postcard--back{left:23%;top:20%;width:15%;height:13%;transform:rotate(-6deg) rotateY(12deg)}
+.map[data-world-pass="a"] .shop-postcard--front{left:24%;top:30%;width:16%;height:13%;transform:rotate(-4deg) rotateY(12deg)}
+.map[data-world-pass="a"] .shop-envelope{left:47%;bottom:59%;width:16%;height:15%;transform:rotate(-4deg) rotateY(9deg)}
+.map[data-world-pass="a"] .shop-bookmark{right:53%;top:20%;width:8%;height:21%;transform:rotate(9deg)}
+.map[data-world-pass="a"] .shop-sticker{width:7%;height:10%;bottom:51%}
+.map[data-world-pass="a"] .shop-sticker--bear{left:46%}.map[data-world-pass="a"] .shop-sticker--home{left:55%}
+.map[data-world-pass="a"] .place--shop .ground-contact{left:46%;bottom:58%;width:18%;height:3%}
+.map[data-world-pass="a"] .map-boat{width:clamp(125px,13vw,205px)}
+@media(max-width:600px){.map[data-world-pass="a"] .map-boat{width:84px}}
+@media(max-width:700px) {
+ .map[data-world-pass="a"] .sea {
+  background-image:url('ocean-mobile.webp');
+ }
+}
