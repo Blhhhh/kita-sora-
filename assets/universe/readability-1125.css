@@ -30,3 +30,14 @@
 .universe-nav.is-scrolled{background:linear-gradient(180deg,#d5e8eeed 0%,#d5e8eee6 75%,#d5e8ee00 100%)!important;backdrop-filter:blur(8px)}
 .universe-nav.is-nav-hidden:not(.is-menu-open):not(:focus-within){transform:translateY(-115%)}
 @media(prefers-reduced-motion:reduce){.universe-nav{transition:none!important}}
+
+/* Sparse, varied atmosphere: small copy has a fine glyph halo only. */
+:root{--halo:0 1px 1px #fff9e9,0 0 3px #fff9e9dd,0 0 6px #fff9e9aa;--sea-halo:var(--halo)}
+.sea-text,.stall-copy,.service-copy,.site-footer a,.social-links a{ text-shadow:var(--halo) }
+.sea-mist{position:relative;isolation:isolate}
+.sea-mist.sea-mist::before{content:""!important;position:absolute;inset:auto!important;left:42%;top:48%;width:min(640px,90vw);height:240px;transform:translate(-50%,-50%) rotate(-9deg);z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 42% 48%,#eef3e875 0%,#eef3e842 26%,#eef3e81a 48%,transparent 72%);filter:blur(18px);backdrop-filter:none;-webkit-backdrop-filter:none;mask-image:none!important;-webkit-mask-image:none!important}
+.sea-mist.mist-passage::before{left:57%;top:55%;width:min(490px,85vw);height:270px;transform:translate(-50%,-50%) rotate(13deg);opacity:.7;background:radial-gradient(ellipse at 58% 44%,#edf1e77a,#edf1e72b 35%,transparent 70%)}
+[data-page=market] .mist-passage::before{left:35%;width:420px;height:240px;transform:translate(-50%,-50%) rotate(-18deg)}
+[data-page=about] .mist-passage::before{left:65%;height:310px;opacity:.55}
+[data-page=crochet] .mist-title::before{left:55%;width:min(740px,92vw);height:200px;opacity:.6}
+@media(max-width:700px){.sea-mist.sea-mist::before{width:85vw;height:210px;left:46%}.sea-mist.mist-passage::before{width:75vw;height:260px;left:55%}}

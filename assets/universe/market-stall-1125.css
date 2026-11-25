@@ -26,3 +26,29 @@
 .market-stall-frame .counter-bookmark{left:77%;top:23%;width:12%;height:35%}
 .market-stall-frame .stall-postcard:hover{z-index:4;transform:translateY(-3px) rotate(var(--tilt)) scale(1.06)}
 @media(max-width:700px){.market-stall-frame .stall-postcard{width:19%;height:19%}.market-stall-frame .counter-bookmark{width:13%;height:37%;top:22%}}
+
+/* A roadside stall, with staggered layers rather than a front-facing grid. */
+[data-page=market] .market-main{max-width:1440px}
+.market-stall-layout{grid-template-columns:minmax(0,1.85fr) minmax(300px,1fr);gap:44px}
+.postcard-rope{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+.postcard-rope path{fill:none;stroke:#9b7951;stroke-width:2.3;stroke-linecap:round;filter:drop-shadow(0 2px 1px #33271955)}
+.market-stall-frame .stall-postcard{filter:drop-shadow(3px 7px 3px #271b1390)}
+.market-stall-frame .postcard-01{left:23%;top:27%;width:17%;height:16%;--tilt:-9deg;z-index:2}
+.market-stall-frame .postcard-02{left:41%;top:30%;width:18%;height:17%;--tilt:7deg;z-index:3}
+.market-stall-frame .postcard-03{left:59%;top:26%;width:16%;height:16%;--tilt:-5deg;z-index:2}
+.market-stall-frame .postcard-04{left:23%;top:43%;width:21%;height:20%;--tilt:-11deg;z-index:5}
+.market-stall-frame .postcard-05{left:41%;top:45%;width:21%;height:19%;--tilt:5deg;z-index:6}
+.market-stall-frame .postcard-06{left:59%;top:42%;width:21%;height:20%;--tilt:-7deg;z-index:4}
+.postcard-01::before,.postcard-02::before,.postcard-03::before{width:4px;height:15%;top:0;background:linear-gradient(90deg,#a68358,#d0b186 45%,#97734a);box-shadow:1px 2px 2px #2a201b80;transform:rotate(-3deg)}
+.postcard-04::before,.postcard-05::before,.postcard-06::before{content:"";position:absolute;left:27%;bottom:-2%;width:45%;height:5%;background:#8f6b45;box-shadow:1px 3px 3px #30211688;transform:rotate(2deg);z-index:-1}
+.market-stall-frame .stall-postcard:hover{z-index:9;transform:translateY(-4px) rotate(var(--tilt)) scale(1.06)}
+@media(max-width:700px){.market-stall-layout{grid-template-columns:1fr;gap:20px}.market-stall-frame{width:calc(100% + 36px);margin-left:-18px}}
+/* Leave air between hanging designs; the counter trio forms a loose overlapping fan. */
+.market-stall-frame .postcard-01{left:23%;top:27%;width:15%;height:16%;--tilt:-9deg;--yaw:8deg}
+.market-stall-frame .postcard-02{left:43%;top:30%;width:16%;height:16%;--tilt:7deg;--yaw:-7deg}
+.market-stall-frame .postcard-03{left:63%;top:26%;width:15%;height:16%;--tilt:-5deg;--yaw:6deg}
+.market-stall-frame .postcard-04{left:27%;top:44%;width:22%;height:20%;--tilt:-16deg;--yaw:8deg;z-index:4}
+.market-stall-frame .postcard-05{left:41%;top:42%;width:22%;height:21%;--tilt:2deg;--yaw:-5deg;z-index:5}
+.market-stall-frame .postcard-06{left:55%;top:43%;width:22%;height:20%;--tilt:14deg;--yaw:-9deg;z-index:6}
+.market-stall-frame .stall-postcard{transform:perspective(650px) rotateY(var(--yaw)) rotate(var(--tilt))}
+.market-stall-frame .stall-postcard:hover{transform:perspective(650px) rotateY(var(--yaw)) translateY(-4px) rotate(var(--tilt)) scale(1.06)}
