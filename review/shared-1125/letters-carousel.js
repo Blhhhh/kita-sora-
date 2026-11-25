@@ -11,7 +11,7 @@
   let lastWheel = 0;
 
   function layout() {
-    const width = Math.min(stage.clientWidth * (stage.clientWidth < 700 ? .68 : .44), 540);
+    const width = Math.min(stage.clientWidth * (stage.clientWidth < 700 ? .76 : .49), 600);
     stage.style.setProperty('--letter-width', width + 'px');
     cards.forEach((card, index) => {
       const offset = index - active;
@@ -19,10 +19,10 @@
       const depth = Math.abs(offset);
       const x = side * (width * .46 + width * .18 * (depth - 1));
       card.style.transform = offset === 0
-        ? 'translate3d(0,0,100px) rotateY(0deg)'
-        : `translate3d(${x}px,20px,${-depth * 90}px) rotateY(${-side * 58}deg)`;
+        ? 'translate3d(0,0,120px) rotateY(0deg)'
+        : `translate3d(${x}px,20px,${-depth * 120}px) scale(.90) rotateY(${-side * 58}deg)`;
       card.style.zIndex = 20 - depth;
-      card.style.filter = offset === 0 ? 'none' : 'brightness(.86)';
+      card.style.filter = offset === 0 ? 'none' : 'brightness(.70) saturate(.75)';
       card.tabIndex = offset === 0 ? 0 : -1;
       card.draggable = false;
       card.setAttribute('aria-current', String(offset === 0));
