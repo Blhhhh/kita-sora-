@@ -22,3 +22,11 @@
 [data-page=work] .work-steps li{font-size:22px;color:#102f43;line-height:1.7}.work-steps.sea-text::before{inset:-30px -15px}.work>.btn.sea-text{display:inline-flex}.service-copy a{line-height:1.5}.site-footer.sea-text::before{inset:0;mask-image:radial-gradient(ellipse,#0008 15%,#0006 45%,transparent 74%);-webkit-mask-image:radial-gradient(ellipse,#0008 15%,#0006 45%,transparent 74%)}
 [data-page=crochet] .envelope-open-label.sea-text{position:absolute!important;left:50%;transform:translateX(-50%);width:max-content;max-width:100%}
 .character-role-number{font-size:18px!important;color:#102f43}
+
+/* Retire painted text backdrops: the light follows each glyph only. */
+.sea-text::before,.stall-copy article::before,.service-copy::before{content:none!important}
+.sea-text,.stall-copy,.service-copy{color:#102f43;text-shadow:0 1px 2px #fff9e9,0 0 4px #fff9e9,0 0 8px #fff9e9,0 0 13px #fff9e9}
+.universe-nav{transition:transform .22s ease,background .22s ease!important}
+.universe-nav.is-scrolled{background:linear-gradient(180deg,#d5e8eeed 0%,#d5e8eee6 75%,#d5e8ee00 100%)!important;backdrop-filter:blur(8px)}
+.universe-nav.is-nav-hidden:not(.is-menu-open):not(:focus-within){transform:translateY(-115%)}
+@media(prefers-reduced-motion:reduce){.universe-nav{transition:none!important}}

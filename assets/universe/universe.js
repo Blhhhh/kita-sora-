@@ -7,5 +7,16 @@
  nav.addEventListener('keydown',e=>{if(e.key==='Escape'){close();menu.focus()}});
  document.addEventListener('click',e=>{if(!nav.contains(e.target))close()});
  matchMedia('(min-width: 1001px)').addEventListener('change',close);
+ let lastY=window.scrollY;
+ const updateScroll=()=>{
+  const y=window.scrollY,delta=y-lastY;
+  nav.classList.toggle('is-scrolled',y>16);
+  if(y<96||delta<-3||nav.classList.contains('is-menu-open'))nav.classList.remove('is-nav-hidden');
+  else if(delta>3)nav.classList.add('is-nav-hidden');
+  lastY=y;
+ };
+ window.addEventListener('scroll',updateScroll,{passive:true});
+ nav.addEventListener('focusin',()=>nav.classList.remove('is-nav-hidden'));
+ updateScroll();
  document.querySelectorAll('.harbor-photo-card').forEach(x=>x.removeAttribute('tabindex'));
 })();
