@@ -1,6 +1,0 @@
-/* Approved Harbor A, responsive scene continues behind the full page. */
-body[data-page=crochet]{position:relative;isolation:isolate;background:#cce4eb!important}
-body[data-page=crochet]::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('harbor-a-desktop.webp') center center/cover no-repeat}
-[data-page=crochet] .harbor-entrance{background:transparent!important}
-@media(max-width:700px){body[data-page=crochet]::before{background-image:url('harbor-a-mobile.webp');background-position:center center}}
-@media(min-width:701px){[data-page=crochet] .envelope-scene{width:min(600px,80vw)}[data-page=crochet] .harbor-letter-stage{margin-top:85px}}
