@@ -190,3 +190,11 @@ body[data-page=yakumo],body[data-page=china] {
 body[data-page=index],body[data-page=yakumo],body[data-page=china] {
  display:flow-root;
 }
+
+/* Keep the map's sea visible below its first viewport. */
+[data-page=index] .site-footer {
+ background:url('../world-map-pass-a/ocean-optimized.webp') center bottom/cover no-repeat;
+}
+@media(max-width:700px) {
+ [data-page=index] .site-footer {background-image:url('../world-map-pass-a/ocean-mobile.webp');}
+}
