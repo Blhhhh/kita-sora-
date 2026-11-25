@@ -313,6 +313,6 @@ h1 em {
 main{position:relative;isolation:isolate}
 main::before{content:"";position:absolute;inset:-28px -7vw 100px;z-index:-1;pointer-events:none;background:rgba(225,237,233,.55);backdrop-filter:blur(5px) saturate(.45) contrast(.65);-webkit-backdrop-filter:blur(5px) saturate(.45) contrast(.65);mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,#000d 45%,transparent 74%);-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 15%,#000d 45%,transparent 74%)}
 .letter-card[aria-current=true]{box-shadow:0 6px 10px #17384755,0 24px 30px #12334870,0 38px 55px #12334835}
-@media(max-width:700px){.letter-stage{height:265px}.letter-card{top:35px}main::before{inset:-30px -14px 110px;mask-image:radial-gradient(ellipse at 50% 44%,#000 25%,#000d 54%,transparent 79%);-webkit-mask-image:radial-gradient(ellipse at 50% 44%,#000 25%,#000d 54%,transparent 79%)}}
+@media(max-width:700px){.letter-stage{height:265px}.letter-card{top:35px}main::before{inset:-30px 0 110px;mask-image:radial-gradient(ellipse at 50% 44%,#000 25%,#000d 54%,transparent 79%);-webkit-mask-image:radial-gradient(ellipse at 50% 44%,#000 25%,#000d 54%,transparent 79%)}}
 
 body{overflow-x:clip}
