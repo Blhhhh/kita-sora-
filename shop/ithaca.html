@@ -125,7 +125,16 @@ function togglePull(){pulled=!pulled;layout();if(pulled)document.getElementById(
 document.getElementById('closeBtn').onclick=()=>{pulled=false;layout();els[active].focus()};
 let lock=0;
 const stage=document.querySelector('.stage');
-stage.addEventListener('wheel',e=>{if(pulled)return;e.preventDefault();const now=Date.now();if(now-lock<520)return;const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;if(Math.abs(d)<8)return;lock=now;go(active+(d>0?1:-1))},{passive:false});
+stage.addEventListener('wheel', e => {
+ if (pulled) return;
+ const distance = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+ if (Math.abs(distance) < 8) return;
+ e.preventDefault();
+ const now = Date.now();
+ if (now - lock < 520) return;
+ lock = now;
+ go(active + (distance > 0 ? 1 : -1));
+},{passive:false});
 addEventListener('keydown',e=>{
  if(e.key==='Escape'&&pulled){e.preventDefault();pulled=false;layout();els[active].focus();return;}
  if(!e.target.closest('.stage,.dots'))return;
