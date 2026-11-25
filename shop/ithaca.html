@@ -90,10 +90,11 @@ const cards=[
  ['05','Almost there','The fragile space between hope, hesitation, and arrival.','postcard-05-almost-there'],
  ['06','Ithaca','Not an ending, but the place we realize we have been carrying within us all along.','postcard-06-ithaca']];
 const crate=document.getElementById('crate'),dots=document.getElementById('dots');
-let active=innerWidth>700?2:0,pulled=false;
+const requestedPostcard=Number(new URLSearchParams(location.search).get('postcard'));
+let active=Number.isInteger(requestedPostcard)&&requestedPostcard>=1&&requestedPostcard<=cards.length?requestedPostcard-1:(innerWidth>700?2:0),pulled=false;
 const els=cards.map((c,i)=>{
  const el=document.createElement('div');el.className='card';el.tabIndex=i===0?0:-1;el.setAttribute('role','button');el.setAttribute('aria-label',c[0]+' '+c[1]);
- el.innerHTML=`<div class="face"><img src="../assets/ithaca-crate/${c[3]}.jpg.webp" alt="Postcard ${c[0]}: ${c[1]}" decoding="async" loading="lazy"></div><div class="face back"><img src="../assets/ithaca-crate/postcard-back.jpg.webp" alt="" decoding="async" loading="lazy"><div class="txt"><div class="n">${c[0]}</div><h2>${c[1]}</h2><p>${c[2]}</p><a class="sans" href="https://ko-fi.com/s/bed45755ef">carry this one home →</a></div></div>`;
+ el.innerHTML=`<div class="face"><img src="../assets/ithaca-crate/${c[3]}.jpg.webp" alt="Postcard ${c[0]}: ${c[1]}" decoding="async" loading="${i===active?'eager':'lazy'}" fetchpriority="${i===active?'high':'auto'}"></div><div class="face back"><img src="../assets/ithaca-crate/postcard-back.jpg.webp" alt="" decoding="async" loading="lazy"><div class="txt"><div class="n">${c[0]}</div><h2>${c[1]}</h2><p>${c[2]}</p><a class="sans" href="https://ko-fi.com/s/bed45755ef">carry this one home →</a></div></div>`;
  el.addEventListener('click',e=>{if(e.target.closest('a'))return; if(i!==active){go(i)}else togglePull()});
  crate.appendChild(el);
  const d=document.createElement('button');d.textContent=c[0];d.setAttribute('aria-label','View postcard '+c[0]+': '+c[1]);d.onclick=()=>go(i);dots.appendChild(d);
