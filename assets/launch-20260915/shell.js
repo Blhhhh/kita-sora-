@@ -29,7 +29,7 @@
     for(const place of places){
       const art=place.querySelector('.place-art');
       // Layout dimensions deliberately exclude hover scale and the decorative float transform.
-      bounds.places[place.dataset.place]={x:place.offsetLeft-place.offsetWidth/2,y:place.offsetTop-place.offsetHeight/2,w:art.offsetWidth,h:art.offsetHeight};
+      bounds.places[place.dataset.place]={x:place.offsetLeft-place.offsetWidth/2,y:place.offsetTop-place.offsetHeight/2,w:art.offsetWidth,h:art.offsetHeight,totalH:place.offsetHeight};
     }
     wake.setAttribute('viewBox',`0 0 ${bounds.width} ${bounds.height}`);
   }
@@ -110,7 +110,9 @@
     map.classList.remove('is-departing');places.forEach(p=>p.classList.remove('is-arriving'));
     readDock();rest();delete boat.dataset.destination;
   }
-  new ResizeObserver(()=>{measure();clearWake();if(!trip)rest();}).observe(stage);
+  const worldResize=new ResizeObserver(()=>{measure();clearWake();if(!trip)rest();});
+  worldResize.observe(stage);
+  places.forEach(place=>worldResize.observe(place));
   reduce.addEventListener('change',()=>{if(reduced()&&trip)openDestination();else if(!trip)rest();});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!trip)rest();});
   addEventListener('pagehide',()=>{cancelAnimationFrame(raf);clearTimeout(deadline);});
