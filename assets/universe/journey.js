@@ -3,6 +3,9 @@
   const route = map.querySelector('.journey-route');
   const sailed = route.querySelector('.sailed-route');
   const future = route.querySelector('.future-route');
+  const branches = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  branches.setAttribute('class', 'station-branches');
+  route.append(branches);
   const boat = map.querySelector('.journey-boat');
   const toggle = map.querySelector('.sailing-toggle');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -32,8 +35,14 @@
       return {x: rect.left - bounds.left + rect.width / 2, y: rect.top - bounds.top + rect.height / 2};
     });
     route.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
-    sailed.setAttribute('d', curve(points.slice(0, 3)));
-    future.setAttribute('d', curve(points.slice(2)));
+    const textLeft = Math.min(...[...map.querySelectorAll('.journey-stop article')].map(article =>
+      article.getBoundingClientRect().left - bounds.left));
+    const laneX = Math.max(16, textLeft - boat.offsetWidth / 2 - 28);
+    const sailingPoints = points.map(point => ({x: laneX, y: point.y}));
+    sailed.setAttribute('d', curve(sailingPoints.slice(0, 3)));
+    future.setAttribute('d', curve(sailingPoints.slice(2)));
+    branches.setAttribute('d', points.map(point =>
+      `M ${laneX} ${point.y} L ${point.x} ${point.y}`).join(' '));
     length = sailed.getTotalLength();
     placeBoat((elapsed % 90000) / 90000 * length);
   }

@@ -175,3 +175,41 @@ html{scroll-padding-top:90px}body{overflow-x:clip}
 /* Preserve readable text links on the photographic worlds without restoring a bar. */
 [data-page=china] .universe-nav,[data-page=yakumo] .universe-nav,[data-page=shop] .universe-nav{ text-shadow:0 1px 2px #fbf8f2,0 0 10px #fbf8f2b3!important }
 [data-page=china] .universe-next>div:last-child,[data-page=yakumo] .universe-next>div:last-child{font-size:13px;font-weight:600;text-shadow:0 1px 2px #fbf8f2,0 0 8px #fbf8f2,0 0 16px #fbf8f2}
+
+/* Lynn's original handwritten wordmark, rendered in deep navy without changing its source. */
+.universe-nav .universe-brand {
+ position:relative!important;
+ flex:0 0 190px;
+ width:190px;
+ height:54px;
+ min-width:190px;
+ padding:0!important;
+ overflow:visible;
+ font-size:0!important;
+ line-height:1!important;
+}
+.universe-brand .brand-wordmark {
+ position:absolute;
+ left:-50px;
+ top:-3px;
+ width:300px;
+ max-width:none;
+ height:60px;
+ object-fit:contain;
+ filter:brightness(0) saturate(100%) invert(17%) sepia(20%) saturate(1200%) hue-rotate(161deg) brightness(91%) contrast(94%) drop-shadow(0 1px 2px #fff9e5) drop-shadow(0 0 5px #fff9e5);
+}
+
+@media(max-width:700px) {
+ .universe-nav .universe-brand {
+  flex-basis:140px;
+  width:140px;
+  min-width:140px;
+  height:50px;
+ }
+ .universe-brand .brand-wordmark {
+  width:230px;
+  height:46px;
+  left:-43px;
+  top:0;
+ }
+}

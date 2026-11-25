@@ -1,6 +1,6 @@
 /* Pass A is intentionally static. Existing typography and entrance are retained. */
 .map[data-world-pass="a"]{background:#d5e4e1;--px:0px;--py:0px}
-.map[data-world-pass="a"] .sea{background:url('ocean.webp') center/cover no-repeat}
+.map[data-world-pass="a"] .sea{background:url('ocean-optimized.webp') center/cover no-repeat}
 .map[data-world-pass="a"] .water-depth{display:none}
 .map[data-world-pass="a"] .world-stage{inset:82px 0 78px}
 .map[data-world-pass="a"] .place-art,.map[data-world-pass="a"] .map-boat img,.map[data-world-pass="a"] .shore-ripple{animation:none!important;transition:none!important;transform:none!important}
@@ -73,3 +73,8 @@
 .map[data-world-pass="a"] .place--shop .ground-contact{left:46%;bottom:58%;width:18%;height:3%}
 .map[data-world-pass="a"] .map-boat{width:clamp(125px,13vw,205px)}
 @media(max-width:600px){.map[data-world-pass="a"] .map-boat{width:84px}}
+@media(max-width:700px) {
+ .map[data-world-pass="a"] .sea {
+  background-image:url('ocean-mobile.webp');
+ }
+}

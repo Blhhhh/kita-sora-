@@ -1,0 +1,192 @@
+.site-footer {
+ position:relative;
+ z-index:5;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:18px;
+ width:100%;
+ margin:45px 0 0;
+ padding:35px 24px 45px;
+ color:#132f43;
+ font:600 20px/1.5 'Cormorant Garamond',Georgia,serif;
+ text-align:center;
+ text-shadow:0 1px 3px #fff9e9,0 0 9px #fff9e9,0 0 18px #fff9e9;
+}
+.site-footer .footer-brand {
+ position:relative;
+ display:block;
+ width:190px;
+ height:54px;
+ padding:0;
+}
+.footer-brand img {
+ position:absolute;
+ left:-50px;
+ top:-3px;
+ width:300px;
+ height:60px;
+ max-width:none;
+ object-fit:contain;
+ filter:brightness(0) saturate(100%) invert(17%) sepia(20%) saturate(1200%) hue-rotate(161deg) brightness(91%) contrast(94%) drop-shadow(0 1px 3px #fff9e5);
+}
+.site-footer nav {
+ position:static!important;
+ inset:auto!important;
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:12px 28px;
+ margin:0;
+ padding:0!important;
+ font:inherit;
+}
+.site-footer a,.social-links a,.text-action {
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:44px;
+ color:#132f43;
+ font:600 20px/1.5 'Cormorant Garamond',Georgia,serif;
+ text-shadow:0 1px 3px #fff9e9,0 0 9px #fff9e9,0 0 18px #fff9e9;
+ text-decoration:none;
+ transition:transform .18s ease;
+}
+.site-footer a span[aria-hidden],.text-action span[aria-hidden] {
+ margin-left:7px;
+ font-size:17px;
+ font-weight:400;
+}
+.site-footer a:hover,.social-links a:hover,.text-action:hover {
+ text-decoration:underline;
+ text-underline-offset:5px;
+}
+.site-footer a:active,.social-links a:active,.text-action:active {
+ transform:translateY(2px);
+}
+.site-footer .footer-subscribe {
+ font-size:25px;
+}
+.social-links {
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:10px 25px;
+}
+.social-links a,.social-links .social-pending {
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ min-height:44px;
+ white-space:nowrap;
+}
+.social-links .social-pending {
+ font:500 19px/1.5 'Cormorant Garamond',Georgia,serif;
+ text-shadow:0 1px 3px #fff9e9,0 0 9px #fff9e9;
+ color:#364e60;
+}
+.social-links svg {
+ width:18px;
+ height:18px;
+ fill:none;
+ stroke:currentColor;
+ stroke-width:1.5;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+ flex:none;
+}
+.about-people .social-links {
+ margin-top:20px;
+}
+.about-next .text-action {
+ margin-top:16px;
+ font-size:27px;
+}
+[data-page=work] .social-links {
+ justify-content:flex-start;
+ margin:18px 0;
+}
+body[data-page=index] {
+ height:auto;
+ min-height:100svh;
+ overflow-y:auto;
+}
+[data-page=index] .map {
+ position:absolute;
+ inset:0 0 auto;
+ height:100svh;
+}
+[data-page=index] .site-footer {
+ margin-top:100svh;
+}
+body.island-editing {
+ height:100%;
+ overflow:hidden;
+}
+.island-editing .site-footer {
+ display:none;
+}
+@media(max-width:700px) {
+ .site-footer {
+  gap:14px;
+  padding:28px 22px 35px;
+ }
+ .site-footer nav {
+  gap:4px 20px;
+ }
+ .site-footer a,.social-links a {
+  font-size:20px;
+ }
+ .social-links {
+  gap:6px 18px;
+ }
+ .site-footer .social-links {
+  max-width:330px;
+ }
+ .about-next .text-action {
+  font-size:25px;
+ }
+}
+body[data-page=index] {
+ background:#dcebee url('../world-map-pass-a/ocean-optimized.webp') center/cover no-repeat;
+}
+body[data-page=ithaca] {
+ height:auto;
+ min-height:100svh;
+ overflow-y:auto;
+}
+.postcard-world {
+ position:relative;
+ height:100svh;
+ width:100%;
+ overflow:hidden;
+ margin:0;
+ padding:0;
+}
+[data-page=ithaca] .postcard-world .stage,
+[data-page=ithaca] .postcard-world .crate-header,
+[data-page=ithaca] .postcard-world .caption,
+[data-page=ithaca] .postcard-world .dots,
+[data-page=ithaca] .postcard-world .hint,
+[data-page=ithaca] .postcard-world .close {
+ position:absolute;
+}
+body[data-page=yakumo],body[data-page=china] {
+ height:auto;
+ min-height:100svh;
+ overflow-y:auto;
+}
+[data-page=yakumo] .site-footer,[data-page=china] .site-footer {
+ margin-top:100svh;
+}
+@media(max-width:700px) {
+ body[data-page=index] {
+  background-image:url('../world-map-pass-a/ocean-mobile.webp');
+ }
+}
+.site-footer,.site-footer * {
+ box-sizing:border-box;
+}
+body[data-page=index],body[data-page=yakumo],body[data-page=china] {
+ display:flow-root;
+}

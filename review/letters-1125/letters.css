@@ -10,7 +10,7 @@ body {
  min-height:100svh;
  color:var(--ink);
  font-family:'Cormorant Garamond',Georgia,serif;
- background:#dcebee url('../../assets/world-map-pass-a/ocean.webp') center/cover no-repeat;
+ background:#dcebee url('../../assets/world-map-pass-a/ocean-optimized.webp') center/cover no-repeat;
 }
 .letter-header {
  display:flex;
@@ -304,4 +304,7 @@ h1 em {
  *,*::before,*::after {
   transition:none!important;
  }
+}
+@media(max-width:700px) {
+ body {background-image:url('../../assets/world-map-pass-a/ocean-mobile.webp')}
 }
