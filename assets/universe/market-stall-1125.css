@@ -57,9 +57,9 @@
 .sticker-board{position:absolute;left:3%;top:65%;width:29%;height:32%;transform:rotate(-8deg);filter:drop-shadow(3px 7px 4px #39281d88);z-index:2;isolation:isolate}
 .sticker-board-wood{position:absolute;inset:0;width:100%;height:100%;border:2px solid #71553d;border-radius:3% 2% 4% 2%;box-shadow:inset 0 0 9px #35251f88}
 .sticker-board::before{content:"";position:absolute;right:17%;top:-11%;width:3px;height:14%;background:#a38761;box-shadow:1px 2px 2px #36261e77;transform:rotate(8deg)}
-.market-stall-frame .market-sticker{position:absolute;display:block;min-height:0;width:34%;height:45%;transform:rotate(var(--sticker-angle));filter:drop-shadow(2px 3px 1px #32221e99);z-index:2}
+.sticker-board .market-sticker{position:absolute;display:block;min-height:0;width:34%;height:45%;transform:rotate(var(--sticker-angle));filter:drop-shadow(2px 3px 1px #32221e99);z-index:2}
 .market-sticker svg{display:block;width:100%;height:100%;overflow:visible}
-.market-stall-frame .market-sticker:hover{transform:rotate(var(--sticker-angle)) scale(1.1);z-index:4}
+.sticker-board .market-sticker:hover{transform:rotate(var(--sticker-angle)) scale(1.1);z-index:4}
 .market-sticker.sticker-1{left:8%;top:4%;--sticker-angle:-9deg;width:29%;height:44%}
 .market-sticker.sticker-2{left:50%;top:1%;--sticker-angle:12deg;width:35%;height:47%}
 .market-sticker.sticker-3{left:2%;top:52%;--sticker-angle:-7deg;width:37%;height:40%}
@@ -68,3 +68,5 @@
 .stickers-copy h3{max-width:450px}.sticker-coming-soon{font-style:italic}
 @media(max-width:700px){.sticker-board{left:3%;top:65%;width:31%;height:34%}.market-stall-layout{gap:28px}}
 .market-stall-layout{align-items:start}
+
+.market-merch-scene{position:relative;min-width:0}

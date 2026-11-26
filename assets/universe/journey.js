@@ -35,6 +35,22 @@
       return {x: rect.left - bounds.left + rect.width / 2, y: rect.top - bounds.top + rect.height / 2};
     });
     route.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    if (matchMedia('(max-width:700px)').matches) {
+      const stops = [...map.querySelectorAll('.journey-stop')];
+      const x = bounds.width / 2;
+      // Sail only through open water between the centered station/text groups.
+      const gaps = stops.slice(0, -1).map((stop, index) => {
+        const start = stop.querySelector('article').getBoundingClientRect().bottom - bounds.top + 24;
+        const end = stops[index + 1].querySelector('.station-island').getBoundingClientRect().top - bounds.top - 24;
+        return `M ${x} ${start} L ${x} ${Math.max(start + 1, end)}`;
+      });
+      sailed.setAttribute('d', gaps.slice(0, 2).join(' '));
+      future.setAttribute('d', gaps.slice(2).join(' '));
+      branches.setAttribute('d', '');
+      length = sailed.getTotalLength();
+      placeBoat((elapsed % 90000) / 90000 * length);
+      return;
+    }
     const textLeft = Math.min(...[...map.querySelectorAll('.journey-stop article')].map(article =>
       article.getBoundingClientRect().left - bounds.left));
     const laneX = Math.max(16, textLeft - boat.offsetWidth / 2 - 28);

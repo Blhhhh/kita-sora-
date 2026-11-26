@@ -1,0 +1,79 @@
+/* Mobile is a separate composition. 1254px texture / 418 CSS px = 3x detail.
+   Q90 WebP. Never scale a landscape painting to the document height. */
+.mobile-island-connection{display:none}
+.mobile-harbor-vista{display:none}
+.mobile-sea{display:none}
+/* Desktop map and footer share one fixed painting, never two abutting images. */
+@media(min-width:701px){
+ body[data-page=index]{background:#b5dbe3 url('../../world-map-pass-a/ocean.webp') center/cover fixed no-repeat!important}
+ body[data-page=index] .map{background:transparent!important}
+ body[data-page=index] .map .sea{background:none!important}
+ body[data-page=index] .water-depth{display:none!important}
+}
+.motion-page-enter{animation:motion-page-fade .3s ease both}
+@keyframes motion-page-fade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.motion-page-enter{animation-duration:.15s}}
+@media(max-width:700px){
+ body,body[data-page],body[data-page=crochet]{background:#a7d9e3 url('sea-tile.webp') left top/418px 418px repeat!important;background-attachment:scroll!important}
+ body.sea-ready,body[data-page].sea-ready{background-image:none!important;position:relative;isolation:isolate}
+ .mobile-sea{display:block;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#a7d9e3}
+ .sea-phase{display:block;position:absolute;inset:0;background:url('sea-tile.webp') 0 0/418px 418px repeat}
+ .sea-phase-11{background-position:-209px -209px}
+ .sea-phase-01{background-position:0 -209px;mask-image:linear-gradient(90deg,transparent,#000 28px,#000 390px,transparent 418px);mask-size:418px 418px;mask-repeat:repeat}
+ .sea-phase-10{background-position:-209px 0;mask-image:linear-gradient(0deg,transparent,#000 28px,#000 390px,transparent 418px);mask-size:418px 418px;mask-repeat:repeat}
+ .sea-phase-00{mask-image:linear-gradient(90deg,transparent,#000 28px,#000 390px,transparent 418px),linear-gradient(0deg,transparent,#000 28px,#000 390px,transparent 418px);mask-size:418px 418px;mask-repeat:repeat;-webkit-mask-composite:source-in;mask-composite:intersect}
+ body[data-page=index]{display:flow-root;overflow-x:clip}
+ body[data-page=index] .map-heading{position:relative!important;inset:auto!important;padding:105px 20px 0;margin:0;text-align:center;z-index:2}
+ body[data-page=index] .map-heading p{font:400 17px/1.4 'Cormorant Garamond',Georgia,serif;letter-spacing:0;text-transform:none;white-space:nowrap;margin:0 0 14px}
+ .map-tagline-brand{display:none}
+ body[data-page=index] .map-heading h1{margin:auto;font-size:37px;max-width:340px}
+ body[data-page=index]:not(.island-editing) .map[data-world-shell=v2]{position:relative!important;inset:auto!important;height:auto!important;min-height:0;overflow:visible;background:none!important}
+ body[data-page=index]:not(.island-editing) .map .sea,body[data-page=index]:not(.island-editing) .water-depth{display:none!important}
+ body[data-page=index]:not(.island-editing) .map[data-world-shell=v2] .world-stage{position:relative!important;inset:auto!important;width:100%;height:auto;display:flex;flex-direction:column;padding:0;margin:0}
+ body[data-page=index]:not(.island-editing) .map .place{position:relative!important;inset:auto!important;transform:none!important;width:100%!important;max-width:none;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px 150px;box-sizing:border-box}
+ body[data-page=index]:not(.island-editing) .map .place{text-decoration:none!important}
+ body[data-page=index]:not(.island-editing) .map .place--yakumo{min-height:calc(100svh - 210px);padding-top:20px;--mobile-art:86vw}
+ body[data-page=index]:not(.island-editing) .map .place--harbor{--mobile-art:76vw}
+ body[data-page=index]:not(.island-editing) .map .place--china{--mobile-art:64vw}
+ body[data-page=index]:not(.island-editing) .map .place--shop{--mobile-art:67vw;padding-bottom:70px}
+ body[data-page=index]:not(.island-editing) .world-float{display:block;position:relative;width:var(--mobile-art);max-width:430px;height:auto;transform:none!important}
+ body[data-page=index]:not(.island-editing) .map .place-art{display:block;width:100%;height:auto;aspect-ratio:1.5}
+ body[data-page=index]:not(.island-editing) .map .place-label{position:relative!important;inset:auto!important;transform:none!important;width:100%;text-align:center;margin-top:20px!important}
+ body[data-page=index]:not(.island-editing) .map .place-name{font-size:35px!important}
+ body[data-page=index]:not(.island-editing) .map .place-note{font-size:18px!important}
+ body[data-page=index]:not(.island-editing) .map-route,body[data-page=index]:not(.island-editing) .map-boat{display:none!important}
+ body[data-page=index]:not(.island-editing) .mobile-island-connection{display:block;position:absolute;bottom:25px;left:50%;height:95px;border-left:1.5px dashed #335b71;opacity:.65;pointer-events:none}
+ body[data-page=index] .site-footer{margin-top:0!important;position:relative}
+ .island-journey{padding:110px 20px 30px}
+ .island-journey .page-intro{text-align:center}
+ .island-journey .page-intro h1{font-size:45px}
+ .island-journey .journey-map{height:auto!important;margin:30px auto 65px;padding-bottom:55px}
+ .island-journey .journey-map ol{position:relative;inset:auto;display:block}
+ .island-journey .journey-stop{position:relative;inset:auto!important;left:auto!important;top:auto!important;width:100%;display:flex;flex-direction:column;gap:12px;text-align:center;padding:0 0 115px}
+ .island-journey .journey-stop:last-child{padding-bottom:25px}
+ .island-journey .station-island{width:64vw;max-width:310px;height:auto;aspect-ratio:1.5;margin:auto}
+ .island-journey .island-china img{transform:none}
+ .island-journey .journey-stop article{width:100%;padding:0;margin:0;text-align:center}
+ .island-journey .journey-stop h2{font-size:36px}
+ .island-journey .journey-stop a{font-size:20px!important}
+ .island-journey .journey-stop .station-dot{display:none}
+ .island-journey .journey-boat{width:30px;height:38px}
+ .island-journey .sailing-toggle{background:none;font-family:Georgia,serif;left:50%;right:auto;transform:translateX(-50%);white-space:nowrap}
+ .market-merch-scene{width:100%}
+ .market-stall-frame{width:100%;margin-left:0}
+ .market-merch-scene .sticker-board{position:relative;inset:auto;width:76%;height:auto;aspect-ratio:1.45;margin:10px auto 28px;transform:rotate(-3deg)}
+ .market-merch-scene .sticker-board::before{display:none}
+ .sticker-board a{transition:transform .2s ease;min-height:44px}
+ .sticker-board a:focus-visible{outline:2px solid #153448;outline-offset:5px}
+ .market-stall-layout{gap:20px}
+ .stall-copy{padding:0 8px}
+ .site-footer{max-width:100%;box-sizing:border-box}
+ .social-links{flex-wrap:wrap}
+ body[data-page=about-world] main{max-width:100%;box-sizing:border-box;overflow:clip}
+ /* Keep approved Harbor A as a sharp scene, not an enlarged portrait wallpaper.
+    1672px / <=430 CSS px gives >3x detail; the sea tile continues the page. */
+ body[data-page=crochet]::before{display:none}
+ body[data-page=crochet] .harbor-entrance{padding-top:112px}
+ .mobile-harbor-vista{display:block;position:absolute;top:210px;left:0;width:100%;z-index:-1;pointer-events:none;mask-image:radial-gradient(ellipse 73% 80% at 50% 55%,#000 48%,#000b 65%,transparent 90%);-webkit-mask-image:radial-gradient(ellipse 73% 80% at 50% 55%,#000 48%,#000b 65%,transparent 90%)}
+ .mobile-harbor-vista img{display:block;width:100%;height:auto}
+}

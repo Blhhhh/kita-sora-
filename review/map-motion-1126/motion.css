@@ -1,0 +1,64 @@
+/* Isolated review only: no motion is promoted to the public preview map. */
+.motion-study .motion-art{display:block;width:100%;position:relative;transition:transform .25s ease,filter .25s ease}
+.motion-ready .motion-study:not(.motion-entered) .motion-art{animation:island-surface .65s cubic-bezier(.22,.7,.3,1) var(--arrival) both}
+.motion-ready .motion-study:not(.motion-entered) .place-label{animation:label-surface .45s ease calc(var(--arrival) + .18s) both}
+.motion-study .place--china{--arrival:.10s;--drift:7.4s}
+.motion-study .place--shop{--arrival:.38s;--drift:8.3s}
+.motion-study .place--harbor{--arrival:.66s;--drift:9.1s}
+.motion-study .place--yakumo{--arrival:.94s;--drift:8s}
+.motion-study .world-float{animation:tiny-tide var(--drift) ease-in-out infinite!important}
+.motion-study .motion-ripple{position:absolute;left:4%;right:4%;bottom:2%;height:20%;border:1px solid #ecf5e2ad;border-radius:50%;opacity:0;pointer-events:none}
+.motion-study:not(.motion-entered) .motion-ripple{animation:water-ring .75s ease calc(var(--arrival) + .25s) both}
+.motion-study .place:hover .motion-art,.motion-study .place:focus-visible .motion-art{transform:translateY(-5px);filter:drop-shadow(0 9px 5px #143a4a45)}
+.motion-study .place:hover .motion-ripple,.motion-study .place:focus-visible .motion-ripple{animation:water-ring 1.1s ease infinite}
+.motion-study .place:hover .place-label,.motion-study .place:focus-visible .place-label{filter:contrast(1.2);text-shadow:0 1px 2px #fcf9e9!important}
+.motion-study .place.is-tapped .motion-art{animation:touch-dip .35s ease}
+.motion-study .place.is-tapped .motion-ripple{animation:water-ring .55s ease}
+.motion-study.motion-entered .motion-offscreen .motion-art,.motion-study.motion-entered .motion-offscreen .place-label{opacity:0}
+.motion-study .motion-scroll-arrival .motion-art{animation:island-surface .5s ease both}
+.motion-study .motion-scroll-arrival .place-label{animation:label-surface .4s ease both}
+.motion-study .map-boat{display:none!important}
+.motion-boat{position:fixed;left:0;top:0;width:36px;z-index:8;pointer-events:none;will-change:transform;filter:drop-shadow(1px 3px 2px #17384666);opacity:0;transition:opacity .2s}
+.motion-boat svg{display:block;width:100%;height:auto}
+.motion-study.motion-entered .motion-boat{opacity:1}
+.motion-route-reveal{stroke-dasharray:100;stroke-dashoffset:100;animation:route-draw 1.55s ease .12s forwards}
+.motion-study .snow-smoke{position:absolute;left:51%;top:4%;width:10%;height:20%;overflow:visible;opacity:.55;animation:chimney-breath 4.8s ease-in-out infinite}
+.snow-smoke path{stroke:#f7f4e8;stroke-width:2;fill:none;stroke-linecap:round}
+.motion-study .harbor-lamp{position:absolute;right:17%;top:24%;width:2.5%;height:4%;border-radius:40%;background:#efcc89a0;box-shadow:0 0 3px #f4d59f60;animation:warm-lamp 5.8s ease-in-out infinite;pointer-events:none}
+.motion-study .paper-rack-a,.motion-study .paper-rack-b{transform-origin:center top;animation:paper-sway 6.3s ease-in-out infinite!important}
+.motion-mailbox{position:absolute;right:8%;bottom:12%;width:27%;height:43%;object-fit:contain;filter:drop-shadow(1px 2px 1px #132f4344);z-index:8}
+.motion-envelope{position:absolute;right:17%;bottom:36%;width:6%;height:7%;object-fit:contain;animation:letter-peek 6s ease-in-out infinite;z-index:9}
+.motion-study.is-sailing-away{animation:depart-map .52s ease forwards}
+.motion-study.is-returning{animation:return-map .45s ease both}
+.motion-replay{position:fixed;right:16px;bottom:18px;z-index:50;border:0;border-bottom:1px solid #153448;background:#e9f2eddf;padding:9px 14px;color:#153448;font:17px Georgia,serif;cursor:pointer}
+@keyframes island-surface{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes label-surface{from{opacity:0}to{opacity:1}}
+@keyframes tiny-tide{0%,100%{translate:0 0}50%{translate:0 -3px}}
+@keyframes water-ring{0%{opacity:0;scale:.85}30%{opacity:.55}100%{opacity:0;scale:1.18}}
+@keyframes touch-dip{0%,100%{transform:translateY(0)}40%{transform:translateY(4px)}75%{transform:translateY(-2px)}}
+@keyframes route-draw{to{stroke-dashoffset:0}}
+@keyframes chimney-breath{0%,100%{opacity:0;translate:0 3px}45%{opacity:.5}80%{opacity:0;translate:1px -6px}}
+@keyframes warm-lamp{0%,100%{filter:brightness(1)}50%{filter:brightness(1.06) drop-shadow(0 0 2px #f8c87c66)}}
+@keyframes paper-sway{0%,100%{rotate:-1deg}50%{rotate:1deg}}
+@keyframes letter-peek{0%,25%,100%{translate:0 0}55%,70%{translate:0 -4px}}
+@keyframes depart-map{0%,55%{opacity:1}100%{opacity:0}}
+@keyframes return-map{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){
+ body.motion-study[data-page=index]:not(.island-editing) .motion-art{width:var(--mobile-art)}
+ body.motion-study[data-page=index]:not(.island-editing) .world-float{animation:tiny-tide var(--drift) ease-in-out infinite!important}
+ body.motion-study:not(.motion-entered) .mobile-island-connection{transform-origin:top;animation:mobile-route-draw .6s ease calc(var(--arrival) + .25s) both}
+ .motion-boat{width:29px}
+ .motion-replay{font-size:15px;bottom:12px}
+}
+@keyframes mobile-route-draw{from{scale:1 0;opacity:0}to{scale:1 1;opacity:.65}}
+@media(prefers-reduced-motion:reduce){
+ .motion-study .world-float,body.motion-study[data-page=index]:not(.island-editing) .world-float,.motion-study .snow-smoke,.motion-study .harbor-lamp,.motion-study .paper-rack-a,.motion-study .paper-rack-b,.motion-study .motion-envelope,.motion-study .motion-ripple{animation:none!important}
+ .motion-ready .motion-study:not(.motion-entered) .motion-art,.motion-ready .motion-study:not(.motion-entered) .place-label{animation:label-surface .15s ease both}
+ .motion-study .motion-route-reveal{animation:none;stroke-dashoffset:0}
+ body.motion-study:not(.motion-entered) .mobile-island-connection{animation:none!important}
+ .motion-study .place:hover .motion-art,.motion-study .place:focus-visible .motion-art{transform:none}
+ .motion-study .place.is-tapped .motion-art{animation:label-surface .15s ease}
+ .motion-study .motion-scroll-arrival .motion-art,.motion-study .motion-scroll-arrival .place-label{animation:label-surface .15s ease both}
+ .motion-boat{display:none!important}
+ .motion-study.is-sailing-away,.motion-study.is-returning{animation:label-surface .15s ease}
+}

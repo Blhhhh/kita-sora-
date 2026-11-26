@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="../../">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kita-Sora · a small sea under the northern sky</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;1,300;1,400&family=Nunito:wght@300;400&family=Noto+Serif+SC:wght@400&family=Shippori+Mincho:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* ─────────────────────────────────────────────
+   KITA-SORA · THE MAP ENGINE
+   Art assets are swappable: see ASSET_SPEC.md
+   Every slot = <img class="asset" data-asset="..." decoding="async">
+   or a CSS background pointing into /assets
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#f0e7d3;
+  --ink:#2c3e50;
+  --ink-soft:#5f7485;
+  --sky:#dceeff;
+  --coral:#ff8ca0;
+  --letter:#f5eed7;
+  --graphite:#8a8f96;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);
+  background:var(--paper);overflow:hidden;
+}
+
+/* ── OPENING · approved KitaSoraLoading web implementation ── */
+.map{opacity:1;transform:scale(1);transition:opacity 1.8s ease,transform 2.4s cubic-bezier(.2,.7,.2,1)}
+body.intro-active .map{opacity:0;transform:scale(1.035)}
+body.intro-active #bearBubble,body.intro-active #roamingBear,body.intro-active .dynamic-island{visibility:hidden;pointer-events:none}
+.opening{
+  position:fixed;inset:0;z-index:100000;overflow:hidden;background:#f4efe2;color:var(--ink);
+  opacity:1;visibility:visible;transition:opacity .8s ease,visibility .8s ease;
+}
+body:not(.intro-active) .opening{opacity:0;visibility:hidden;pointer-events:none}
+.loading-plate,.loading-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.loading-plate{object-fit:cover;z-index:1}
+.loading-layer{z-index:2;overflow:hidden}
+.loading-asset{position:absolute;display:block;object-fit:contain;opacity:0;filter:blur(1.5px);will-change:opacity,filter,clip-path}
+.loading-icon{z-index:6;left:50%;top:23%;width:8.01vw;height:10.07vh;transform:translateX(-50%)}
+.loading-wordmark{z-index:6;left:50%;top:15%;width:38.67vw;height:43.47vh;transform:translateX(-50%)}
+.loading-fragment{z-index:3}.loading-tl{left:-3.91vw;top:-4.65vh;width:25.98vw;height:30.97vh}.loading-tr{right:-3.59vw;top:-4.03vh;width:24.02vw;height:26.74vh}.loading-bl{left:-4.34vw;bottom:-5.21vh;width:28.91vw;height:34.79vh}.loading-br{right:-4.06vw;bottom:-4.65vh;width:26.95vw;height:30.97vh}
+.loading-note-left{z-index:3;left:7%;top:41%;width:150px;height:150px;opacity:0}.loading-note-right{z-index:3;right:8%;top:38%;width:150px;height:150px;opacity:0}
+.loading-boat{z-index:5;left:18%;top:74%;width:210px;height:180px;transform:translate(-50%,-100%);opacity:1;filter:none}
+.loading-sound-hint{position:absolute;z-index:6;left:50%;top:62%;transform:translateX(-50%);font:italic 15px/1 Georgia,serif;letter-spacing:.06em;color:#536b82;opacity:0;transition:opacity .6s ease;white-space:nowrap;pointer-events:none}.loading-sound-hint.is-visible{opacity:.64}.loading-sound-hint.is-fading{opacity:0}
+.loading-traces{z-index:2;left:20%;top:28%;width:60%;height:32%;opacity:0;filter:saturate(.5) blur(1.5px);clip-path:inset(0 100% 0 0)}
+.loading-slogan{position:absolute;z-index:6;left:50%;top:50%;transform:translateX(-50%);width:max-content;white-space:nowrap;overflow:visible;font:300 52.5px/1.45 Georgia,serif;letter-spacing:2px;color:#536b82;opacity:0;clip-path:inset(0 100% 0 0);pointer-events:none}
+.loading-route{position:absolute;z-index:4;inset:0;width:100%;height:100%;pointer-events:none}.loading-route path{fill:none;stroke:#df8a87;stroke-width:.16;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}.loading-route circle{fill:#f4efe2;stroke:#df8a87;stroke-width:.12;vector-effect:non-scaling-stroke}.loading-route text{fill:#536b82;font:1.8px Georgia,serif}.loading-route .loading-percent{fill:#df8a87;font-size:2px}
+.loading-boat{z-index:5;left:18%;top:74%;width:210px;height:180px;transform:translate(-50%,-100%);opacity:1;filter:none}.loading-status{z-index:6;left:50%;top:80%;width:320px;height:70px;transform:translateX(-50%);clip-path:inset(0 100% 0 0)}
+.loading-playing .loading-icon{animation:loading-reveal .75s ease .45s both}.loading-playing .loading-wordmark{animation:loading-reveal 1s ease .75s both}.loading-playing .loading-slogan{animation:loading-wipe 1s ease 1.45s both}.loading-playing .loading-tl,.loading-playing .loading-tr{animation:loading-reveal 1.1s ease 2.15s both}.loading-playing .loading-bl,.loading-playing .loading-br{animation:loading-reveal 1.35s ease 2.8s both}.loading-playing .loading-note-left,.loading-playing .loading-note-right{animation:loading-reveal 1.2s ease 3.55s both}.loading-playing .loading-traces{animation:loading-trace 1.35s ease 3.9s both}.loading-playing .loading-status{animation:loading-wipe .8s ease .3s both}
+@keyframes loading-reveal{from{opacity:0;filter:blur(1.5px)}to{opacity:1;filter:blur(0)}}@keyframes loading-wipe{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}@keyframes loading-trace{from{opacity:0;filter:saturate(.5) blur(1.5px);clip-path:inset(0 100% 0 0)}to{opacity:.16;filter:saturate(.5) blur(0);clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.loading-playing .loading-asset,.loading-playing .loading-slogan{animation:loading-reduced .24s ease both}.loading-playing .loading-traces{animation:loading-trace-reduced .24s ease both}.loading-route,.loading-boat,.loading-status{display:none}@keyframes loading-reduced{to{opacity:1;filter:none;clip-path:inset(0)}}@keyframes loading-trace-reduced{to{opacity:.16;filter:saturate(.5);clip-path:inset(0)}}}
+
+/* ── BRAND ICON · fixed top-left on every page ── */
+.brand-icon{
+  position:fixed;top:22px;left:32px;z-index:30;
+  width:44px;height:44px;
+  filter:drop-shadow(0 4px 10px rgba(13,31,60,.18));
+}
+.brand-icon img{width:100%;height:100%;display:block}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:26px 44px 0;
+}
+.links{display:flex;gap:30px;align-items:center}
+.links a{
+  color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid transparent;transition:.3s;
+}
+.links a:hover{border-color:var(--coral)}
+.hero-card{width:min(500px,88vw);padding:34px 38px 30px;background:rgba(255,252,244,.88);border:1px solid rgba(44,62,80,.12);border-radius:4px;box-shadow:0 24px 60px rgba(44,62,80,.16);backdrop-filter:blur(8px);text-align:left;animation:heroCardIn 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes heroCardIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.hero-card .eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.hero-card h1{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-size:clamp(42px,6vw,72px);font-weight:500;font-style:italic;line-height:1.02;margin-bottom:16px}
+.hero-card p{font-family:'Lora',serif;font-size:14px;line-height:1.75;color:var(--ink-soft);margin-bottom:22px}
+.hero-card .hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;background:var(--ink);color:var(--letter);text-decoration:none;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:transform .3s,background .3s}
+.hero-card .hero-cta:hover{transform:translateY(-2px);background:#3d5365}
+.hero-card .hero-note{display:block;margin-top:14px;font-size:10px;letter-spacing:.08em;color:var(--ink-soft)}
+.lang{display:flex;gap:8px;font-size:12px;color:var(--ink-soft)}
+.lang button{background:none;border:none;cursor:pointer;font-family:inherit;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;padding:2px}
+.lang button.on{color:var(--ink);border-bottom:1px solid var(--coral)}
+
+/* ── LEGEND ── */
+.legend{position:fixed;right:44px;bottom:40px;z-index:20;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:right;line-height:2}
+.legend b{color:var(--coral);font-weight:500}
+
+/* ── PANEL ── */
+.panel{
+  position:fixed;inset:0;z-index:40;display:grid;place-items:center;
+  background:rgba(240,231,211,.55);backdrop-filter:blur(9px);
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+.panel.open{opacity:1;pointer-events:auto}
+.card{
+  width:min(440px,88vw);background:rgba(255,252,244,.9);border-radius:4px;
+  padding:38px 38px 30px;text-align:center;
+  box-shadow:0 30px 90px rgba(44,62,80,.28);
+  border:1px solid rgba(44,62,80,.08);
+  transform:translateY(16px);transition:transform .45s ease;
+}
+.panel.open .card{transform:none}
+.card .photo{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px;margin-bottom:22px;box-shadow:0 10px 30px rgba(44,62,80,.18)}
+.card h2{font-family:'Cormorant Garamond','Shippori Mincho','Noto Serif SC',serif;font-weight:500;font-size:30px;font-style:italic}
+.card .mods{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:10px 0 16px}
+.card p{font-size:14px;line-height:1.8;font-family:'Lora',serif}
+.card .actions{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.card a{
+  display:inline-block;padding:11px 24px;border-radius:999px;text-decoration:none;font-size:12.5px;letter-spacing:.08em;
+}
+.card a.solid{background:var(--ink);color:var(--letter)}
+.card a.ghost{color:var(--ink);border:1px solid rgba(44,62,80,.3)}
+.card .close{margin-top:16px;background:none;border:none;color:var(--ink-soft);font-size:11.5px;cursor:pointer;font-family:inherit;letter-spacing:.06em}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── ROAMING BEAR (legacy mascot, migrated) ── */
+#roamingBear{
+  display:none;position:fixed;top:0;left:0;width:122px;z-index:99999;
+  cursor:pointer;pointer-events:all;
+  filter:drop-shadow(0 8px 20px rgba(44,62,80,.18));
+  will-change:transform;transform:translate(0,0);
+}
+#roamingBear.playing{filter:drop-shadow(0 0 16px rgba(255,140,160,.55)) drop-shadow(0 6px 14px rgba(44,62,80,.16))}
+@media (max-width:768px){#roamingBear{width:78px}}
+@media (max-width:680px){
+  .sea{background-image:url("assets/sea-watercolor-mobile.png.webp");background-position:center center}
+  nav{padding:14px 16px 0 72px}
+  .links{gap:8px 14px;flex-wrap:wrap;justify-content:flex-end}
+  .links a{min-height:32px;display:inline-flex;align-items:center}
+  .loading-slogan{font-size:clamp(17px,4.5vw,30px);letter-spacing:.04em;max-width:94vw}
+  .loading-sound-hint{font-size:13px}
+  .links a{font-size:11px}
+  .hero-card{width:min(440px,88vw);padding:24px 22px 22px;text-align:center}
+  .hero-card h1{font-size:clamp(38px,12vw,62px)}
+  .hero-card p{font-size:12px;line-height:1.6}
+  .brand-icon{top:16px;left:20px;width:36px;height:36px}
+  .opening h1{font-size:clamp(38px,12vw,62px)}
+  .legend{right:22px;bottom:28px;font-size:9px}
+  /* vertical drift of node layout on small screens */
+  .n-china{left:16%!important;top:86%!important}
+  .n-yakumo{left:32%!important;top:35%!important}
+  .n-my{left:72%!important;top:66%!important}
+  .n-eu{left:82%!important;top:26%!important}
+  .n-jp{left:88%!important;top:82%!important}
+  .distant-island{left:2%;top:30%;width:66vw;opacity:.82}
+  .slot-yakumo{width:clamp(186px,58vw,250px);height:clamp(140px,43.5vw,188px)}
+  .slot-china{width:clamp(126px,34vw,168px);height:clamp(126px,34vw,168px)}
+  .future-mist{left:62%;right:-8%;top:8%;bottom:4%;filter:blur(7px)}
+}
+/* Launch P0: constrain entrance text to the visible viewport. */
+.loading-slogan{width:92vw;max-width:1100px;white-space:normal;text-align:center;font-size:clamp(17px,3.6vw,52.5px);letter-spacing:.038em;line-height:1.35}
+.loading-sound-hint{top:64%;max-width:94vw;text-align:center;white-space:normal}
+@media(max-height:460px){.loading-slogan{top:47%;font-size:clamp(17px,3.2vw,28px)}.loading-sound-hint{top:67%}}
+</style>
+<link rel="stylesheet" href="assets/world-map-v1/map.css">
+<link rel="stylesheet" href="assets/world-map-correction/islands.css">
+<link rel="stylesheet" href="assets/world-map-pass-a/static-world.css">
+<link rel="stylesheet" href="assets/launch-20260915/dressing.css">
+<link rel="stylesheet" href="assets/launch-20260915/shell.css">
+<link rel="stylesheet" href="assets/v1-consolidation/shell.css">
+<link rel="stylesheet" href="assets/universe/universe.css">
+<link rel="stylesheet" href="assets/universe/v2.css">
+<link rel="stylesheet" href="assets/universe/footer-1125.css">
+<meta name="description" content="Exploring outward, settling inward. Four islands of journeys, letters, handmade companions and work.">
+<link rel="canonical" href="https://kita-sora.com/">
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kita-Sora">
+<meta property="og:title" content="Kita-Sora · a small sea under the northern sky">
+<meta property="og:description" content="Exploring outward, settling inward. Four islands of journeys, letters, handmade companions and work.">
+<meta property="og:url" content="https://kita-sora.com/">
+<meta property="og:image" content="https://v1-universe.kita-sora-pages.pages.dev/assets/social/world-panorama.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The four Kita-Sora islands under the northern sky">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://v1-universe.kita-sora-pages.pages.dev/assets/social/world-panorama.jpg">
+<link rel="stylesheet" href="assets/universe/scene-links-1125.css">
+<link rel="stylesheet" href="assets/universe/readability-1125.css?v=reading-size">
+<link rel="stylesheet" href="assets/universe/preview-recovery-1125.css"><link rel="stylesheet" href="assets/universe/mobile-1126/mobile.css"><link rel="stylesheet" href="review/readability-1126/options.css?v=2"></head>
+<body data-page="index" data-readability="a">
+<nav class="universe-nav" aria-label="Main navigation"><a class="universe-brand" href="index.html#map"><img class="brand-wordmark" src="assets/brand/logo-wordmark.png" alt="Kita-Sora" width="400" height="80"></a><div class="universe-links" id="universe-links"><a href="index.html#map" aria-current="page">Map</a><a href="ithaca.html">Ithaca</a><a href="shop/crochet.html">Harbor Loop</a><a href="shop.html">Market</a><a href="work.html">Workshop</a><a href="about.html">About</a></div><a class="universe-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a><button class="universe-menu" aria-expanded="false" aria-controls="universe-links" type="button">Menu</button></nav>
+
+<a class="map-brand" href="index.html#map" aria-label="Kita-Sora — World Map">Kita-Sora</a>
+<header class="universe-heading map-heading"><p><span class="map-tagline-brand">Kita-Sora · </span>Exploring outward, settling inward</p><h1>A map for your <em>universe.</em></h1></header><main class="map" data-world-pass="a" data-world-shell="v2" id="map" aria-label="Kita-Sora world map — explore four places">
+  <div class="sea" aria-hidden="true"></div>
+  <div class="water-depth" aria-hidden="true"><div class="water-depth__wash"></div></div>
+  <div class="water-depth water-depth--far" aria-hidden="true"><div class="water-depth__wash"></div></div>
+  <div class="world-stage">
+    <svg class="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sailing-fade" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fffbed" stop-opacity="0"/><stop offset=".35" stop-color="#fffbed" stop-opacity=".5"/><stop offset=".6" stop-color="#fffbed" stop-opacity=".8"/><stop offset="1" stop-color="#fffbed" stop-opacity="0"/></linearGradient></defs><path class="sailing-trace" d="M 27 73 C 19 66,17 57,21 50 S 34 45,37 33"/><path class="sailing-trace sailing-trace--long" d="M 40 28 C 46 32,38 43,45 48 S 58 54,60 62 S 64 74,69 76"/></svg>
+    <a class="place place--yakumo is-integrated-yakumo" data-place="yakumo" href="ithaca.html" aria-label="Ithaca — journey and letters">
+      <span class="world-float"><span class="place-art"><img class="winter-land" src="assets/launch-20260915/yakumo-clean-alpha.png.webp" alt="A snowy rocky winter landscape, evergreens and a small dock" decoding="async" srcset="assets/optimized/island-winter-640.webp 640w, assets/launch-20260915/yakumo-clean-alpha.png.webp 1536w" sizes="(max-width:700px) 60vw, 480px" fetchpriority="high"><span class="house-contact"></span>
+<svg class="winter-house" viewBox="350 575 570 405" role="img" aria-label="The original red-roof Yakumo clay house"><defs><clipPath id="winter-house-cut"><path d="M350 580H850L915 790L890 934L830 940L770 939L710 946L630 943L562 950L488 944L420 949L375 941Z"/></clipPath></defs><image href="assets/world-map-v1/yakumo.webp" x="30" y="350" width="1224" height="778" clip-path="url(#winter-house-cut)"/></svg>
+<svg class="winter-tree" viewBox="842 350 375 610" role="img" aria-label="The original Yakumo clay tree"><defs><clipPath id="winter-tree-cut"><path d="M842 350H1217V875L1060 899L1037 958H996V897L914 876L852 804Z"/></clipPath></defs><image href="assets/world-map-v1/yakumo.webp" x="30" y="350" width="1224" height="778" clip-path="url(#winter-tree-cut)"/></svg>
+</span></span>
+      <span class="place-label"><span class="place-name">Ithaca</span><span class="place-note" data-en="Journey &amp; letters" data-jp="記憶の場所" data-cn="记忆停靠的地方">Journey &amp; letters</span><span class="place-enter">explore this place </span></span>
+    <span class="mobile-island-connection" aria-hidden="true"></span></a>
+    <a class="place place--harbor" data-place="harbor" href="shop/crochet.html" aria-label="Harbor Loop — enter the handmade world">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="island-land" src="assets/launch-20260915/harbor-clean-alpha.png.webp" alt="A miniature making garden with a worktable, supplies, workshop shelves and dock" decoding="async" srcset="assets/optimized/island-harbor-640.webp 640w, assets/launch-20260915/harbor-clean-alpha.png.webp 1536w" sizes="(max-width:700px) 60vw, 480px" loading="lazy"><span class="ground-contact"></span>
+        <img class="harbor-daisy" src="assets/world-map-v1/crochet-daisy.webp" alt="A real handmade crochet daisy" decoding="async">
+        <img class="harbor-mugi" src="assets/world-map-v1/mugi.webp" alt="Mugi holding his salmon" decoding="async">
+        <svg class="dressing-character dressing-piku" viewBox="145 210 810 980" role="img" aria-label="Piku, the existing orange-hooded crochet pig"><image href="assets/crochet/little-pig-cutout.png.webp" width="1086" height="1448"/></svg><svg class="dressing-character dressing-raku" viewBox="210 220 735 940" role="img" aria-label="Raku, the existing orange and white crochet tiger"><image href="assets/crochet/little-tiger-cutout.png.webp" width="1122" height="1402"/></svg><img class="harbor-yarn" src="assets/world-map-v1/yarn.webp" alt="" decoding="async">
+        <svg class="harbor-thread" viewBox="0 0 400 242" aria-hidden="true"><path d="M 89 203 C 75 225,118 238,138 227 S 179 216,178 231 S 216 237,230 229"/></svg>
+      </span></span>
+      <span class="place-label"><span class="place-name">Harbor Loop</span><span class="place-note" data-en="Mom’s crochet" data-jp="手から生まれる" data-cn="手作的生活">Mom’s crochet</span><span class="place-enter">explore this place </span></span>
+    <span class="mobile-island-connection" aria-hidden="true"></span></a>
+    <a class="place place--china" data-place="china" href="work.html" aria-label="Workshop — work with me">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="china-main" src="assets/launch-20260915/harbor-clean-alpha.png.webp" alt="A small workshop island with a wooden desk and shelves" decoding="async" srcset="assets/optimized/island-harbor-640.webp 640w, assets/launch-20260915/harbor-clean-alpha.png.webp 1536w" sizes="(max-width:700px) 60vw, 480px" loading="lazy"></span></span>
+      <span class="place-label"><span class="place-name">Workshop</span><span class="place-note" data-en="Work with me" data-jp="最初の岸" data-cn="第一片岸">Work with me</span><span class="place-enter">explore this place </span></span>
+    <span class="mobile-island-connection" aria-hidden="true"></span></a>
+    <a class="place place--shop" data-place="shop" href="shop.html" aria-label="Market — stories you can carry">
+      <span class="world-float"><span class="place-art"><span class="shore-ripple"></span><img class="island-land" src="assets/launch-20260915/shop-clean-alpha.png.webp" alt="A miniature wooden souvenir market, paper display racks, handmade shelves, packing counter and dock" decoding="async" srcset="assets/optimized/island-market-640.webp 640w, assets/launch-20260915/shop-clean-alpha.png.webp 1536w" sizes="(max-width:700px) 60vw, 480px" loading="lazy"><img class="shop-product paper-rack-a" src="assets/launch-20260915/postcard-05-almost-there.png.webp" alt="To Ithaca — Almost There" style="left:22%;top:21%;width:9%;height:8%" decoding="async">
+<img class="shop-product paper-rack-b" src="assets/launch-20260915/postcard-06-ithaca.png.webp" alt="To Ithaca — Ithaca" style="left:23%;top:29%;width:10%;height:8%" decoding="async">
+<img class="shop-product paper-rack-c" src="assets/launch-20260915/postcard-02-no-way-back.png.webp" alt="To Ithaca — No Way Back" style="left:24%;top:37%;width:10%;height:8%" decoding="async">
+<img class="shop-product paper-counter-a" src="assets/launch-20260915/postcard-01-leaving-things-behind.png.webp" alt="To Ithaca — Leaving Things Behind" style="left:45%;top:28%;width:7%;height:7%" decoding="async">
+<img class="shop-product paper-counter-b" src="assets/launch-20260915/postcard-03-breathing-again.png.webp" alt="To Ithaca — Breathing Again" style="left:46%;top:33%;width:7%;height:7%" decoding="async">
+<img class="shop-product paper-bookmark" src="assets/launch-20260915/bookmark-upright.png.webp" alt="Under the North Sky bookmark" style="left:54%;top:29%;width:3%;height:13%" decoding="async">
+<img class="shop-product paper-envelope" src="assets/world-map-v1/envelope.webp" alt="Kita-Sora packaging" style="left:56%;top:35%;width:9%;height:9%" decoding="async">
+<img class="shop-product paper-sticker-bear" src="assets/launch-20260915/sticker-bear.png.webp" alt="The Bear sticker" style="left:51%;top:37%;width:4%;height:6%" decoding="async">
+<img class="shop-product paper-sticker-home" src="assets/launch-20260915/sticker-home.png.webp" alt="Home Blooming sticker" style="left:63%;top:35%;width:3%;height:6%" decoding="async">
+<img class="shop-product handmade-mugi" src="assets/launch-20260915/mugi.png.webp" alt="Mugi holding his salmon" style="left:65%;top:16.5%;width:7%;height:13%" decoding="async"><svg class="shop-product" style="left:59%;top:20.5%;width:5%;height:9%" viewBox="145 210 810 980" role="img" aria-label="Piku"><image href="assets/crochet/little-pig-cutout.png.webp" width="1086" height="1448"/></svg>
+<svg class="shop-product" style="left:75%;top:20%;width:5%;height:10%" viewBox="210 220 735 940" role="img" aria-label="Raku"><image href="assets/crochet/little-tiger-cutout.png.webp" width="1122" height="1402"/></svg><svg class="shop-product" style="left:62%;top:32%;width:6%;height:6%" viewBox="77 225 185 207" role="img" aria-label="Handmade crochet burger"><defs><clipPath id="shop-real-burger"><path d="M167 228L190 234L212 257L230 280L237 312L252 327L258 357L253 383L239 404L199 423L150 421L105 411L84 393L76 371L83 337L80 320L98 314L98 284L125 254Z"/></clipPath></defs><image href="assets/launch-20260915/burger-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-burger)"/></svg><svg class="shop-product" style="left:59%;top:30%;width:4%;height:8%" viewBox="165 170 145 213" role="img" aria-label="Handmade crochet coffee"><defs><clipPath id="shop-real-coffee"><path d="M217 175L249 170L280 187L299 208L307 224L297 245L278 264L282 291L271 342L279 358L263 378L232 379L204 366L203 342L211 290L188 277L169 267L171 244L181 213L198 195Z"/></clipPath></defs><image href="assets/launch-20260915/coffee-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-coffee)"/></svg><svg class="shop-product" style="left:71%;top:44%;width:6%;height:7%" viewBox="115 158 133 219" role="img" aria-label="Handmade crochet bananas"><defs><clipPath id="shop-real-bananas"><path d="M219 161L235 158L239 172L225 190L218 219L237 221L243 242L237 271L224 300L204 322L183 341L155 360L137 371L122 373L119 359L128 347L143 334L152 305L168 289L147 298L138 285L145 251L162 220L182 190L208 171Z"/></clipPath></defs><image href="assets/launch-20260915/bananas-source-review.jpg.webp" width="384" height="512" clip-path="url(#shop-real-bananas)"/></svg><img class="shop-product" style="left:67%;top:43%;width:5%;height:6%" src="assets/world-map-v1/yarn.webp" alt="Existing yarn and making trace" decoding="async">
+<img class="shop-product" style="left:79%;top:30%;width:4%;height:7%;transform:rotate(-8deg)" src="assets/world-map-v1/crochet-daisy.webp" alt="Real crochet daisy" decoding="async">
+</span></span>
+      <span class="place-label"><span class="place-name">Market</span><span class="place-note" data-en="Stories you can carry" data-jp="持ち帰る物語" data-cn="可以带走的故事">Stories you can carry</span><span class="place-enter">explore this place </span></span>
+    </a>
+    <div class="map-boat" aria-hidden="true"><svg viewBox="600 100 360 490"><defs><clipPath id="shell-boat-cut"><path d="M611 369L649 347L740 174L751 120L769 110L780 144L887 182L887 197L789 215L926 440L949 451L952 469L919 485L881 555L862 581L748 546L677 491L628 434L611 396Z"/></clipPath></defs><image href="assets/world-map-pass-a/boat.webp" width="1200" height="800" clip-path="url(#shell-boat-cut)"/></svg></div>
+  </div>
+  <p class="map-caption"><span>A map for carrying</span><span>your own universe.</span></p>
+  <p class="map-invitation" data-en="Choose a place. Follow a thread." data-jp="場所を選んで、糸をたどる。" data-cn="选一处地方，循着线索出发。">Choose a place. Follow a thread.</p>
+
+  <span class="companion-note" role="status"></span>
+
+</main>
+
+
+
+
+
+
+
+<script src="assets/world-map-pass-a/static-world.js"></script>
+<script src="assets/launch-20260915/route.js?v=preview-recovery2"></script>
+<script src="assets/launch-20260915/shell.js?v=preview-recovery2"></script>
+<script src="assets/v1-consolidation/shell.js" defer></script>
+<script src="assets/universe/universe.js?v=1125-scroll" defer></script><script src="assets/universe/island-layout.js?v=preview-recovery2" defer></script><footer class="site-footer">
+<a class="footer-brand" href="index.html#map" aria-label="Kita-Sora"><img src="assets/brand/logo-wordmark.png" alt="Kita-Sora" width="400" height="80" loading="lazy"></a>
+<nav aria-label="Explore the four islands"><a href="ithaca.html">Ithaca <span aria-hidden="true"></span></a><a href="shop/crochet.html">Harbor Loop <span aria-hidden="true"></span></a><a href="shop.html">Market <span aria-hidden="true"></span></a><a href="work.html">Workshop <span aria-hidden="true"></span></a></nav>
+<a class="footer-subscribe" href="https://lynnfromkitasora.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe <span aria-hidden="true"></span></a>
+<div class="social-links"><a href="https://www.instagram.com/lynnurfavgurl/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg><span>Instagram</span></a><span class="social-pending" aria-label="Pinterest link coming soon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 21l3-13m-1 8c8 3 11-10 3-12C5 2 2 12 6 15"/></svg><span>Pinterest · soon</span></span><a href="https://lynnfromkitasora.substack.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18M3 9h18M4 13h16v8l-8-4-8 4z"/></svg><span>Substack</span></a><a href="mailto:kitasorastudio@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg><span>kitasorastudio@gmail.com</span></a></div>
+</footer>
+<script src="assets/universe/readability-1125.js?v=roadside-mist" defer></script><script src="assets/universe/mobile-1126/sea.js"></script></body>
+</html>

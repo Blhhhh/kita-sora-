@@ -1,0 +1,482 @@
+[
+  {
+    "slug": "home",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "home",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "home",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1624,
+    "width": 375
+  },
+  {
+    "slug": "ithaca",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "ithaca",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "ithaca",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1624,
+    "width": 375
+  },
+  {
+    "slug": "harbor",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "harbor",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "harbor",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1624,
+    "width": 375
+  },
+  {
+    "slug": "market",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "market",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "market",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1569.5,
+    "width": 375
+  },
+  {
+    "slug": "workshop",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "workshop",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "workshop",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1624,
+    "width": 375
+  },
+  {
+    "slug": "about",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "about",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 812,
+    "width": 375
+  },
+  {
+    "slug": "about",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 1624,
+    "width": 375
+  },
+  {
+    "slug": "letters",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "letters",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 203.5,
+    "width": 375
+  },
+  {
+    "slug": "letters",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 203.5,
+    "width": 375
+  },
+  {
+    "slug": "postcards",
+    "size": 375,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 0,
+    "width": 375
+  },
+  {
+    "slug": "postcards",
+    "size": 375,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 484,
+    "width": 375
+  },
+  {
+    "slug": "postcards",
+    "size": 375,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 812,
+    "scrollWidth": 375,
+    "scrollY": 484,
+    "width": 375
+  },
+  {
+    "slug": "home",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "home",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "home",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1864,
+    "width": 430
+  },
+  {
+    "slug": "ithaca",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "ithaca",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "ithaca",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1864,
+    "width": 430
+  },
+  {
+    "slug": "harbor",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "harbor",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "harbor",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1864,
+    "width": 430
+  },
+  {
+    "slug": "market",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "market",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "market",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1420.5,
+    "width": 430
+  },
+  {
+    "slug": "workshop",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "workshop",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "workshop",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1864,
+    "width": 430
+  },
+  {
+    "slug": "about",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "about",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 932,
+    "width": 430
+  },
+  {
+    "slug": "about",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 1580,
+    "width": 430
+  },
+  {
+    "slug": "letters",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "letters",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 37,
+    "width": 430
+  },
+  {
+    "slug": "letters",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 37,
+    "width": 430
+  },
+  {
+    "slug": "postcards",
+    "size": 430,
+    "screen": 0,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 0,
+    "width": 430
+  },
+  {
+    "slug": "postcards",
+    "size": 430,
+    "screen": 1,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 436,
+    "width": 430
+  },
+  {
+    "slug": "postcards",
+    "size": 430,
+    "screen": 2,
+    "background": "418px 418px",
+    "height": 932,
+    "scrollWidth": 430,
+    "scrollY": 436,
+    "width": 430
+  }
+]
