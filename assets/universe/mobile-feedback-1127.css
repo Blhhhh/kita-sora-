@@ -1,0 +1,81 @@
+/* Lynn's iPhone feedback, 27 Nov. Paper protects copy; decoration never intercepts taps. */
+:root{--copy-ink:#153448;--copy-paper:#fffaf0}
+.service-overview{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px 0}
+body[data-page] .service-overview a{padding:7px 12px;border:1px solid #15344844;background:#fffaf0ed;border-radius:7px;font:500 17px/1.3 Georgia,serif!important;text-decoration:none}
+body[data-page=work] main{max-width:1080px}
+body[data-page=work] .service-islands{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0 28px}
+body[data-page=work] .service-island{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start;padding:22px;background:linear-gradient(135deg,#fffaf0f5,#f8f2e5e8);border:1px solid #fffaf0;border-radius:16px;box-shadow:0 5px 15px #15344812;min-width:0;scroll-margin-top:100px}
+body[data-page=work] .service-island img{width:80px;height:80px;object-fit:contain;justify-self:center}
+body[data-page=work] .service-copy{min-width:0;padding:0}
+body[data-page=work] .service-copy::before,body[data-page=work] .service-copy .sea-text::before{content:none!important}
+body[data-page=work] .service-copy h2{font:500 30px/1.12 Georgia,serif!important;margin:0 0 12px}
+body[data-page=work] main .service-copy p{font:400 18px/1.55 Georgia,serif!important;margin:0 0 10px;text-shadow:none!important;color:var(--copy-ink)!important}
+body[data-page=work] main .service-copy .service-price{font-size:15px!important;font-weight:500!important;font-style:italic}
+body[data-page] main .service-cta,body[data-page=work] .work-contact .btn,body[data-page=work] .work-contact .social-links a{display:flex;align-items:center;justify-content:center;min-height:48px;width:100%;padding:11px 13px!important;margin:0!important;border:1px solid #496372!important;border-radius:8px!important;background:#fffdf5!important;color:#153448!important;font:500 17px/1.35 Georgia,serif!important;text-decoration:none!important;text-shadow:none!important;position:relative;z-index:2;pointer-events:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:#15344833;box-sizing:border-box;overflow-wrap:anywhere}
+body[data-page] a:focus-visible,body[data-page] button:focus-visible,summary:focus-visible{outline:3px solid #153448!important;outline-offset:4px}
+body[data-page] main .service-cta:hover,body[data-page] main .service-cta:active,body[data-page=work] .work-contact a:hover,body[data-page=work] .work-contact a:active{background:#e5efec!important;box-shadow:0 3px 8px #15344825;transform:translateY(-1px)}
+body[data-page=work] .work-bio,body[data-page=work] .work-steps,body[data-page=work] .work-contact{background:#fffaf0ed!important;padding:24px!important;border-radius:16px!important;margin:24px 0!important;transform:none!important;text-align:left;text-shadow:none!important;box-shadow:0 4px 15px #15344812!important}
+body[data-page=work] .work-bio summary{font:500 21px/1.5 Georgia,serif;cursor:pointer;min-height:44px}
+body[data-page=work] .work-bio .intro{margin:12px 0 0!important}
+body[data-page=work] main .work-steps li,body[data-page=work] main .work-bio p{font:400 19px/1.75 Georgia,serif!important;color:#153448!important;text-shadow:none!important}
+body[data-page=work] .work-steps h2,body[data-page=work] .work-contact h2{font:500 29px/1.25 Georgia,serif!important;margin:0 0 18px}
+body[data-page=work] .work-steps ol{padding-left:26px}
+body[data-page=work] .work-contact{display:grid;gap:12px}
+body[data-page=work] .work-contact .social-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0}
+body[data-page=work] main .browser-help{font:400 16px/1.6 Georgia,serif!important;margin:4px 0 0!important;text-shadow:none!important}
+body[data-page] .mobile-sea,body[data-page] .sea-phase,body[data-page] .sea-mist::before,body[data-page] .sea-text::before,body[data-page] .service-copy::before{pointer-events:none!important}
+@media(max-width:700px){
+ /* Stronger reading face, while titles and island labels keep their approved type. */
+ body[data-page] main p:not(.about-poem):not(.eyebrow):not(.kicker):not(.stop-region):not(.stage-kicker),body[data-page] main li:not(.journey-stop),body[data-page] .character-copy p,body[data-page] .harbor-letter-story p{font-family:Georgia,'Times New Roman',serif!important;font-size:19px!important;font-weight:400!important;line-height:1.7!important;color:#153448!important;text-shadow:none!important}
+ body[data-page] .stall-copy article,body[data-page] .journey-stop article,body[data-page] .about-story,body[data-page] .about-people,body[data-page] .about-next,body[data-page] .character-copy,body[data-page] .harbor-letter-story{background:#fffaf0ed!important;border-radius:14px;padding:18px!important;box-sizing:border-box;position:relative}
+ body[data-page] .stall-copy article::before,body[data-page] .journey-stop article::before,body[data-page] .character-copy::before,body[data-page] .harbor-letter-story::before{content:none!important}
+ body[data-page] .site-footer{background:#fffaf0e8!important;padding:30px 18px!important}
+ body[data-page] .site-footer a,body[data-page] .social-links a{min-height:44px;position:relative;pointer-events:auto;touch-action:manipulation}
+ body[data-page=work] main{padding:96px 14px 28px!important}
+ body[data-page=work] .work>h1{font:400 30px/1.15 Georgia,serif!important;margin:0 auto 14px;max-width:350px}
+ body[data-page=work] .work>.kicker{font:500 12px/1.3 Georgia,serif;letter-spacing:.12em;margin:0 0 8px}
+ body[data-page=work] .service-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:0 0 14px}
+ body[data-page=work] .service-overview a{font-size:12px!important;padding:8px 2px;min-height:36px;display:flex;align-items:center;justify-content:center}
+ body[data-page=work] .service-islands{gap:10px;margin:0 0 20px}
+ body[data-page=work] .service-island{display:flex;flex-direction:column;gap:5px;padding:12px 10px;border-radius:12px;text-align:left;align-items:stretch}
+ body[data-page=work] .service-island img{width:52px;height:52px;align-self:center;margin:0}
+ body[data-page=work] .service-copy{display:flex;flex-direction:column;flex:1}
+ body[data-page=work] .service-copy h2{font-size:21px!important;line-height:1.16!important;margin:0 0 8px;min-height:49px}
+ body[data-page=work] main .service-copy p{font-size:16px!important;line-height:1.5!important;margin:0 0 8px}
+ body[data-page=work] main .service-copy .service-price{font-size:14px!important;margin-top:auto}
+ body[data-page=work] main .service-cta{font-size:15px!important;min-height:44px;padding:8px!important}
+ body[data-page=work] .work-steps,body[data-page=work] .work-contact,body[data-page=work] .work-bio{padding:20px!important}
+ body[data-page=crochet] .harbor-entrance{display:flex;flex-direction:column;align-items:stretch;min-height:0!important;height:auto!important;padding:100px 16px 25px!important;overflow:visible!important}
+ body[data-page=crochet] .harbor-heading{position:relative!important;inset:auto!important;order:0;margin:0 0 18px!important;padding:20px 12px;background:#fffaf0f5;border-radius:14px;z-index:1;width:100%;text-align:center}
+ body[data-page=crochet] .harbor-heading h1{font-size:38px!important;margin:4px 0 0;line-height:1.1!important}
+ body[data-page=crochet] .harbor-heading p{font-size:13px!important;letter-spacing:.08em!important;margin:0}
+ body[data-page=crochet] .harbor-heading::before,body[data-page=crochet] .harbor-heading .sea-mist::before{content:none!important}
+ body[data-page=crochet] .harbor-letter-stage{order:1;position:relative!important;inset:auto!important;min-height:0!important;margin:0 0 20px!important;padding:34px 4px 20px;isolation:isolate;background:#fffaf042;border-radius:16px}
+ body[data-page=crochet] .letter-stage-inner{min-height:0!important;height:auto!important;padding:24px 0 35px;display:grid;place-items:center}
+ body[data-page=crochet] .envelope-scene{position:relative!important;inset:auto!important;width:min(100%,380px)!important;margin:0 auto;transform:none!important}
+ body[data-page=crochet] .envelope-open-hit{pointer-events:auto!important;touch-action:manipulation}
+ body[data-page=crochet] .envelope-open-label{font:500 22px/1.4 Georgia,serif!important;opacity:1!important;color:#153448!important;text-shadow:none!important}
+ body[data-page=crochet] .harbor-photo-stack-layer{order:2;position:relative!important;inset:auto!important;width:100%;height:auto;display:none!important;pointer-events:none;z-index:0}
+ body[data-page=crochet] .harbor-entrance.is-open .harbor-photo-stack-layer{display:block!important;opacity:1!important;visibility:visible!important}
+ body[data-page=crochet] .harbor-photo-stack-layer .harbor-photo-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;position:relative!important;inset:auto!important;width:100%;height:auto}
+ body[data-page=crochet] .harbor-photo-stack-layer .harbor-photo-card{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;overflow:visible!important;background:#fffaf0;padding:5px;border-radius:6px;box-sizing:border-box}
+ body[data-page=crochet] .harbor-photo-card img{display:block!important;width:100%!important;height:auto!important;object-fit:contain!important;transform:none!important;image-orientation:from-image}
+ body[data-page=crochet] .mobile-harbor-vista{top:200px;z-index:-1}
+}
+/* Override older global :not() typography rules at the component boundary. */
+body[data-page=work] #work .service-overview a{font:500 15px/1.3 Georgia,serif!important;text-align:center;text-shadow:none!important}
+body[data-page=work] #work .service-copy p{font:400 18px/1.55 Georgia,serif!important;text-shadow:none!important}
+body[data-page=work] #work .service-copy .service-price{font-size:15px!important;font-style:italic}
+body[data-page=work] #work .service-cta{font:500 17px/1.35 Georgia,serif!important}
+body[data-page=work] #work .browser-help{font:400 16px/1.6 Georgia,serif!important}
+@media(max-width:700px){
+ body[data-page=work] #work .service-overview a{font-size:12px!important;min-height:38px}
+ body[data-page=work] #work .service-copy p{font-size:16px!important;line-height:1.5!important}
+ body[data-page=work] #work .service-copy .service-price{font-size:14px!important}
+ body[data-page=work] #work .service-cta{font-size:15px!important;min-height:44px}
+}
+body[data-page=crochet] .bear-gallery-main{object-fit:contain!important;transform:none!important;image-orientation:from-image}
+body[data-page=crochet] .bear-thumb img{transform:none!important;object-fit:contain!important;background:#fffaf0}
+body[data-page=crochet] #pig-modal .bear-gallery-main{aspect-ratio:auto!important;max-height:59vh!important}
+body[data-page=work] .work-contact .btn{max-width:none!important}
+body[data-page=work] #work .service-cta{gap:6px}
