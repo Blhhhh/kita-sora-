@@ -1,0 +1,18 @@
+body[data-readability]{--halo:0 1px 1px #faf8e455}
+body[data-readability=unused-a][data-page=index] .map[data-world-pass=a] .place-name,
+body[data-readability=unused-a][data-page=index] .map[data-world-pass=a] .place-note{color:#092b40!important;font-weight:400!important;text-shadow:0 1px 1px #faf9ed66!important}
+body[data-readability=unused-a][data-page=index] .map[data-world-pass=a] .place-note{font-size:20px!important;letter-spacing:0!important}
+body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-label{isolation:isolate;position:relative}
+body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-label::before{content:""!important;position:absolute;left:50%;top:50%;width:var(--light-width,300px);height:var(--light-height,115px);transform:translate(-50%,-50%);z-index:-1;pointer-events:none;background:radial-gradient(ellipse at var(--light-center,50% 50%),#f7f6e6d9 0%,#f1f4e6a0 27%,#eef3e73b 50%,transparent 72%)}
+body[data-readability=b][data-page=index] .place--yakumo{--light-width:320px;--light-height:125px;--light-center:47% 56%}
+body[data-readability=b][data-page=index] .place--harbor{--light-width:290px;--light-height:110px;--light-center:53% 48%}
+body[data-readability=b][data-page=index] .place--china{--light-width:260px;--light-height:105px;--light-center:48% 56%}
+body[data-readability=b][data-page=index] .place--shop{--light-width:300px;--light-height:115px;--light-center:51% 47%}
+body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-name,
+body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-note{color:#153448!important;font-weight:400!important;text-shadow:0 1px 1px #faf9ed55!important}
+body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-note{font-size:20px!important;letter-spacing:0!important}
+@media(max-width:700px){
+ body[data-readability=unused-a][data-page=index] .map[data-world-pass=a] .place-note,
+ body[data-readability=b][data-page=index] .map[data-world-pass=a] .place-note{font-size:18px!important}
+ body[data-readability=b][data-page=index] .place--yakumo{--light-width:280px}
+}
