@@ -79,3 +79,27 @@ body[data-page=crochet] .bear-thumb img{transform:none!important;object-fit:cont
 body[data-page=crochet] #pig-modal .bear-gallery-main{aspect-ratio:auto!important;max-height:59vh!important}
 body[data-page=work] .work-contact .btn{max-width:none!important}
 body[data-page=work] #work .service-cta{gap:6px}
+/* 28 Nov: legibility applies to desktop too. Opaque paper, never a text halo. */
+body[data-page] .character-copy,
+body[data-page] .harbor-letter-story,
+body[data-page] .stall-copy article,
+body[data-page] .about-story,
+body[data-page] .about-people,
+body[data-page] .about-next,
+body[data-page] .journey-stop article{
+ background:#fffaf0!important;color:#153448!important;border-radius:14px;padding:24px!important;text-shadow:none!important;box-shadow:0 5px 18px #15344816;position:relative;isolation:isolate;
+}
+body[data-page] .character-copy::before,body[data-page] .harbor-letter-story::before,body[data-page] .stall-copy article::before,
+body[data-page] .about-story::before,body[data-page] .about-people::before,body[data-page] .about-next::before,body[data-page] .journey-stop article::before{content:none!important}
+body[data-page] .character-copy *,body[data-page] .harbor-letter-story *,body[data-page] .stall-copy article *,body[data-page] .about-story *,body[data-page] .about-people *,body[data-page] .about-next *,body[data-page] .journey-stop article *{text-shadow:none!important}
+body[data-page=crochet] .character-copy p,body[data-page=crochet] .harbor-letter-story p{font:400 20px/1.7 Georgia,'Times New Roman',serif!important;color:#153448!important}
+body[data-page=crochet] .character-copy .character-role{font:500 18px/1.5 Georgia,serif!important;color:#153448!important;letter-spacing:0}
+body[data-page=crochet] .character-copy .story-link,body[data-page=crochet] .character-copy .ready-link,body[data-page=crochet] .harbor-letter-story a{
+ display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 16px;margin:8px 8px 0 0;border:1px solid #153448;border-radius:8px;background:#f2eee0!important;color:#153448!important;font:500 18px/1.4 Georgia,serif!important;letter-spacing:0!important;text-transform:none!important;text-decoration:none!important;cursor:pointer;touch-action:manipulation;position:relative;pointer-events:auto;
+}
+body[data-page=crochet] .character-copy a:hover,body[data-page=crochet] .character-copy button:hover{background:#dfe9e3!important}
+body[data-page=crochet] .release-heading{background:#fffaf0!important;border-radius:14px;max-width:760px;margin:20px auto 45px;padding:24px!important;text-shadow:none!important}
+body[data-page=crochet] .release-heading *{text-shadow:none!important}
+body[data-page=crochet] .release-heading::before,body[data-page=crochet] .release-heading .sea-text::before{content:none!important}
+@media(max-width:700px){body[data-page] .character-copy,body[data-page] .stall-copy article,body[data-page] .journey-stop article{padding:18px!important}}
+body[data-page=crochet] .character-copy p,body[data-page=crochet] .character-copy h3,body[data-page=crochet] .character-copy .story-link,body[data-page=crochet] .character-copy .ready-link,body[data-page=crochet] .harbor-letter-story p{text-shadow:none!important}
